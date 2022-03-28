@@ -12,7 +12,7 @@ const route = require("./routes/index");
 // db
 mongoose.connect(process.env.MONGO_DB, function (err) {
   if (!err) {
-    console.log("Connect successfully");
+    console.log("Connect successfull");
   } else {
     console.log(process.env.MONGO_DB);
     console.log(err);

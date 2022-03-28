@@ -48,9 +48,11 @@ async function renderUserRegister(req, res, next) {
     })
       .then((data) => {
         //redirect login form
+        console.log(`Register successfull with email: ${email}`);
         res.redirect("/login");
       })
       .catch((err) => {
+        console.log("Register failed!");
         // res.json('Tạo tài khoản thất bại');
         res.render("../views/components/register", {
           title: "Register page",
