@@ -1,4 +1,5 @@
-.container-scroller {
-    border: 1px solid black;
-    
+.container {
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
 }

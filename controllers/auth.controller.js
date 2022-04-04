@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const authController ={
     //login
-    loginUser: async(req,res)=>{
+    loginUser: async (req,res)=>{
         const {email , password} = req.body;
         try{
             const user = await User.findOne({email : email});
@@ -21,10 +21,10 @@ const authController ={
                 return res.status(404).render('../views/components/login');
             }
             if(user && validPassword){
+                console.log('Login successfull');
                 const accessToken = jwt.sign({
                     user_id:user._id,
                     username: user.username,
-                    isTeacher:user.isTeacher,
                     createdAt:user.createdAt,
                     updatedAt:user.updatedAt,
                 },process.env.JWT_ACCESS_KEY,
@@ -33,7 +33,6 @@ const authController ={
                  const refreshToken=jwt.sign({
                     user_id:user._id,
                     username: user.username,
-                    isTeacher:user.isTeacher,
                     createdAt:user.createdAt,
                     updatedAt:user.updatedAt,
                 },process.env.JWT_REFRESHTOKEN_KEY,
@@ -52,6 +51,7 @@ const authController ={
                 
             }
         }catch(err){
+            
             return   res.status(500).json(err);
         }
     },
