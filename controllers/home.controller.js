@@ -9,7 +9,9 @@ const getHomePage = async(req, res, next) => {
         //         console.log('err', err);
         //     }
         // })
-        res.render("index", {title: "Dream Boarding House"})
+        const list_room = await Room.find();
+        console.log(list_room);
+        res.render("index", {title: "Dream Boarding House", list_room: list_room})
     } catch (error) {
         res.status(500).json({ msg: error });
     }
