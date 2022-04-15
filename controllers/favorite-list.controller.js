@@ -1,12 +1,12 @@
 const Room = require('../models/room.modal')
-const getUploadRoom = async(req, res, next) => {
+const getfavoriteList = async(req, res, next) => {
     try {
-        res.render("upload", {title: "Dream Boarding House"})
+        res.render("favoriteList", {title: "Dream Boarding House"})
     } catch (error) {
         res.status(500).json({ msg: error });
     }
 }
 
 module.exports = {
-    getUploadRoom
+    getfavoriteList
 }
