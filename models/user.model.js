@@ -25,6 +25,10 @@ const user = new mongoose.Schema(
     avatar: {
       type: String,
       default: "/images/profile/user-member-avatar-default.jpg",
+    },
+    phoneNumber: {
+      type: String,
+      default: "",
     }
   },
   { timestamps: true }
