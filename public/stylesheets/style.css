@@ -59,6 +59,16 @@ nav {
 .description {
   margin-top: 6px
 }
+.btn-like {
+  margin-top: 4px;
+  border: none;
+  padding: 6px;
+  background-color: #bdc3c7;
+}
+.btn-like:hover {
+  background-color: antiquewhite;
+  cursor: pointer;
+}
 footer {
   height: 100px;
   background-color: aliceblue;

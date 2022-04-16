@@ -6,5 +6,11 @@ Members:
 - Nguyen Anh Dung
 
 To run: 
+    npm i
     npm start
-    server run on localhost:3000
+    server run on localhost:5000
+
+feature: 
+    - Follow room owner
+    - List favorite room
+    - 
