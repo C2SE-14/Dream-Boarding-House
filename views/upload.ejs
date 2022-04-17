@@ -18,50 +18,39 @@
 <body>
     <%-include('./components/header')%>
     <section class="home" id="home">
-        <form action="">
+        <form action="/room/upload/room" method="POST">
             <h3>Đăng tải thông tin nhà trọ</h3>
             <h1> Đăng tin mới </h1>
             <h2 style="margin-top: 10px"> Khu Vực </h2>
             <div class="inputBox">
-                <select name="" id="">
+                <select name="type" id="">
                     <option value="" disabled hidden selected>Kiểu phòng</option>
-                    <option value="Đà Nẵng">Căn hộ</option>
-                    <option value="Đà Nẵng">Phòng trọ</option>
+                    <option value="Căn hộ">Căn hộ</option>
+                    <option value="Phòng trọ">Phòng trọ</option>
                 </select>
-                <select name="" id="">
+                <select name="city" id="">
                     <option value="" disabled hidden selected>Tỉnh/Thành Phố</option>
                     <option value="Đà Nẵng">Đà Nẵng</option>
                 </select>
-                <select name="" id="">
+                <select name="district" id="">
                     <option value="" disabled hidden selected>Quận/Huyện</option>
-                    <option value="Quận Cẩm Lệ">Quận Cẩm Lệ</option>
-                    <option value="Quận Liên Chiểu">Quận Liên Chiểu</option>
-                    <option value="Quận Hải Châu">Quận Hải Châu</option>
-                    <option value="Quận Thanh Khê">Quận Thanh Khê</option>
-                    <option value="Huyện Hòa Vang">Huyện Hòa Vang</option>
+                    <option value="Cẩm Lệ">Cẩm Lệ</option>
+                    <option value="Liên Chiểu">Liên Chiểu</option>
+                    <option value="Hải Châu">Hải Châu</option>
+                    <option value="Thanh Khê">Thanh Khê</option>
+                    <option value="Hòa Vang">Hòa Vang</option>
                 </select>
-                <select name="" id="">
+                <select name="ward" id="">
                     <option value="" disabled hidden selected>Phường/Xã</option>
-                    <option value="Phường Thanh Khê Tây">Phường Thanh Khê Tây</option>
-                    <option value="Phường Thanh Khê Đông">Phường Thanh Khê Đông</option>
-                    <option value="Phường Xuân Hà">Phường Xuân Hà</option>
-                    <option value="Phường Thạc Gián">Phường Thạc Gián</option>
-                    <option value="Phường Thuận Phước">Phường Thuận Phước</option>
+                    <option value="Thanh Khê Tây">Thanh Khê Tây</option>
+                    <option value="Thanh Khê Đông">Thanh Khê Đông</option>
+                    <option value="Xuân Hà">Xuân Hà</option>
+                    <option value="Thạc Gián">Thạc Gián</option>
+                    <option value="Thuận Phước">Thuận Phước</option>
                 </select>
-                <select name="" id="">
-                    <option value="" disabled hidden selected>Đường Phố</option>
-                    <option value="Đường Quang Trung">Đường Quang Trung</option>
-                    <option value="Đường Ông Ích Khiêm">Đường Ông Ích Khiêm</option>
-                    <option value="Đường Trưng Nữ Vương">Đường Trưng Nữ Vương</option>
-                    <option value="Đường Bạch Đằng">Đường Bạch Đằng</option>
-                    <option value="Đường Nguyễn Tất Thành">Đường Nguyễn Tất Thành</option>
-                </select>
-            </div>
-            <div class="inputBox">
-                <input type="Số Nhà" name="" placeholder="Số Nhà " id="">
             </div>
             <div class="inputBox" style="padding-bottom: 10px">
-                <input type="Địa Chỉ" name="" placeholder="Địa Chỉ Chính Xác" id="">
+                <input type="Địa Chỉ" name="address" placeholder="Địa Chỉ Chính Xác" id="">
             </div>
             <div style="position: center" ; class="row">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5422.244069089167!2d108.22501278462542!3d16.060011614502386!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3142193c6144de8f%3A0x360f8a363a203fa7!2zQ-G6p3UgUuG7k25n!5e0!3m2!1svi!2s!4v1648784942014!5m2!1svi!2s"
@@ -81,7 +70,7 @@
                 </div>
                 <div>
                     <div class="inputBox" style="padding-bottom: 10px">
-                        <input type="Nội dung mô tả" name="" placeholder="Nội dung mô tả" id="">
+                        <input type="Nội dung mô tả" name="description" placeholder="Nội dung mô tả" id="">
                     </div>
                     <h6 style="margin-left: 5px">
                         Nội dung mô tả phải có ít nhất 150 kí tự và không được dài quá 5000 kí tự.
@@ -92,7 +81,7 @@
                         Giá cho thuê
                     </h2>
                     <div class="inputBox" style="padding-bottom: 10px">
-                        <input type="Nhập giá" name="" placeholder="Nhập giá" id="">
+                        <input type="Nhập giá" name="price" placeholder="Nhập giá" id="">
                         <select class="form-select" aria-label="Default select example">
                         <option value="Đồng/Tháng">Đồng/Tháng</option>
                         <option value="Đồng/m2/Tháng">Đồng/m2/Tháng</option>
@@ -104,7 +93,7 @@
                         Diện tích
                     </h2>
                     <div class="inputBox" style="padding-bottom: 10px">
-                        <input type="Nhập diện tích" name="" placeholder="Nhập diện tích của căn nhà/phòng" id="">
+                        <input type="Nhập diện tích" name="acreage" placeholder="Nhập diện tích của căn nhà/phòng" id="">
                         <span class="input-group-text" id="basic-addon1">m2</span>
                     </div>
                 </div>
