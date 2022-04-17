@@ -16,29 +16,7 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="logo">Dream boarding house</div>
-        <nav>
-          <ul class="nav-bar">
-            <li class="nav-item">
-              <a href="" class="nav-link">TRANG CHỦ</a>
-            </li>
-            <li class="nav-item">
-              <a href="/room/upload" class="nav-link">ĐĂNG TIN</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">QUẢN LÝ THÔNG TIN</a>
-            </li>
-            <li class="nav-item">
-              <a href="/favoriteList/rooms" class="nav-link">DANH SÁCH YÊU THÍCH</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">THÔNG BÁO</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-
+    <%-include('./components/header')%>
     <section class="home" id="home">
         <form action="">
             <h3>Đăng tải thông tin nhà trọ</h3>
@@ -46,33 +24,38 @@
             <h2 style="margin-top: 10px"> Khu Vực </h2>
             <div class="inputBox">
                 <select name="" id="">
-                <option value="" disabled hidden selected>Tỉnh/Thành Phố</option>
-                <option value="Đà Nẵng">Đà Nẵng</option>
-            </select>
+                    <option value="" disabled hidden selected>Kiểu phòng</option>
+                    <option value="Đà Nẵng">Căn hộ</option>
+                    <option value="Đà Nẵng">Phòng trọ</option>
+                </select>
                 <select name="" id="">
-                <option value="" disabled hidden selected>Quận/Huyện</option>
-                <option value="Quận Cẩm Lệ">Quận Cẩm Lệ</option>
-                <option value="Quận Liên Chiểu">Quận Liên Chiểu</option>
-                <option value="Quận Hải Châu">Quận Hải Châu</option>
-                <option value="Quận Thanh Khê">Quận Thanh Khê</option>
-                <option value="Huyện Hòa Vang">Huyện Hòa Vang</option>
-            </select>
+                    <option value="" disabled hidden selected>Tỉnh/Thành Phố</option>
+                    <option value="Đà Nẵng">Đà Nẵng</option>
+                </select>
                 <select name="" id="">
-                <option value="" disabled hidden selected>Phường/Xã</option>
-                <option value="Phường Thanh Khê Tây">Phường Thanh Khê Tây</option>
-                <option value="Phường Thanh Khê Đông">Phường Thanh Khê Đông</option>
-                <option value="Phường Xuân Hà">Phường Xuân Hà</option>
-                <option value="Phường Thạc Gián">Phường Thạc Gián</option>
-                <option value="Phường Thuận Phước">Phường Thuận Phước</option>
-            </select>
+                    <option value="" disabled hidden selected>Quận/Huyện</option>
+                    <option value="Quận Cẩm Lệ">Quận Cẩm Lệ</option>
+                    <option value="Quận Liên Chiểu">Quận Liên Chiểu</option>
+                    <option value="Quận Hải Châu">Quận Hải Châu</option>
+                    <option value="Quận Thanh Khê">Quận Thanh Khê</option>
+                    <option value="Huyện Hòa Vang">Huyện Hòa Vang</option>
+                </select>
                 <select name="" id="">
-                <option value="" disabled hidden selected>Đường Phố</option>
-                <option value="Đường Quang Trung">Đường Quang Trung</option>
-                <option value="Đường Ông Ích Khiêm">Đường Ông Ích Khiêm</option>
-                <option value="Đường Trưng Nữ Vương">Đường Trưng Nữ Vương</option>
-                <option value="Đường Bạch Đằng">Đường Bạch Đằng</option>
-                <option value="Đường Nguyễn Tất Thành">Đường Nguyễn Tất Thành</option>
-            </select>
+                    <option value="" disabled hidden selected>Phường/Xã</option>
+                    <option value="Phường Thanh Khê Tây">Phường Thanh Khê Tây</option>
+                    <option value="Phường Thanh Khê Đông">Phường Thanh Khê Đông</option>
+                    <option value="Phường Xuân Hà">Phường Xuân Hà</option>
+                    <option value="Phường Thạc Gián">Phường Thạc Gián</option>
+                    <option value="Phường Thuận Phước">Phường Thuận Phước</option>
+                </select>
+                <select name="" id="">
+                    <option value="" disabled hidden selected>Đường Phố</option>
+                    <option value="Đường Quang Trung">Đường Quang Trung</option>
+                    <option value="Đường Ông Ích Khiêm">Đường Ông Ích Khiêm</option>
+                    <option value="Đường Trưng Nữ Vương">Đường Trưng Nữ Vương</option>
+                    <option value="Đường Bạch Đằng">Đường Bạch Đằng</option>
+                    <option value="Đường Nguyễn Tất Thành">Đường Nguyễn Tất Thành</option>
+                </select>
             </div>
             <div class="inputBox">
                 <input type="Số Nhà" name="" placeholder="Số Nhà " id="">

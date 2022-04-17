@@ -10,7 +10,7 @@ const authController ={
             const user = await User.findOne({email : email});
             if(!user){
                 // json('Sai tài khoản!');
-                return res.status(404).render('../views/components/login');
+                return res.status(404).render('../views/components/login', {user});
             }
             const validPassword = await bcrypt.compare(
                 password,
@@ -18,6 +18,7 @@ const authController ={
             );
             if(!validPassword){
                 // json('Sai mật khẩu!');
+                console.log('login failed');
                 return res.status(404).render('../views/components/login');
             }
             if(user && validPassword){
@@ -48,7 +49,6 @@ const authController ={
                     sameSite: "strict",
                 })
                 res.redirect("/");
-                
             }
         }catch(err){
             

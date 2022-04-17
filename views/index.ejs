@@ -6,28 +6,7 @@
   </head>
   <body>
     <div class="container">
-      <header class="header">
-        <h3 class="logo">Dream boarding house</h3>
-        <nav>
-          <ul class="nav-bar">
-            <li class="nav-item">
-              <a href="" class="nav-link">TRANG CHỦ</a>
-            </li>
-            <li class="nav-item">
-              <a href="/room/upload" class="nav-link">ĐĂNG TIN</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">QUẢN LÝ THÔNG TIN</a>
-            </li>
-            <li class="nav-item">
-              <a href="/favoriteList/rooms" class="nav-link">DANH SÁCH YÊU THÍCH</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">THÔNG BÁO</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <%- include('./components/header')%>
       <div class="banner">
         <img src="https://gotrangtri.vn/wp-content/uploads/2021/04/thiet-ke-noi-that-chung-cu-bia.jpg.webp" alt="căn hộ" class="img-banner">
       </div>
@@ -108,9 +87,7 @@
           <div class="description">Phòng trọ rộng rãi, thoáng mát</div>
         </div>
       </div>
-      <footer>
-        <div>Copyright @C2SE.14</div>
-      </footer>
+      <%- include('./components/footer')%>
     </div>
   </body>
 </html>

@@ -16,7 +16,7 @@
     background-color: aliceblue;
   }
   nav {
-    width: 60%;
+    width: 70%;
   }
   .nav-bar {
     display: flex;
@@ -26,9 +26,3 @@
   .nav-link:hover {
     color: black;
   }
-.content-wrapper {
-    display: flex;
-    justify-content: center;
-    font-size: 18px;
-    height: 490px
-}

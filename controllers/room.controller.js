@@ -1,7 +1,8 @@
 const Room = require('../models/room.modal')
 const getUploadRoom = async(req, res, next) => {
     try {
-        res.render("upload", {title: "Dream Boarding House"})
+        const user = req.cookies.user
+        res.render("upload", {user})
     } catch (error) {
         res.status(500).json({ msg: error });
     }
