@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Information Boarding House</title>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.number.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Convergence&family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 
@@ -19,25 +22,25 @@
     <header class="header">
         <div class="logo">Dream boarding house</div>
         <nav>
-          <ul class="nav-bar">
-            <li class="nav-item">
-              <a href="" class="nav-link">TRANG CHỦ</a>
-            </li>
-            <li class="nav-item">
-              <a href="/room/upload" class="nav-link">ĐĂNG TIN</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">QUẢN LÝ THÔNG TIN</a>
-            </li>
-            <li class="nav-item">
-              <a href="/favoriteList/rooms" class="nav-link">DANH SÁCH YÊU THÍCH</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">THÔNG BÁO</a>
-            </li>
-          </ul>
+            <ul class="nav-bar">
+                <li class="nav-item">
+                    <a href="" class="nav-link">TRANG CHỦ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/room/upload" class="nav-link">ĐĂNG TIN</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">QUẢN LÝ THÔNG TIN</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/favoriteList/rooms" class="nav-link">DANH SÁCH YÊU THÍCH</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">THÔNG BÁO</a>
+                </li>
+            </ul>
         </nav>
-      </header>
+    </header>
 
     <section class="home" id="home">
         <form action="">
@@ -109,7 +112,7 @@
                         Giá cho thuê
                     </h2>
                     <div class="inputBox" style="padding-bottom: 10px">
-                        <input type="Nhập giá" name="" placeholder="Nhập giá" id="">
+                        <input type="text" name="number" placeholder="Nhập giá" id="price" value="">
                         <select class="form-select" aria-label="Default select example">
                         <option value="Đồng/Tháng">Đồng/Tháng</option>
                         <option value="Đồng/m2/Tháng">Đồng/m2/Tháng</option>
@@ -145,7 +148,7 @@
 
     <footer>
         <div>Copyright @C2SE.14</div>
-      </footer>
+    </footer>
 
     <!-- footer section ends -->
 
@@ -165,7 +168,6 @@
             menu.classList.remove('fa-times');
         }
     </script>
-
 </body>
 
 </html>
