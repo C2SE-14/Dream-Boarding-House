@@ -15,7 +15,7 @@
       <nav>
         <ul class="nav-bar">
           <li class="nav-item">
-            <a href="" class="nav-link">TRANG CHỦ</a>
+            <a href="/" class="nav-link">TRANG CHỦ</a>
           </li>
           <li class="nav-item">
             <a href="/room/upload" class="nav-link">ĐĂNG TIN</a>
@@ -47,15 +47,15 @@
                         </div>
                     <% }); %>
                   <% } %>
+                  <label for="">User name</label>
                   <input type="text" name="username" class="form-control form-control-lg" id="username" pattern="{6,15}" placeholder="Username" required>
                   <div class="invalid-feedback">
                     Please enter your username.
                   </div>
-                  <h5 id="usercheck" style="color: #dc3545; font-size: 80%;" >
-                    Please enter your username.
-                  </h5>
+                  
                 </div>
                 <div class="form-group has-validation">
+                  <label for="">Email</label>
                   <input type="email" name="email" class="form-control form-control-lg" id="email" placeholder="Email" required>
                   <div class="invalid-feedback">
                     Please enter your email.
@@ -65,22 +65,18 @@
                   </small>
                 </div>
                 <div class="form-group has-validation">
+                  <label for="">Pass word</label>
                   <input type="password" name="password" class="form-control form-control-lg" id="password" placeholder="Password" required>
                   <div class="invalid-feedback">
                     Please enter your password.
                   </div>
-                  <h5 id="usercheck-password" style="color: #dc3545; font-size: 80%;" >
-                    Please enter your password.
-                  </h5>
+                 
                 </div>
                 <div class="form-group has-validation">
+                  <label for="">Confirm pass word</label>
                   <input type="password" name="confirmPassword" class="form-control form-control-lg" id="confirm-password" placeholder="Confirm Password" required>
-                  <div class="invalid-feedback">
-                    Please enter your confirm password.
-                  </div>
-                  <h5 id="usercheck-confirm-password" style="color: #dc3545; font-size: 80%;" >
-                    Please enter your confirm password.
-                  </h5>
+                  
+                  
                 </div>
                 <div class="mb-4">
                   <div class="form-check">
@@ -104,9 +100,7 @@
       <!-- content-wrapper ends -->
     </div>
     <!-- page-body-wrapper ends -->
-    <footer>
-      <div>Copyright @C2SE.14</div>
-    </footer>
+    <%-include('footer')%>
   </div>
   <!-- endinject -->
 </body>
