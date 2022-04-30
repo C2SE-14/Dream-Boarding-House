@@ -5,7 +5,6 @@ const getDetailRoom = async(req, res, next) => {
         console.log('user in detail: ', user);
         const roomId = req.params;
         const room = await Room.findOne({roomId: roomId});
-        console.log('room: ', room);
         res.status(200).render('roomDetail', {room, user})
     } catch (error) {
         res.status(500).json({msg: error});
