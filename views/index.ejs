@@ -6,68 +6,26 @@
   </head>
   <body>
     <div class="container">
-      <header class="header">
-        <h3 class="logo">Dream boarding house</h3>
-        <nav>
-          <ul class="nav-bar">
-            <li class="nav-item">
-              <a href="" class="nav-link">TRANG CHỦ</a>
-            </li>
-            <li class="nav-item">
-              <a href="/room/upload" class="nav-link">ĐĂNG TIN</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">QUẢN LÝ THÔNG TIN</a>
-            </li>
-            <li class="nav-item">
-              <a href="/favoriteList/rooms" class="nav-link">DANH SÁCH YÊU THÍCH</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">THÔNG BÁO</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <%- include('./components/header')%>
       <div class="banner">
         <img src="https://gotrangtri.vn/wp-content/uploads/2021/04/thiet-ke-noi-that-chung-cu-bia.jpg.webp" alt="căn hộ" class="img-banner">
       </div>
       <div class="list-room">
-        <div class="room">
-          <div class="image-room">
-            <img src="https://images.cenhomes.vn/2020/03/1585033148-can-ho-mau-an-land-complex.jpg" alt="">
+        <%for(let i = 0; i < list_room.length; i++) {%>
+        <a href="/room/<%=list_room[i]._id%>">
+          <div class="room">
+            <div class="image-room">
+              <img src="https://images.cenhomes.vn/2020/03/1585033148-can-ho-mau-an-land-complex.jpg" alt="">
+            </div>
+            <h3 class="type"><%=list_room[i].type%></h3>
+            <div class="acreage"><%=list_room[i].acreage%></div>
+            <div class="address"><%=list_room[i].address%></div>
+            <div class="description"><%=list_room[i].description%></div>
+            <div class="description"><%=list_room[i].price%></div>
+            <button class="btn-like">Yêu thích</button>
           </div>
-          <h3 class="type">Căn hộ</h3>
-          <div class="acreage">40m2</div>
-          <div class="address">18 Ông Ích Đường. Khuê Trung, Cẩm Lệ, Đà Nẵng</div>
-          <div class="description">Căn hộ rộng rãi, thoáng mát</div>
-        </div>
-        <div class="room">
-          <div class="image-room">
-            <img src="https://images.cenhomes.vn/2020/03/1585033148-can-ho-mau-an-land-complex.jpg" alt="">
-          </div>
-          <h3 class="type">Căn hộ</h3>
-          <div class="acreage">40m2</div>
-          <div class="address">k402/35. Lê Duẩn, Thanh Khê, Đà Nẵng</div>
-          <div class="description">Căn hộ rộng rãi, thoáng mát</div>
-        </div>
-        <div class="room">
-          <div class="image-room">
-            <img src="https://images.cenhomes.vn/2020/03/1585033149-can-ho-mau-charmington-iris.jpg" alt="">
-          </div>
-          <h3 class="type">Căn hộ</h3>
-          <div class="acreage">40m2</div>
-          <div class="address">k24/01. Hòa Cường Nam, Hải Châu, Đà Nẵng</div>
-          <div class="description">Căn hộ rộng rãi, thoáng mát</div>
-        </div>
-        <div class="room">
-          <div class="image-room">
-            <img src="https://images.cenhomes.vn/2020/03/1585033153-can-ho-mau-florence.jpg" alt="">
-          </div>
-          <h3 class="type">Căn hộ</h3>
-          <div class="acreage">40m2</div>
-          <div class="address">19 Hùng Vương. Hòa Cường Nam, Hải Châu, Đà Nẵng</div>
-          <div class="description">Căn hộ rộng rãi, thoáng mát</div>
-        </div>
+        </a>
+        <% } %>
       </div>
       <div class="list-room">
         <div class="room">
@@ -107,9 +65,7 @@
           <div class="description">Phòng trọ rộng rãi, thoáng mát</div>
         </div>
       </div>
-      <footer>
-        <div>Copyright @C2SE.14</div>
-      </footer>
+      <%- include('./components/footer')%>
     </div>
   </body>
 </html>
