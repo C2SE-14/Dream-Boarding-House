@@ -27,7 +27,7 @@ const postUploadRoom = async(req, res, next) => {
         await newRoom.save();
         res.redirect('/');
     } catch (error) {
-        res.status(500).json({msg: err});
+        res.status(500).json({msg: error});
     }
 }
 module.exports = {

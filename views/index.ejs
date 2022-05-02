@@ -22,7 +22,9 @@
             <div class="address"><%=list_room[i].address%></div>
             <div class="description"><%=list_room[i].description%></div>
             <div class="description"><%=list_room[i].price%></div>
-            <button class="btn-like">Yêu thích</button>
+            <form action="/favoriteList/room/like/<%=list_room[i]._id%>" method="POST">
+              <input type="submit" value="Yêu thích" class="btn-like"/>
+            </form>
           </div>
         </a>
         <% } %>
