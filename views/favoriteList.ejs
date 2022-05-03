@@ -31,24 +31,24 @@
       <div class="favorite-list">
         <h3>Danh sách phòng yêu thích của bạn</h3>
         <div class="list-room">
-            <div class="room">
-              <div class="image-room">
-                <img src="https://images.cenhomes.vn/2020/03/1585033149-can-ho-mau-charmington-iris.jpg" alt="">
+          <%if(listRoom.length>0) {%>
+            <%for(let i=0; i<listRoom.length; i++) {%>
+              <div class="room">
+                <div class="image-room">
+                  <img src="https://images.cenhomes.vn/2020/03/1585033149-can-ho-mau-charmington-iris.jpg" alt="">
+                </div>
+                <h3 class="type"><%=listRoom[i].type%></h3>
+                <div class="acreage"><%=listRoom[i].acreage%></div>
+                <div class="address"><%=listRoom[i].address%></div>
+                <div class="description"><%=listRoom[i].description%></div>
+                <form action="/favoriteList/room/unlike/<%=listRoom[i]._id%>" method="DELETE">
+                  <input type="submit" value="Bỏ yêu thích" class="btn-unlike"/>
+                </form>
               </div>
-              <h3 class="type">Căn hộ</h3>
-              <div class="acreage">40m2</div>
-              <div class="address">k24/01. Hòa Cường Nam, Hải Châu, Đà Nẵng</div>
-              <div class="description">Căn hộ rộng rãi, thoáng mát</div>
-            </div>
-            <div class="room">
-              <div class="image-room">
-                <img src="https://images.cenhomes.vn/2020/03/1585033153-can-ho-mau-florence.jpg" alt="">
-              </div>
-              <h3 class="type">Căn hộ</h3>
-              <div class="acreage">40m2</div>
-              <div class="address">19 Hùng Vương. Hòa Cường Nam, Hải Châu, Đà Nẵng</div>
-              <div class="description">Căn hộ rộng rãi, thoáng mát</div>
-            </div>
+            <%}%>
+          <%} else {%>
+            <div>Bạn chưa có danh sách phòng yêu thích</div>
+          <% } %>
           </div>
       </div>
       <footer>
