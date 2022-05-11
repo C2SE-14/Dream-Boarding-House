@@ -6,22 +6,81 @@
   </head>
   <body>
     <div class="container">
-      <header class="header">
-        <div class="logo">Dream boarding house</div>
-        <nav>
-          <ul class="nav-bar">
-            <li class="nav-item">
-              <a href="" class="nav-link">TRANG CHỦ</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">QUẢN LÝ THÔNG TIN</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">THÔNG BÁO</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <%- include('./components/header')%>
+      <div class="banner">
+        <img src="https://gotrangtri.vn/wp-content/uploads/2021/04/thiet-ke-noi-that-chung-cu-bia.jpg.webp" alt="căn hộ" class="img-banner">
+      </div>
+      <div class="list-room">
+        <%for(let i = 0; i < list_room.length; i++) {%>
+        <a href="/room/<%=list_room[i]._id%>">
+          <div class="room">
+            <div class="image-room">
+              <img src="https://images.cenhomes.vn/2020/03/1585033148-can-ho-mau-an-land-complex.jpg" alt="">
+            </div>
+            <h3 class="type"><%=list_room[i].type%></h3>
+            <div class="acreage"><%=list_room[i].acreage%></div>
+            <div class="address"><%=list_room[i].address%></div>
+            <div class="description"><%=list_room[i].description%></div>
+            <div class="description"><%=list_room[i].price%></div>
+            <% if(user) {%>
+            <form action="" method="POST" onsubmit="handleSubmit">
+              <input type="submit" value="Yêu thích" class="btn-like"/>
+            </form>
+            <% } %>
+          </div>
+        </a>
+        <% } %>
+      </div>
+      <div class="list-room">
+        <div class="room">
+          <div class="image-room">
+            <img src="https://behouse.vn/wp-content/uploads/2021/03/phong-tro-dep.jpg" alt="">
+          </div>
+          <h3 class="type">Phòng trọ</h3>
+          <div class="acreage">32m2</div>
+          <div class="address">02 Khuê Trung. Hòa Cường Nam, Hải Châu, Đà Nẵng</div>
+          <div class="description">Phòng trọ rộng rãi, thoáng mát</div>
+        </div>
+        <div class="room">
+          <div class="image-room">
+            <img src="https://behouse.vn/wp-content/uploads/old/phong-tro-dep-3_1615736824.jpg" alt="">
+          </div>
+          <h3 class="type">Phòng trọ</h3>
+          <div class="acreage">25m2</div>
+          <div class="address">Cách mạng tháng 8, Hòa Cường Nam, Hải Châu, Đà Nẵng</div>
+          <div class="description">Phòng trọ rộng rãi, thoáng mát</div>
+        </div>
+        <div class="room">
+          <div class="image-room">
+            <img src="https://behouse.vn/wp-content/uploads/old/phong-tro-dep-7_1615736985.jpg" alt="">
+          </div>
+          <h3 class="type">Phòng trọ</h3>
+          <div class="acreage">40m2</div>
+          <div class="address"> 56 Bạch Đằng, Hòa Cường Nam, Hải Châu, Đà Nẵng</div>
+          <div class="description">Phòng trọ rộng rãi, thoáng mát</div>
+        </div>
+        <div class="room">
+          <div class="image-room">
+            <img src="https://behouse.vn/wp-content/uploads/old/phong-tro-dep-6_1615736964.jpg" alt="">
+          </div>
+          <h3 class="type">Phòng trọ</h3>
+          <div class="acreage">18m2</div>
+          <div class="address">02 Khuê Trung. Hòa Cường Nam, Hải Châu, Đà Nẵng</div>
+          <div class="description">Phòng trọ rộng rãi, thoáng mát</div>
+        </div>
+      </div>
+      <%- include('./components/footer')%>
     </div>
   </body>
+  <script>
+    // function handleSubmit() {
+    //   $.ajax({
+    //     url: `/favoriteList/room/like/${}`,
+    //     type: "POST",
+    //     data: data,
+    //     success: success,
+    //     dataType: dataType
+    //   });
+    // }
+  </script>
 </html>

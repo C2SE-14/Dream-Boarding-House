@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="../../stylesheets/roomDetail.css">
+</head>
+
+<body>
+  <div class="container">
+    <%-include('./components/header')%>
+    <div class="content">
+        <div class="list-image">
+            <img src="https://images.cenhomes.vn/2020/03/1585033148-can-ho-mau-an-land-complex.jpg" alt="">
+        </div>
+        <div class="room-information">
+            <h3 class="type"><%=room.type%></h3>
+            <p class="address"><%=room.address%></p>
+            <p class="description"><%=room.description%></p>
+            <p class="phone">...</p>
+            <p class="price"><%=room.price%> VND</p>
+        </div>
+    </div>
+    <div class="comment">
+        <div class="availble-comment">
+            <div class="user-avt">
+                <!-- <img src="<%=user.avatar%>" alt=""> -->
+            </div>
+            <p>comment</p>
+        </div>
+    </div>
+    <!-- page-body-wrapper ends -->
+    <%-include('./components/footer')%>
+  </div>
+  <!-- endinject -->
+</body>
+</html>
