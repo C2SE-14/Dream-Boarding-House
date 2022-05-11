@@ -23,8 +23,11 @@
             <div class="description"><%=listRoom[i].description%></div>
             <div class="description"><%=listRoom[i].price%></div>
             <% if(user) {%>
-            <form action="/favoriteList/room/like/<%=listRoom[i]._id%>" method="POST" onsubmit="handleSubmit">
+            <!-- <form action="/favoriteList/room/like/<%=listRoom[i]._id%>" method="POST" onsubmit="handleSubmit">
               <input type="submit" value="Yêu thích" class="btn-like"/>
+            </form> -->
+            <form action="" method="POST" id="form-like">
+              <button class="btn-like" data-id="<%=listRoom[i]._id%>">yêu thích</button>
             </form>
             <% } %>
           </div>
@@ -82,5 +85,16 @@
     //     dataType: dataType
     //   });
     // }
+    const likeBtn = document.getElementsByClassName("btn-like");
+    const formLike = document.getElementById("form-like");
+    Array.prototype.forEach.call(likeBtn, (btn) => {
+          btn.addEventListener('click', function(e) {
+            const roomId = btn.getAttribute('data-id');
+            console.log('roomId: ', roomId);
+            let actionForm = `/favoriteList/room/like/${roomId}`;
+            console.log('action form: ', actionForm);
+            formLike.setAttribute("action", actionForm);
+          })
+        })
   </script>
 </html>

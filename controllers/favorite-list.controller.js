@@ -47,7 +47,7 @@ const deleteFavoriteList = async(req, res, next) => {
         await favoriteRoom.deleteOne({ roomId: roomId })
         .then(() => {
         console.log('delete successfully')
-        res.redirect("/");
+        res.status(200).redirect("/");
         })
         .catch((error) => {
         res.status(500).send(error);
