@@ -9,16 +9,16 @@
         <li class="nav-item">
           <a href="" class="nav-link">TRANG CHỦ</a>
         </li>
-        <li class="nav-item">
-          <a href="/room/post" class="nav-link">ĐĂNG TIN</a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link">QUẢN LÝ THÔNG TIN</a>
-        </li>
-        <li class="nav-item">
-          <a href="/favoriteList/rooms" class="nav-link">DANH SÁCH YÊU THÍCH</a>
-        </li>
         <% if(user) {%>
+          <li class="nav-item">
+            <a href="/room/post" class="nav-link">ĐĂNG TIN</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">QUẢN LÝ THÔNG TIN</a>
+          </li>
+          <li class="nav-item">
+            <a href="/favoriteList/rooms" class="nav-link">DANH SÁCH YÊU THÍCH</a>
+          </li>
         <li class="nav-item">
           <a href="" class="nav-link">THÔNG BÁO</a>
         </li>
@@ -28,6 +28,9 @@
         <%} else{%>
           <li class="nav-item">
             <a href="/login" class="nav-link">ĐĂNG NHẬP</a>
+          </li>
+          <li class="nav-item">
+            <a href="/register" class="nav-link">ĐĂNG KÝ</a>
           </li>
         <% } %>
       </ul>

@@ -22,7 +22,11 @@
             <div class="address"><%=list_room[i].address%></div>
             <div class="description"><%=list_room[i].description%></div>
             <div class="description"><%=list_room[i].price%></div>
-            <button class="btn-like">Yêu thích</button>
+            <% if(user) {%>
+            <form action="" method="POST" onsubmit="handleSubmit">
+              <input type="submit" value="Yêu thích" class="btn-like"/>
+            </form>
+            <% } %>
           </div>
         </a>
         <% } %>
@@ -68,4 +72,15 @@
       <%- include('./components/footer')%>
     </div>
   </body>
+  <script>
+    // function handleSubmit() {
+    //   $.ajax({
+    //     url: `/favoriteList/room/like/${}`,
+    //     type: "POST",
+    //     data: data,
+    //     success: success,
+    //     dataType: dataType
+    //   });
+    // }
+  </script>
 </html>

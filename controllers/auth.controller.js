@@ -22,7 +22,6 @@ const authController ={
                 return res.status(404).render('../views/components/login');
             }
             if(user && validPassword){
-                console.log('Login successfull');
                 const accessToken = jwt.sign({
                     user_id:user._id,
                     username: user.username,
@@ -40,7 +39,12 @@ const authController ={
                 {expiresIn:"2h"}
                 
                 );
-                res.cookie("user", user, {
+                const userInClient = {
+                    user_id:user._id,
+                    username: user.username,
+                    userAvt: user.avatar
+                }
+                res.cookie("user", userInClient, {
                     httpOnly: true,
                     sameSite: "strict",
                 })
@@ -48,11 +52,15 @@ const authController ={
                     httpOnly: true,
                     sameSite: "strict",
                 })
+                res.cookie("refreshToken", refreshToken, {
+                    httpOnly: true,
+                    sameSite: "strict",
+                })
                 res.redirect("/");
             }
-        }catch(err){
-            
-            return   res.status(500).json(err);
+        }catch(error){    
+            console.log(error);        
+            return res.status(500).json(error);
         }
     },
     logOut:(req,res)=>{

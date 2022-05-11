@@ -61,6 +61,8 @@ nav {
   margin-top: 6px
 }
 .btn-like {
+  display: block;
+  width: 100px;
   margin-top: 4px;
   border: none;
   padding: 6px;
