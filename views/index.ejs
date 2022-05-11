@@ -11,19 +11,19 @@
         <img src="https://gotrangtri.vn/wp-content/uploads/2021/04/thiet-ke-noi-that-chung-cu-bia.jpg.webp" alt="căn hộ" class="img-banner">
       </div>
       <div class="list-room">
-        <%for(let i = 0; i < list_room.length; i++) {%>
-        <a href="/room/<%=list_room[i]._id%>">
+        <%for(let i = 0; i < listRoom.length; i++) {%>
+        <a href="/room/<%=listRoom[i]._id%>">
           <div class="room">
             <div class="image-room">
               <img src="https://images.cenhomes.vn/2020/03/1585033148-can-ho-mau-an-land-complex.jpg" alt="">
             </div>
-            <h3 class="type"><%=list_room[i].type%></h3>
-            <div class="acreage"><%=list_room[i].acreage%></div>
-            <div class="address"><%=list_room[i].address%></div>
-            <div class="description"><%=list_room[i].description%></div>
-            <div class="description"><%=list_room[i].price%></div>
+            <h3 class="type"><%=listRoom[i].type%></h3>
+            <div class="acreage"><%=listRoom[i].acreage%></div>
+            <div class="address"><%=listRoom[i].address%></div>
+            <div class="description"><%=listRoom[i].description%></div>
+            <div class="description"><%=listRoom[i].price%></div>
             <% if(user) {%>
-            <form action="" method="POST" onsubmit="handleSubmit">
+            <form action="/favoriteList/room/like/<%=listRoom[i]._id%>" method="POST" onsubmit="handleSubmit">
               <input type="submit" value="Yêu thích" class="btn-like"/>
             </form>
             <% } %>

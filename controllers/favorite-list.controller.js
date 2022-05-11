@@ -4,13 +4,15 @@ const getFavoriteList = async(req, res, next) => {
     try {
         const userId = req.cookies.user.user_id;
         const listRoomId = await favoriteRoom.find({userId: userId});
-        const listRoom = [];
+        const listFavoriteRoom = [];
         for(let i = 0; i < listRoomId.length; i++) {
             const favoriteRoom = await Room.findOne({id: listRoomId[i].roomId});
-            listRoom.push(favoriteRoom);
+            listFavoriteRoom.push(favoriteRoom);
         }
-        res.render("favoriteList", {title: "favorite room", listRoom})
+        console.log('list room favorite: ', listFavoriteRoom);
+        res.render("favoriteList", {title: "favorite room", listFavoriteRoom})
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: error });
     }
 }
@@ -19,6 +21,7 @@ const postFavoriteList = async(req, res, next) => {
     try {
         let myUserId = req.cookies.user.user_id;
         const roomId = req.params;
+        console.log('roomId to like: ', roomId);
         let isLogin = false;
         if(!myUserId) {
         } else {
@@ -29,10 +32,7 @@ const postFavoriteList = async(req, res, next) => {
             }
             const newFavoriteRoom = new favoriteRoom(body);
             await newFavoriteRoom.save();
-            res.json({
-                id: roomId.id,
-                result: 'successfully'
-            });
+            res.redirect('/')
         }
     } catch (error){
         res.status(500).json(error);
@@ -42,10 +42,11 @@ const postFavoriteList = async(req, res, next) => {
 const deleteFavoriteList = async(req, res, next) => {
     try {
         // const userId = req.cookies.user._id;
-        console.log('run here');
         const roomId = req.params;
-        await favoriteRoom.delete({ roomId: roomId })
+        console.log('roomId to delete: ', roomId);
+        await favoriteRoom.deleteOne({ roomId: roomId })
         .then(() => {
+        console.log('delete successfully')
         res.redirect("/");
         })
         .catch((error) => {
