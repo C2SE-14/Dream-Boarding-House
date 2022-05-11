@@ -58,9 +58,9 @@ const authController ={
                 })
                 res.redirect("/");
             }
-        }catch(err){
-            
-            return   res.status(500).json(err);
+        }catch(error){    
+            console.log(error);        
+            return res.status(500).json(error);
         }
     },
     logOut:(req,res)=>{
