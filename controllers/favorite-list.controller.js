@@ -2,7 +2,7 @@ const favoriteRoom = require('../models/favoriteRoom.modal')
 const Room = require('../models/room.modal');
 const getFavoriteList = async(req, res, next) => {
     try {
-        const userId = req.cookies.user._id;
+        const userId = req.cookies.user.user_id;
         const listRoomId = await favoriteRoom.find({userId: userId});
         const listRoom = [];
         for(let i = 0; i < listRoomId.length; i++) {
@@ -17,23 +17,23 @@ const getFavoriteList = async(req, res, next) => {
 
 const postFavoriteList = async(req, res, next) => {
     try {
-        let userId = req.cookies.user.user_id;
-        console.log(req.cookies);
+        let myUserId = req.cookies.user.user_id;
         const roomId = req.params;
-        const isLogin = false;
-        if(!userId) {
-            console.log('vao day?');
+        let isLogin = false;
+        if(!myUserId) {
             //check is login in client, if isLogin = false, go to login
         } else {
-            console.log('Thanh cong chua? ');
             isLogin = true;
             const body = {
-                userId: userId,
+                userId: myUserId,
                 roomId: roomId.id
             }
             const newFavoriteRoom = new favoriteRoom(body);
             await newFavoriteRoom.save();
-            res.redirect('/');
+            res.json({
+                id: roomId.id,
+                result: 'successfully'
+            });
         }
     } catch (error){
         res.status(500).json(error);

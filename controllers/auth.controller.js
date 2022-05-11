@@ -39,15 +39,15 @@ const authController ={
                 {expiresIn:"2h"}
                 
                 );
-                // const userInClient = {
-                //     user_id:user._id,
-                //     username: user.username,
-                //     userAvt: user.avatar
-                // }
-                // res.cookie("user", userInClient, {
-                //     httpOnly: true,
-                //     sameSite: "strict",
-                // })
+                const userInClient = {
+                    user_id:user._id,
+                    username: user.username,
+                    userAvt: user.avatar
+                }
+                res.cookie("user", userInClient, {
+                    httpOnly: true,
+                    sameSite: "strict",
+                })
                 res.cookie("accessToken", accessToken, {
                     httpOnly: true,
                     sameSite: "strict",
