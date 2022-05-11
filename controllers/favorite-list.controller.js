@@ -21,7 +21,6 @@ const postFavoriteList = async(req, res, next) => {
         const roomId = req.params;
         let isLogin = false;
         if(!myUserId) {
-            //check is login in client, if isLogin = false, go to login
         } else {
             isLogin = true;
             const body = {
