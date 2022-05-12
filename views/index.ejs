@@ -17,11 +17,15 @@
             <div class="image-room">
               <img src="https://images.cenhomes.vn/2020/03/1585033148-can-ho-mau-an-land-complex.jpg" alt="">
             </div>
-            <h3 class="type"><%=listRoom[i].type%></h3>
-            <div class="acreage"><%=listRoom[i].acreage%></div>
-            <div class="address"><%=listRoom[i].address%></div>
-            <div class="description"><%=listRoom[i].description%></div>
-            <div class="description"><%=listRoom[i].price%></div>
+            <h3 class="type">Kiểu phòng: <%=listRoom[i].type%></h3>
+            <div class="acreage">Diện tích: <%=listRoom[i].acreage%></div>
+            <div class="address">Địa chỉ: <%=listRoom[i].address%></div>
+            <div class="description">Mô tả: <%=listRoom[i].description%></div>
+            <div class="description">Giá phòng: <%=listRoom[i].price%></div>
+            <% if(listRoom[i].state === true){%>
+              <div class="state" style="color: green">Tình trạng: Còn phòng</div>
+            <% } %>
+            <div class="poster">Người đăng tải: <%=listRoom[i].username%></div>
             <% if(user) {%>
             <!-- <form action="/favoriteList/room/like/<%=listRoom[i]._id%>" method="POST" onsubmit="handleSubmit">
               <input type="submit" value="Yêu thích" class="btn-like"/>

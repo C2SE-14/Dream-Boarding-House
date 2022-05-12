@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/favoriteList.css' />
+  </head>
+  <body>
+    <div class="container">
+      <%- include('./components/header')%>
+      <div class="content">
+        <div class="avt">
+          <img src="<%=userInfor.avatar%>" alt="user avatar">
+        </div>
+        <div class="username">user name: <%=userInfor[0].username%></div>
+        <div class="email">email: <%=userInfor[0].email%></div>
+        <div class="phoneNumber">phone number: <%=userInfor[0].phoneNumber%></div>
+      </div>
+      <footer>
+        <div>Copyright @C2SE.14</div>
+      </footer>
+    </div>
+  </body>
+</html>
