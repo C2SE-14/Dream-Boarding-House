@@ -73,28 +73,28 @@
         </div>
       </div>
       <%- include('./components/footer')%>
+      <script>
+        // function handleSubmit() {
+        //   $.ajax({
+        //     url: `/favoriteList/room/like/${}`,
+        //     type: "POST",
+        //     data: data,
+        //     success: success,
+        //     dataType: dataType
+        //   });
+        // }
+        const likeBtn = document.getElementsByClassName("btn-like");
+        console.log(likeBtn);
+        const formLike = document.getElementById("form-like");
+        console.log('formLike: ', formLike);
+        Array.prototype.forEach.call(likeBtn, (btn) => {
+              btn.addEventListener('click', function(e) {
+                const roomId = btn.getAttribute('data-id');
+                let actionForm = `/favoriteList/room/like/${roomId}`;
+                formLike.setAttribute("action", actionForm);
+              })
+        })
+      </script>
     </div>
   </body>
-  <script>
-    // function handleSubmit() {
-    //   $.ajax({
-    //     url: `/favoriteList/room/like/${}`,
-    //     type: "POST",
-    //     data: data,
-    //     success: success,
-    //     dataType: dataType
-    //   });
-    // }
-    const likeBtn = document.getElementsByClassName("btn-like");
-    const formLike = document.getElementById("form-like");
-    Array.prototype.forEach.call(likeBtn, (btn) => {
-          btn.addEventListener('click', function(e) {
-            const roomId = btn.getAttribute('data-id');
-            console.log('roomId: ', roomId);
-            let actionForm = `/favoriteList/room/like/${roomId}`;
-            console.log('action form: ', actionForm);
-            formLike.setAttribute("action", actionForm);
-          })
-        })
-  </script>
 </html>

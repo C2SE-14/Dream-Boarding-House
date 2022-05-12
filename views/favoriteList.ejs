@@ -58,12 +58,12 @@
         //code logic
         const deleteBtn = document.getElementsByClassName("btn-delete");
         const formDelete = document.getElementById("form-delete");
+        console.log('formDelete: ', formDelete);
         Array.prototype.forEach.call(deleteBtn, (btn) => {
           btn.addEventListener('click', function(e) {
             const roomId = btn.getAttribute('data-id');
             console.log('roomId: ', roomId);
             let actionForm = `/favoriteList/room/unlike/${roomId}?_method=DELETE`;
-            console.log('action form: ', actionForm);
             formDelete.setAttribute("action", actionForm);
           })
         })

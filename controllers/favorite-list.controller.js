@@ -6,10 +6,9 @@ const getFavoriteList = async(req, res, next) => {
         const listRoomId = await favoriteRoom.find({userId: userId});
         const listFavoriteRoom = [];
         for(let i = 0; i < listRoomId.length; i++) {
-            const favoriteRoom = await Room.findOne({id: listRoomId[i].roomId});
-            listFavoriteRoom.push(favoriteRoom);
+            const myFavoriteRoom = await Room.findOne({_id: listRoomId[i].roomId});
+            listFavoriteRoom.push(myFavoriteRoom);
         }
-        console.log('list room favorite: ', listFavoriteRoom);
         res.render("favoriteList", {title: "favorite room", listFavoriteRoom})
     } catch (error) {
         console.log(error);
@@ -42,9 +41,9 @@ const postFavoriteList = async(req, res, next) => {
 const deleteFavoriteList = async(req, res, next) => {
     try {
         // const userId = req.cookies.user._id;
-        const roomId = req.params;
+        const myRoomId = req.params;
         console.log('roomId to delete: ', roomId);
-        await favoriteRoom.deleteOne({ roomId: roomId })
+        await favoriteRoom.deleteOne({ roomId: myRoomId })
         .then(() => {
         console.log('delete successfully')
         res.status(200).redirect("/");
