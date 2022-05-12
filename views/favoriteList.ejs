@@ -11,7 +11,7 @@
         <nav>
           <ul class="nav-bar">
             <li class="nav-item">
-              <a href="" class="nav-link">TRANG CHỦ</a>
+              <a href="/" class="nav-link">TRANG CHỦ</a>
             </li>
             <li class="nav-item">
               <a href="" class="nav-link">ĐĂNG TIN</a>
@@ -31,18 +31,18 @@
       <div class="favorite-list">
         <h3>Danh sách phòng yêu thích của bạn</h3>
         <div class="list-room">
-          <%if(listRoom.length>0) {%>
-            <%for(let i=0; i<listRoom.length; i++) {%>
+          <%if(listFavoriteRoom.length>0) {%>
+            <%for(let i=0; i<listFavoriteRoom.length; i++) {%>
               <div class="room">
                 <div class="image-room">
                   <img src="https://images.cenhomes.vn/2020/03/1585033149-can-ho-mau-charmington-iris.jpg" alt="">
                 </div>
-                <h3 class="type"><%=listRoom[i].type%></h3>
-                <div class="acreage"><%=listRoom[i].acreage%></div>
-                <div class="address"><%=listRoom[i].address%></div>
-                <div class="description"><%=listRoom[i].description%></div>
-                <form action="/favoriteList/room/unlike/<%=listRoom[i]._id%?_method=DELETE>" method="POST">
-                  <input type="submit" value="Bỏ yêu thích" class="btn-unlike"/>
+                <h3 class="type"><%=listFavoriteRoom[i].type%></h3>
+                <div class="acreage"><%=listFavoriteRoom[i].acreage%></div>
+                <div class="address"><%=listFavoriteRoom[i].address%></div>
+                <div class="description"><%=listFavoriteRoom[i].description%></div>
+                <form action="" method="POST" id="form-delete">
+                  <button type="submit" class="btn-delete" data-id="<%=listFavoriteRoom[i]._id%>">Bỏ yêu thích</button>
                 </form>
               </div>
             <%}%>
@@ -54,6 +54,21 @@
       <footer>
         <div>Copyright @C2SE.14</div>
       </footer>
+      <script>
+        //code logic
+        const deleteBtn = document.getElementsByClassName("btn-delete");
+        const formDelete = document.getElementById("form-delete");
+        console.log('formDelete: ', formDelete);
+        Array.prototype.forEach.call(deleteBtn, (btn) => {
+          btn.addEventListener('click', function(e) {
+            const roomId = btn.getAttribute('data-id');
+            console.log('roomId: ', roomId);
+            // let actionForm = `/favoriteList/room/unlike/${roomId}?_method=DELETE`;
+            let actionForm = "/favoriteList/room/unlike/" + roomId + "?_method=DELETE"
+            formDelete.setAttribute("action", actionForm);
+          })
+        })
+      </script>
     </div>
   </body>
 </html>

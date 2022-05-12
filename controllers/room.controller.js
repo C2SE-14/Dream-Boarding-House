@@ -1,4 +1,5 @@
-const Room = require('../models/room.modal')
+const Room = require('../models/room.modal');
+const Post = require('../models/post.modal');
 const getDetailRoom = async(req, res, next) => {
     try {
         const user = req.cookies.user;
@@ -20,9 +21,11 @@ const getUploadRoom = async(req, res, next) => {
 }
 const postUploadRoom = async(req, res, next) => {
     try {
+        userId = req.cookies.user.username;
         const room = req.body;
         const address = req.body.address + ', ' + req.body.ward + ', ' + req.body.district + ', ' + req.body.city;
         room.address = address;
+        room.username = userId;
         const newRoom = new Room(room);
         await newRoom.save();
         res.redirect('/');
