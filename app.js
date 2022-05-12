@@ -5,7 +5,9 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const methodOverride = require("method-override");
 const mongoose = require("mongoose");
+
 dotenv.config();
 
 const route = require("./routes/index");
@@ -24,6 +26,7 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use(methodOverride("_method"));
 app.use(cors());
 // app.use(logger("dev"));
 app.use(express.static('public'))
