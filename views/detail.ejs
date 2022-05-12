@@ -14,11 +14,12 @@
 
 <body>
     <main>
+        <%- include('./components/header')%>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card mb-10">
-                        <div class="card-header">
+                        <!-- <div class="card-header">
                             <nav class="header-navigation">
                                 <a href="#" class="btn btn-link">Back to the list</a>
 
@@ -33,7 +34,7 @@
                                     <a href="#" class="btn btn-link">abc</a>
                                 </div>
                             </nav>
-                        </div>
+                        </div> -->
                         <div class="card-body home-body">
                             <div class="home-info">
                                 <div class="home-gallery">
@@ -53,13 +54,9 @@
                                 <div class="home-seller-recommended">
                                     <div class="home-description mb-5">
                                         <h2 class="mb-5" style="margin-top: 20px;">Description</h2>
-                                        <p>Phòng trọ có diện tích 15m2 <br> Nhà trong hẻm cụt nên yên tĩnh, đầu hẻm đi 1 xíu là đường Phạm Văn Đồng và vòng xoay PVĐ, khu xóm cũng thân thiện lắm nha. Không ở hoàn trả cọc <br> Gần: <br> + ĐH Mở, ĐH Công Nghiệp,
-                                            ĐH Tài chính-Mảketing (xe máy đi tầm 10p)<br> + Công viên Gia Định, Chùa Bảo Long, Giáo xứ Mân Côi (xe máy đi tầm 10p)<br> + Siêu thị Emart, Co.op Mart, Vincom Phan Văn Trị, chợ Gò Vấp, Cây Quéo (xe máy đi tầm
-                                            15p)
-                                            <br> + Khoảng 3, 4 tiệm tạp hoá và 1 cửa hàng tiện lợi (đi bộ tầm 2, 3 phút, đứng lựa không biết mua gì có khi hơn 🤣)<br> Mình là sinh viên đăng dùm chủ nhà, đã từng sống ở đây nên mình cam đoan tất cả thông
-                                            tin trên đều là sự thật Ở đây yên tĩnh, vui vẻ và thân thiện lắm. Nếu có thắc mắc trong quá trình thuê hoặc chưa thuê, thì mọi người ở đây sẵn sàng chỉ bạn nhé. ^^</p>
+                                        <p><%=room.description%></p>
                                     </div>
-                                    <ul class="nav nav-tabs" id="example-tabs" role="tablist">
+                                    <!-- <ul class="nav nav-tabs" id="example-tabs" role="tablist">
                                         <li class="nav-item">
                                             <a id="tab1" class="nav-link active" data-toggle="tab" role="tab" href="#pane-tab-1">Tab1</a>
                                         </li>
@@ -69,7 +66,7 @@
                                         <li class="nav-item">
                                             <a id="tab3" class="nav-link" data-toggle="tab" role="tab" href="#pane-tab-3">Tab3</a>
                                         </li>
-                                    </ul>
+                                    </ul> -->
 
 
                                     <!-- /.content-->

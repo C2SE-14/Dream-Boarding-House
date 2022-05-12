@@ -32,6 +32,14 @@ const room = new mongoose.Schema(
     description: {
       type: String,
       default: "",
+    },
+    state: {
+      type: Boolean,
+      default: true,
+    },
+    username: {
+      type: String,
+      default: "",
     }
   },
   { timestamps: true }
