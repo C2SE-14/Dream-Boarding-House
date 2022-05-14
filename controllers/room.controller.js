@@ -6,9 +6,10 @@ const getDetailRoom = async(req, res, next) => {
         const user = req.cookies.user;
         const roomId = req.params;
         const room = await Room.findOne({_id: roomId.id});
-        const userInfor = await User.findOne({_id: room.userId})
+        const userInfor = await User.findOne({_id: room.userId});
+        console.log('user infor: ', userInfor);
         const phoneNumber = userInfor.phoneNumber;
-        res.status(200).render('roomDetail', {room, user, phoneNumber})
+        res.status(200).render('roomDetail', {room, user, phoneNumber, userInfor})
     } catch (error) {
         console.log(error);
         res.status(500).json({msg: error});
