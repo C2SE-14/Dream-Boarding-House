@@ -25,8 +25,12 @@
             <p class="description"><label>Mô tả: </label> <%=room.description%></p>
             <p class="price"><label>Diện tích: </label> <%=room.acreage%> M2</p>
             <p class="price"><label>Giá cả: </label> <%=room.price%> VND</p>
-            <p class="phone"><label>Số điện thoại: <%=phoneNumber%></label></p>
-            <button type="button" class="btn btn-outline-success">Thuê trọ</button>
+            <p class="phone"><label>Số điện thoại:</label><%=phoneNumber%></p>
+            <p class="phone"><label>Chủ trọ: </label> <a href="/user/people/<%=userInfor._id%>"><%=userInfor.username%></a></p>
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-success">Thuê trọ</button>
+              <button type="button" class="btn btn-danger">Yêu thích</button>
+            </div>
         </div>
     </div>
     <h1 class="display-4 font-weight-bold mb-4">Phản hồi của những người đã thuê trọ</h1>
