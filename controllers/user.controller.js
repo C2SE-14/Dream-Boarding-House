@@ -54,8 +54,27 @@ const updatePassword = async (req, res, next) => {
         console.log(error);
     }
 }
+const showOtherPeopleInfor = async (req, res, next) => {
+    try {
+        const userId = req.cookies.user.user_id;
+        console.log(req.params);
+        const id = req.params.id;
+        let user;
+        if(userId) {
+            user = req.cookies.user.user_id;
+        }
+        const userInfor = await User.findOne({_id: id});
+        console.log('Thong tin nguoi ta ne: ', userInfor);
+        let startDate = userInfor.createdAt.toLocaleDateString("en-US");
+        console.log(startDate);
+        res.status(200).render("otherPeopleInfor", {title: 'Dream boarding house', user, userInfor, startDate})
+    } catch {
+
+    }
+}
 module.exports = {
     getUserInformation,
     updateUserInformation,
     updatePassword,
+    showOtherPeopleInfor,
 }
