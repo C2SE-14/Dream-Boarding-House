@@ -1,8 +1,23 @@
+.container-fluid {
+    position: relative;
+}
 .content {
     padding: 10px;
     display: flex;
+    flex-direction: column;
 }
 .list-image {
+    height: 200px;
+    /* border: 1px solid #c7ecee;
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    display: flex;
+    align-items: center; */
+    padding: 0 8px;
+    margin-top: 20px;
+    margin-bottom: 6px;
+}
+.image-item {
     width: 300px;
     height: 180px;
 }
@@ -11,7 +26,12 @@ img {
     height: 100%
 }
 .room-information {
-    margin-left: 20px;
+    min-height: 500px;
+    border: 1px solid #c7ecee;
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 .comment {
     min-height: 300px;
