@@ -10,7 +10,6 @@ const renderAdminPage = async (req, res, next) => {
 
 const getAllUsers = async (req, res, next) => {
   const renderUsers = await User.find({ deleted: false });
-  console.log(renderUsers);
   const roleUserId = await Role.find();
   res.render("admin.template/master", {
     title: "Dashboard Admin",
@@ -30,8 +29,16 @@ const blockUser = async (req, res, next) => {
     });
 };
 
+const getAllPosts = (req, res) => {
+  res.render("admin.template/master", {
+    title: "Dashboard Admin",
+    content: "../admin.page/posts",
+  });
+};
+
 module.exports = {
   renderAdminPage,
   getAllUsers,
   blockUser,
+  getAllPosts,
 };
