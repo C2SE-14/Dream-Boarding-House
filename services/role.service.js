@@ -1,4 +1,4 @@
-const Role = require('../models/role.modal');
+const Role = require('../models/role.model');
 const getRoleUser = async(req, res, next) => {
     try {
         const user = req.cookies.user;

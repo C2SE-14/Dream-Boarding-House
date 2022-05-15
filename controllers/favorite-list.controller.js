@@ -1,6 +1,6 @@
-const favoriteRoom = require('../models/favoriteRoom.modal');
-const Room = require('../models/room.modal');
-const Role = require('../models/role.modal');
+const favoriteRoom = require('../models/favoriteRoom.model');
+const Room = require('../models/room.model');
+const Role = require('../models/role.model');
 const getFavoriteList = async(req, res, next) => {
     try {
         let userId = '';

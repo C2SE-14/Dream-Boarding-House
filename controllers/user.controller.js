@@ -1,7 +1,7 @@
 const { response } = require('express');
 const User = require('../models/user.model');
 const bcrypt = require("bcrypt");
-const Role = require('../models/role.modal');
+const Role = require('../models/role.model');
 const getUserInformation = async (req, res, next) => {
     try {
         let userId = req.cookies.user.user_id;
@@ -64,7 +64,6 @@ const updatePassword = async (req, res, next) => {
 const showOtherPeopleInfor = async (req, res, next) => {
     try {
         const userId = req.cookies.user.user_id;
-        console.log(req.params);
         const id = req.params.id;
         let user;
         if(userId) {
@@ -73,16 +72,16 @@ const showOtherPeopleInfor = async (req, res, next) => {
         const userInfor = await User.findOne({_id: id});
         let role;
         if(user) {
-            userId = req.cookies.user.user_id
+            console.log('Chạy vào đây hay không?')
             role = await Role.findOne({userId: userId});
             role = role.name;
         }
-        console.log('Thong tin nguoi ta ne: ', userInfor);
+        console.log('in4: ', userInfor)
         let startDate = userInfor.createdAt.toLocaleDateString("en-US");
         console.log(startDate);
         res.status(200).render("otherPeopleInformation", {title: 'Dream boarding house', user, userInfor, startDate, role})
-    } catch {
-
+    } catch(error) {
+        console.log(error);
     }
 }
 module.exports = {

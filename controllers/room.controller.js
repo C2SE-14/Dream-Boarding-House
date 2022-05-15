@@ -1,9 +1,9 @@
-const Room = require('../models/room.modal');
-const Post = require('../models/post.modal');
+const Room = require('../models/room.model');
+const Post = require('../models/post.model');
 const User = require('../models/user.model');
-const Role = require('../models/role.modal')
-const ChooseRoom = require('../models/chooseRoom.modal');
-const Notification = require('../models/notifications.modal');
+const Role = require('../models/role.model')
+const ChooseRoom = require('../models/chooseRoom.model');
+const Notification = require('../models/notifications.model');
 const RoleService = require("../services/role.service");
 const getDetailRoom = async(req, res, next) => {
     try {
