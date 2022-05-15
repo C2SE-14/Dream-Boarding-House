@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --inspect ./bin/www"
+    "start": "nodemon --inspect ./bin/www",
+    "stop": "taskkill -f -im node.exe"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -17,6 +18,7 @@
     "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "mongoose": "^6.2.8",
+    "mongoose-delete": "^0.5.4",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.15"
   }
