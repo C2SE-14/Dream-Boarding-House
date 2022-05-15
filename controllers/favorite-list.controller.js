@@ -22,7 +22,7 @@ const getFavoriteList = async(req, res, next) => {
                 listFavoriteRoom.push(myFavoriteRoom);
             }
         }
-        res.render("favoriteList", {title: "favorite room", listFavoriteRoom, role})
+        res.render("favoriteList", {title: "favorite room", listFavoriteRoom, user, role})
     } catch (error) {
         console.log(error);
         res.status(203).json({ message: error });
