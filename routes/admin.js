@@ -11,7 +11,9 @@ router.delete("/users/:id", adminController.blockUser);
 
 // Admin manage all Posts
 router.get("/posts", adminController.getAllPosts);
-
+router.get("/owner/:id", adminController.getPostsOfOwner);
+router.put("/room/:id/accept", adminController.acceptPostOfRoom);
+router.delete("/room/:id", adminController.destroyRoom);
 
 // Admin manage all Comments
 

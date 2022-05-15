@@ -11,14 +11,20 @@
     </tr>
   </thead>
   <tbody>
+    <% roleOwnersOfRoom.forEach((owner, index) => {%>
     <tr class="text-center">
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>124215346</td>
+      <th scope="row"><%= index+1 %></th>
+      <% users.forEach(user => {%> <% if(owner.userId === user.id) { %>
+      <td><%= user.username %></td>
+      <td><%= user.email %></td>
+      <td><%= user.phoneNumber %></td>
+      <% } %> <% }) %>
       <td>
-        <a class="btn btn-primary" href="">Detail</a>
+        <a class="btn btn-primary" href="/admin/owner/<%= owner.userId %>"
+          >Room</a
+        >
       </td>
     </tr>
+    <% }) %>
   </tbody>
 </table>

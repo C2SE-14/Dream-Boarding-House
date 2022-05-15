@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const mongooseDelete = require("mongoose-delete");
+
 const image = new mongoose.Schema({
   video_url: {
     type: String,
@@ -7,21 +9,21 @@ const image = new mongoose.Schema({
   title: {
     type: String,
     default: "",
-  }
+  },
 });
 const room = new mongoose.Schema(
   {
     type: {
       type: String,
-      default: ""
+      default: "",
     },
     price: {
       type: String,
-      default: ""
+      default: "",
     },
     acreage: {
       type: Number,
-      default: 0
+      default: 0,
     },
     city: {
       type: String,
@@ -30,15 +32,15 @@ const room = new mongoose.Schema(
     district: {
       type: String,
       default: "",
-      },
+    },
     ward: {
       type: String,
       default: "",
     },
     address: {
-        type: String,
-        default: "",
-      },
+      type: String,
+      default: "",
+    },
     description: {
       type: String,
       default: "",
@@ -63,10 +65,11 @@ const room = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    list_image: [image]
+    list_image: [image],
   },
   { timestamps: true }
 );
 
+room.plugin(mongooseDelete, { deletedAt: true, overrideMethods: "all" });
 
 module.exports = mongoose.model("Room", room);
