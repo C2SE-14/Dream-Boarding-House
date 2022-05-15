@@ -2,6 +2,7 @@ const Room = require('../models/room.modal');
 const Post = require('../models/post.modal');
 const User = require('../models/user.model');
 const Role = require('../models/role.modal')
+const RoleService = require("../services/role.service");
 const getDetailRoom = async(req, res, next) => {
     try {
         const user = req.cookies.user;
@@ -10,7 +11,8 @@ const getDetailRoom = async(req, res, next) => {
         const userInfor = await User.findOne({_id: room.userId});
         console.log('user infor: ', userInfor);
         const phoneNumber = userInfor.phoneNumber;
-        res.status(200).render('roomDetail', {room, user, phoneNumber, userInfor})
+        const role = RoleService.getRoleUser;
+        res.status(200).render('roomDetail', {room, user, phoneNumber, userInfor, role})
     } catch (error) {
         console.log(error);
         res.status(500).json({msg: error});
