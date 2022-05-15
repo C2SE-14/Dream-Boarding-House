@@ -1,5 +1,5 @@
 const User = require("../models/user.model");
-const Role = require("../models/role.modal");
+const Role = require("../models/role.model");
 
 const renderAdminPage = async (req, res, next) => {
   res.render("admin.template/master", {

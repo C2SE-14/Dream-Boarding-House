@@ -1,5 +1,5 @@
-const Room = require('../models/room.modal');
-const Role = require('../models/role.modal');
+const Room = require('../models/room.model');
+const Role = require('../models/role.model');
 const getHomePage = async(req, res, next) => {
     try {
         const user = req.cookies.user;
