@@ -1,10 +1,18 @@
 const favoriteRoom = require('../models/favoriteRoom.modal');
 const Room = require('../models/room.modal');
+const Role = require('../models/role.modal');
 const getFavoriteList = async(req, res, next) => {
     try {
         let userId = '';
         if(req.cookies.user) {
             userId = req.cookies.user.user_id;
+        }
+        const user = req.cookies.user;
+        let role;
+        if(user) {
+            userId = req.cookies.user.user_id
+            role = await Role.findOne({userId: userId});
+            role = role.name;
         }
         const listRoomId = await favoriteRoom.find({userId: userId});
         const listFavoriteRoom = [];
@@ -14,7 +22,7 @@ const getFavoriteList = async(req, res, next) => {
                 listFavoriteRoom.push(myFavoriteRoom);
             }
         }
-        res.render("favoriteList", {title: "favorite room", listFavoriteRoom})
+        res.render("favoriteList", {title: "favorite room", listFavoriteRoom, role})
     } catch (error) {
         console.log(error);
         res.status(203).json({ message: error });

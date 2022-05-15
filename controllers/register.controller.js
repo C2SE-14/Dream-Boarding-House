@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 
 const UserModel = require("../models/user.model");
-
+const Role = require("../models/role.modal");
 let errs = [];
 
 function renderRegisterPage(req, res, next) {
@@ -13,6 +13,11 @@ async function renderUserRegister(req, res, next) {
   const hashed = await bcrypt.hash(req.body.password, salt);
   let username = req.body.username;
   let email = req.body.email;
+  let phoneNumber = req.body.phoneNumber;
+  let role = req.body.role;
+  if(role === " " || role === undefined) {
+    role = "Người thuê trọ";
+  }
   let password = hashed;
   errs = [];
 
@@ -45,13 +50,21 @@ async function renderUserRegister(req, res, next) {
       username: username,
       email: email,
       password: password,
+      phoneNumber: phoneNumber,
     })
       .then((data) => {
         //redirect login form
-        console.log(`Register successfull with email: ${email}`);
+        const roleBody = {
+          userId: data._id.valueOf(),
+          name: role,
+        };
+        const newRole = Role(roleBody);
+        newRole.save();
+        let msg = "Register successfull";
         res.redirect("/login");
       })
-      .catch((err) => {
+      .catch((error) => {
+        console.log(error);
         console.log("Register failed!");
         // res.json('Tạo tài khoản thất bại');
         res.render("../views/components/register", {
