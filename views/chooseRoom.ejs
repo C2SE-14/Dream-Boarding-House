@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/chooseRoom.css' />
+  </head>
+  <body>
+    <%- include('./components/header')%>
+    <div class="container">
+        <h3>Phòng bạn đã thuê</h3>
+        <%if(listRoom.length > 0) {%>
+            <%for(let i = 0; i < listRoom.length; i++) {%>
+                <div class="room-item">
+                    <div class="image">
+                        <img src=https://behouse.vn/wp-content/uploads/old/phong-tro-dep-6_1615736964.jpg" alt="">
+                    </div>
+                    <div class="room-information">
+                        <p class="type"><%=listRoom[i].type%></p>
+                        <p class="type"><%=listRoom[i].name%></p>
+                        <p class="type"><%=listRoom[i].address%></p>
+                        <p class="type"><%=listRoom[i].description%></p>
+                    </div>
+                </div>
+            <%}%>
+        <%} else {%>
+            <div>Hiện tại bạn chưa chọn thuê phòng</div>
+         <% } %>   
+    </div>
+    <%- include('./components/footer')%>
+    <script>
+        //code logic
+        const deleteBtn = document.getElementsByClassName("btn-delete");
+        const formDelete = document.getElementById("form-delete");
+        console.log('formDelete: ', formDelete);
+        Array.prototype.forEach.call(deleteBtn, (btn) => {
+          btn.addEventListener('click', function(e) {
+            const roomId = btn.getAttribute('data-id');
+            console.log('roomId: ', roomId);
+            // let actionForm = `/favoriteList/room/unlike/${roomId}?_method=DELETE`;
+            let actionForm = "/favoriteList/room/unlike/" + roomId + "?_method=DELETE"
+            // formDelete.setAttribute("action", actionForm);
+          })
+        })
+      </script>
+    </div>
+  </body>
+</html>
