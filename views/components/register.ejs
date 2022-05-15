@@ -2,118 +2,99 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="../../stylesheets/register.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Register</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="../../stylesheets/loginRegister.css">
 </head>
 
-<body>
-  <div class="container">
-    <header class="header">
-      <h3 class="logo">Dream boarding house</h3>
-      <nav>
-        <ul class="nav-bar">
-          <li class="nav-item">
-            <a href="/" class="nav-link">TRANG CHỦ</a>
-          </li>
-          <li class="nav-item">
-            <a href="/room/upload" class="nav-link">ĐĂNG TIN</a>
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link">QUẢN LÝ THÔNG TIN</a>
-          </li>
-          <li class="nav-item">
-            <a href="/favoriteList/rooms" class="nav-link">DANH SÁCH YÊU THÍCH</a>
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link">THÔNG BÁO</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <div class="my-content">
-      <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="content-wrapper d-flex align-items-center auth px-0">
-          <div class="row w-100 mx-0">
-            <div class="col-lg-4 mx-auto">
-              <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
-                <form action="register" class="pt-3 needs-validation" novalidate method="post">
-                  <div class="form-group has-validation">
-                    <% if(errs) { %>
-                      <% errs.forEach(function(err){ %>
-                          <div class="alert alert-danger" role="alert">
-                              <%- err %>
-                          </div>
-                      <% }); %>
-                    <% } %>
-                    <label for="">Tên người dùng</label>
-                    <input type="text" name="username" class="form-control form-control-lg" id="username" pattern="{6,15}" placeholder="Tên người dùng" required>
-                    <div class="invalid-feedback">
-                      Please enter your username.
-                    </div>
-                    
-                  </div>
-                  <div class="form-group has-validation">
-                    <label for="">Email</label>
-                    <input type="email" name="email" class="form-control form-control-lg" id="email" placeholder="Email" required>
-                    <div class="invalid-feedback">
-                      Please enter your email.
-                    </div>
-                    <small id="emailvalid" class="form-text text-muted invalid-feedback">
-                      Your email must be a valid email
-                    </small>
-                  </div>
-                  <div class="form-group has-validation">
-                    <label for="">Số điện thoại</label>
-                    <input type="text" name="phoneNumber" class="form-control form-control-lg" id="password" placeholder="Số điện thoại" required>
-                    <div class="invalid-feedback">
-                      Please enter your phone number.
-                    </div>                
-                  </div>
-                  <select name="role" id="">
-                    <option value="" disabled hidden selected>Vai trò</option>
-                    <option value="Người thuê trọ">Người thuê trọ</option>
-                    <option value="Chủ phòng trọ">Chủ phòng trọ</option>
-                </select>
-                  <div class="form-group has-validation">
-                    <label for="">Mật khẩu</label>
-                    <input type="password" name="password" class="form-control form-control-lg" id="password" placeholder="Mật khẩu" required>
-                    <div class="invalid-feedback">
-                      Please enter your password.
-                    </div>                 
-                  </div>
-                  <div class="form-group has-validation">
-                    <label for="">Confirm pass word</label>
-                    <input type="password" name="confirmPassword" class="form-control form-control-lg" id="confirm-password" placeholder="Nhập lại mật khẩu" required>                   
-                  </div>
-                  <div class="mb-4">
-                    <div class="form-check">
-                      <label class="form-check-label text-muted">
-                        <input type="checkbox" class="form-check-input" required>
-                        I agree to all Terms & Conditions
-                      </label>
-                    </div>
-                  </div>
-                  <div class="mt-3">
-                    <button id="register" type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
-                  </div>
-                  <div class="text-center mt-4 font-weight-light">
-                    Already have an account? <a href="/login" class="text-primary">Login</a>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- content-wrapper ends -->
-        <%-include('footer')%>
-      </div>
 
+
+<body class="bg-gradient-primary">
+    <div class="container">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image">
+                        <img src="https://www.glenviewhomes.com/wp-content/uploads/2020/10/browse-ready-built-homes.jpg" width="480" height="758">
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Tạo tài khoản</h1>
+                            </div>
+                            <form class="user" action="register" novalidate method="post">
+                                <div class="form-group has-validation">
+                                    <% if(errs) { %>
+                                        <% errs.forEach(function(err){ %>
+                                            <div class="alert alert-danger" role="alert">
+                                                <%- err %>
+                                            </div>
+                                            <% }); %>
+                                                <% } %>
+                                                    <input type="text" name="username" class="form-control form-control-user" id="username" pattern="{6,15}" placeholder="Tên người dùng" required>
+                                                    <div class="invalid-feedback">
+                                                        Please enter your username.
+                                                    </div>
+                                </div>
+                                <div class="form-group has-validation">
+                                    <input type="email" name="email" class="form-control form-control-user" id="email" placeholder="Email" required>
+                                    <div class="invalid-feedback">
+                                        Please enter your email.
+                                    </div>
+                                    <small id="emailvalid" class="form-text text-muted invalid-feedback">Your email must be a valid email</small>
+                                </div>
+                                <div class="form-group has-validation">
+
+                                    <input type="text" name="phoneNumber" class="form-control form-control-user" id="password" placeholder="Số điện thoại" required>
+                                    <div class="invalid-feedback">
+                                        Please enter your phone number.
+                                    </div>
+                                </div>
+                                <select class="select" style="   margin-bottom: 15px;" name="role" id="">
+                                <option value="" disabled hidden selected>Vai trò</option>
+                                <option value="Người thuê trọ">Người thuê trọ</option>
+                                <option value="Chủ phòng trọ">Chủ phòng trọ</option>
+                                </select>
+                                <div class="form-group has-validation">
+
+                                    <input type="password" name="password" class="form-control form-control-user" id="password" placeholder="Mật khẩu" required>
+                                    <div class="invalid-feedback">
+                                        Please enter your password.
+                                    </div>
+                                </div>
+                                <div class="form-group has-validation">
+
+                                    <input type="password" name="confirmPassword" class="form-control form-control-user" id="confirm-password" placeholder="Nhập lại mật khẩu" required>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <label class="form-check-label text-muted">
+                                        <input type="checkbox" class="form-check-input" required>I agree to all Terms & Conditions</label>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <button id="register" type="submit" class="btn btn-primary btn-user btn-block">SIGN UP</button>
+                                </div>
+                                <div class="text-center mt-4 font-weight-light">
+                                    Already have an account? <a href="/login" class="text-primary">Login</a>
+                                </div>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="">Forgot Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="/login">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- page-body-wrapper ends -->
-  </div>
-  <!-- endinject -->
 </body>
+
 </html>
