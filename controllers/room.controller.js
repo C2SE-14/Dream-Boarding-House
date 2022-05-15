@@ -1,6 +1,7 @@
 const Room = require('../models/room.modal');
 const Post = require('../models/post.modal');
 const User = require('../models/user.model');
+const Role = require('../models/role.modal')
 const getDetailRoom = async(req, res, next) => {
     try {
         const user = req.cookies.user;
