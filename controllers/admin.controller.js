@@ -1,9 +1,22 @@
-const { response } = require("express");
 const User = require("../models/user.model");
 
-const getAdminPage = async (req, res, next) => {
-  res.render("admin.template/master");
+const renderAdminPage = async (req, res, next) => {
+  res.render("admin.template/master", {
+    title: "Dashboard Admin",
+    content: "../admin.template/main_content",
+  });
 };
+
+const getAllUsers = async (req, res, next) => {
+  const renderUsers = await User.find();
+  res.render("admin.template/master", {
+    title: "Dashboard Admin",
+    content: "../admin.page/users",
+    renderUsers,
+  });
+};
+
 module.exports = {
-  getAdminPage,
+  renderAdminPage,
+  getAllUsers,
 };
