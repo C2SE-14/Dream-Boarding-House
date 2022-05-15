@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const room = new mongoose.Schema(
+const role = new mongoose.Schema(
   {
-    type: {
-      type: String,
+    userId: {
+      type: Object,
       default: ""
     },
     name: {

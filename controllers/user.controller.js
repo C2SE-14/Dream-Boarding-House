@@ -1,6 +1,7 @@
 const { response } = require('express');
 const User = require('../models/user.model');
 const bcrypt = require("bcrypt");
+const Role = require('../models/role.modal');
 const getUserInformation = async (req, res, next) => {
     try {
         let userId = req.cookies.user.user_id;
@@ -8,8 +9,14 @@ const getUserInformation = async (req, res, next) => {
         if(userId) {
             user = req.cookies.user.user_id;
         }
+        let role;
+        if(user) {
+            userId = req.cookies.user.user_id
+            role = await Role.findOne({userId: userId});
+            role = role.name;
+        }
         const userInfor = await User.find({_id: userId});
-        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user});
+        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, role});
     } catch(error) {
         console.log(error);
         //res.status(203).render('error')
@@ -64,10 +71,16 @@ const showOtherPeopleInfor = async (req, res, next) => {
             user = req.cookies.user.user_id;
         }
         const userInfor = await User.findOne({_id: id});
+        let role;
+        if(user) {
+            userId = req.cookies.user.user_id
+            role = await Role.findOne({userId: userId});
+            role = role.name;
+        }
         console.log('Thong tin nguoi ta ne: ', userInfor);
         let startDate = userInfor.createdAt.toLocaleDateString("en-US");
         console.log(startDate);
-        res.status(200).render("otherPeopleInfor", {title: 'Dream boarding house', user, userInfor, startDate})
+        res.status(200).render("otherPeopleInformation", {title: 'Dream boarding house', user, userInfor, startDate, role})
     } catch {
 
     }

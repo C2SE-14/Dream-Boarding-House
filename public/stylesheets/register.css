@@ -9,6 +9,10 @@
   a {
     text-decoration: none;
   }
+  .my-content {
+    position: relative;
+    min-height: 680px;
+  }
   .header {
     display: flex;
     justify-content: space-between;

@@ -32,75 +32,87 @@
         </ul>
       </nav>
     </header>
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="content-wrapper d-flex align-items-center auth px-0">
-        <div class="row w-100 mx-0">
-          <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-              <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
-              <form action="register" class="pt-3 needs-validation" novalidate method="post">
-                <div class="form-group has-validation">
-                  <% if(errs) { %>
-                    <% errs.forEach(function(err){ %>
-                        <div class="alert alert-danger" role="alert">
-                            <%- err %>
-                        </div>
-                    <% }); %>
-                  <% } %>
-                  <label for="">User name</label>
-                  <input type="text" name="username" class="form-control form-control-lg" id="username" pattern="{6,15}" placeholder="Username" required>
-                  <div class="invalid-feedback">
-                    Please enter your username.
+    <div class="my-content">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth px-0">
+          <div class="row w-100 mx-0">
+            <div class="col-lg-4 mx-auto">
+              <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+                <form action="register" class="pt-3 needs-validation" novalidate method="post">
+                  <div class="form-group has-validation">
+                    <% if(errs) { %>
+                      <% errs.forEach(function(err){ %>
+                          <div class="alert alert-danger" role="alert">
+                              <%- err %>
+                          </div>
+                      <% }); %>
+                    <% } %>
+                    <label for="">Tên người dùng</label>
+                    <input type="text" name="username" class="form-control form-control-lg" id="username" pattern="{6,15}" placeholder="Tên người dùng" required>
+                    <div class="invalid-feedback">
+                      Please enter your username.
+                    </div>
+                    
                   </div>
-                  
-                </div>
-                <div class="form-group has-validation">
-                  <label for="">Email</label>
-                  <input type="email" name="email" class="form-control form-control-lg" id="email" placeholder="Email" required>
-                  <div class="invalid-feedback">
-                    Please enter your email.
+                  <div class="form-group has-validation">
+                    <label for="">Email</label>
+                    <input type="email" name="email" class="form-control form-control-lg" id="email" placeholder="Email" required>
+                    <div class="invalid-feedback">
+                      Please enter your email.
+                    </div>
+                    <small id="emailvalid" class="form-text text-muted invalid-feedback">
+                      Your email must be a valid email
+                    </small>
                   </div>
-                  <small id="emailvalid" class="form-text text-muted invalid-feedback">
-                    Your email must be a valid email
-                  </small>
-                </div>
-                <div class="form-group has-validation">
-                  <label for="">Pass word</label>
-                  <input type="password" name="password" class="form-control form-control-lg" id="password" placeholder="Password" required>
-                  <div class="invalid-feedback">
-                    Please enter your password.
+                  <div class="form-group has-validation">
+                    <label for="">Số điện thoại</label>
+                    <input type="text" name="phoneNumber" class="form-control form-control-lg" id="password" placeholder="Số điện thoại" required>
+                    <div class="invalid-feedback">
+                      Please enter your phone number.
+                    </div>                
                   </div>
-                 
-                </div>
-                <div class="form-group has-validation">
-                  <label for="">Confirm pass word</label>
-                  <input type="password" name="confirmPassword" class="form-control form-control-lg" id="confirm-password" placeholder="Confirm Password" required>
-                  
-                  
-                </div>
-                <div class="mb-4">
-                  <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input" required>
-                      I agree to all Terms & Conditions
-                    </label>
+                  <select name="role" id="">
+                    <option value="" disabled hidden selected>Vai trò</option>
+                    <option value="Người thuê trọ">Người thuê trọ</option>
+                    <option value="Chủ phòng trọ">Chủ phòng trọ</option>
+                </select>
+                  <div class="form-group has-validation">
+                    <label for="">Mật khẩu</label>
+                    <input type="password" name="password" class="form-control form-control-lg" id="password" placeholder="Mật khẩu" required>
+                    <div class="invalid-feedback">
+                      Please enter your password.
+                    </div>                 
                   </div>
-                </div>
-                <div class="mt-3">
-                  <button id="register" type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
-                </div>
-                <div class="text-center mt-4 font-weight-light">
-                  Already have an account? <a href="/login" class="text-primary">Login</a>
-                </div>
-              </form>
+                  <div class="form-group has-validation">
+                    <label for="">Confirm pass word</label>
+                    <input type="password" name="confirmPassword" class="form-control form-control-lg" id="confirm-password" placeholder="Nhập lại mật khẩu" required>                   
+                  </div>
+                  <div class="mb-4">
+                    <div class="form-check">
+                      <label class="form-check-label text-muted">
+                        <input type="checkbox" class="form-check-input" required>
+                        I agree to all Terms & Conditions
+                      </label>
+                    </div>
+                  </div>
+                  <div class="mt-3">
+                    <button id="register" type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
+                  </div>
+                  <div class="text-center mt-4 font-weight-light">
+                    Already have an account? <a href="/login" class="text-primary">Login</a>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
+        <!-- content-wrapper ends -->
+        <%-include('footer')%>
       </div>
-      <!-- content-wrapper ends -->
+
     </div>
     <!-- page-body-wrapper ends -->
-    <%-include('footer')%>
   </div>
   <!-- endinject -->
 </body>
