@@ -11,12 +11,17 @@
   }
   .header {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
     padding: 20px;
     background-color: aliceblue;
   }
+  h3 {
+    margin-bottom: 12px;
+  }
   nav {
-    width: 70%;
+    width: 100%;
   }
   .nav-bar {
     display: flex;
@@ -24,5 +29,6 @@
     margin: 0;
   }
   .nav-link:hover {
-    color: black;
+    color: #fdcb6e;
+    font-weight: 700;
   }
