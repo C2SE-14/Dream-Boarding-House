@@ -11,4 +11,5 @@ router.delete('/delete/room/:id');
 
 router.get('/selectRoom/All', roomController.getSelectRoom);
 router.post('/chooseRoom/:id', roomController.postSelectRoom);
+router.delete('/delete/chooseRoom/:id', roomController.deleteSelectRoom);
 module.exports = router;
