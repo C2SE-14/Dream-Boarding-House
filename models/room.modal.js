@@ -1,4 +1,14 @@
 const mongoose = require("mongoose");
+const image = new mongoose.Schema({
+  video_url: {
+    type: String,
+    default: "",
+  },
+  title: {
+    type: String,
+    default: "",
+  }
+});
 const room = new mongoose.Schema(
   {
     type: {
@@ -48,7 +58,12 @@ const room = new mongoose.Schema(
     isLike: {
       type: Boolean,
       default: false,
-    }
+    },
+    isAccept: {
+      type: Boolean,
+      default: false,
+    },
+    list_image: [image]
   },
   { timestamps: true }
 );
