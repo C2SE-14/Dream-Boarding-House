@@ -28,7 +28,9 @@
             <p class="phone"><label>Số điện thoại:</label><%=phoneNumber%></p>
             <p class="phone"><label>Chủ trọ: </label> <a href="/user/people/<%=userInfor._id%>"><%=userInfor.username%></a></p>
             <div class="btn-group">
-              <button type="button" class="btn btn-outline-success">Thuê trọ</button>
+              <form action="/room/chooseRoom/<%=room._id%>" method="POST">
+                <button type="submit" class="btn btn-outline-success">Thuê trọ</button>
+              </form>
               <button type="button" class="btn btn-danger">Yêu thích</button>
             </div>
         </div>
