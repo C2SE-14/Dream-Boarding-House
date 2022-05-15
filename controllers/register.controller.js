@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 
 const UserModel = require("../models/user.model");
-const Role = require("../models/role.modal");
+const Role = require("../models/role.model");
 let errs = [];
 
 function renderRegisterPage(req, res, next) {

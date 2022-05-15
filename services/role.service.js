@@ -1,6 +1,5 @@
-const Room = require('../models/room.model');
 const Role = require('../models/role.model');
-const getHomePage = async(req, res, next) => {
+const getRoleUser = async(req, res, next) => {
     try {
         const user = req.cookies.user;
         let userId, role;
@@ -9,15 +8,14 @@ const getHomePage = async(req, res, next) => {
             role = await Role.findOne({userId: userId});
             role = role.name;
         }
-        const listRoom = await Room.find();
-        //Header must have user and role
-        res.render("index", {title: "Dream Boarding House", listRoom, user, role});
+       return role;
+       return undefined;
     } catch (error) {
         console.log(error);
-        res.status(500).json({ msg: error });
+        return undefined
     }
 }
 
 module.exports = {
-    getHomePage
+    getRoleUser 
 }

@@ -1,0 +1,12 @@
+body {
+    position: relative;
+    min-height: 1000px;
+}
+.container {
+    position: relative;
+    padding-top: 20px;
+}
+label {
+    display: block !important;
+    font-weight: 700;
+}

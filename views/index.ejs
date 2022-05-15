@@ -2,6 +2,9 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
@@ -11,6 +14,7 @@
       <div class="banner">
         <img src="https://gotrangtri.vn/wp-content/uploads/2021/04/thiet-ke-noi-that-chung-cu-bia.jpg.webp" alt="căn hộ" class="img-banner">
       </div>
+      <h4>Phòng trọ</h4>
       <div class="list-room">
         <%for(let i = 0; i < listRoom.length; i++) {%>
           <div class="room-item">
@@ -45,46 +49,9 @@
           </div>
         <% } %>
       </div>
-      <div class="list-room">
-        <div class="room">
-          <div class="image-room">
-            <img src="https://behouse.vn/wp-content/uploads/2021/03/phong-tro-dep.jpg" alt="">
-          </div>
-          <h3 class="type">Phòng trọ</h3>
-          <div class="acreage">32m2</div>
-          <div class="address">02 Khuê Trung. Hòa Cường Nam, Hải Châu, Đà Nẵng</div>
-          <div class="description">Phòng trọ rộng rãi, thoáng mát</div>
-        </div>
-        <div class="room">
-          <div class="image-room">
-            <img src="https://behouse.vn/wp-content/uploads/old/phong-tro-dep-3_1615736824.jpg" alt="">
-          </div>
-          <h3 class="type">Phòng trọ</h3>
-          <div class="acreage">25m2</div>
-          <div class="address">Cách mạng tháng 8, Hòa Cường Nam, Hải Châu, Đà Nẵng</div>
-          <div class="description">Phòng trọ rộng rãi, thoáng mát</div>
-        </div>
-        <div class="room">
-          <div class="image-room">
-            <img src="https://behouse.vn/wp-content/uploads/old/phong-tro-dep-7_1615736985.jpg" alt="">
-          </div>
-          <h3 class="type">Phòng trọ</h3>
-          <div class="acreage">40m2</div>
-          <div class="address"> 56 Bạch Đằng, Hòa Cường Nam, Hải Châu, Đà Nẵng</div>
-          <div class="description">Phòng trọ rộng rãi, thoáng mát</div>
-        </div>
-        <div class="room">
-          <div class="image-room">
-            <img src="https://behouse.vn/wp-content/uploads/old/phong-tro-dep-6_1615736964.jpg" alt="">
-          </div>
-          <h3 class="type">Phòng trọ</h3>
-          <div class="acreage">18m2</div>
-          <div class="address">02 Khuê Trung. Hòa Cường Nam, Hải Châu, Đà Nẵng</div>
-          <div class="description">Phòng trọ rộng rãi, thoáng mát</div>
-        </div>
-      </div>
+      <hr/>
       <!-- Toast like successfully-->
-      <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+      <!-- <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
         <div class="toast-header">
           <img src="..." class="rounded mr-2" alt="...">
           <strong class="mr-auto">Bootstrap</strong>
@@ -96,7 +63,7 @@
         <div class="toast-body">
           Hello, world! This is a toast message.
         </div>
-      </div>
+      </div> -->
       <%- include('./components/footer')%>
       <script>
         const likeBtn = document.getElementsByClassName("btn-like");
@@ -126,5 +93,16 @@
         })
       </script>
     </div>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+  $('.list-room').slick({
+  lazyLoad: 'ondemand',
+  slidesToShow: 4,
+  slidesToScroll: 1
+});
+</script>
   </body>
 </html>

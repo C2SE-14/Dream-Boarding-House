@@ -12,7 +12,7 @@ a {
 }
 .container {
   position: relative;
-  min-height: 100vh;
+  min-height: 1400px;
 }
 .header {
   display: flex;
@@ -39,7 +39,9 @@ nav {
 .list-room {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   margin-top: 40px;
+  padding: 0 8px;
 }
 .room {
   padding: 10px;
@@ -82,4 +84,18 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.slick-arrow {
+  border: none;
+  width: 100px;
+  height: 60px;
+  padding: 6px;
+  border-radius: 5px;
+  background-color: #f39c12;
+}
+.slick-arrow:hover {
+  cursor: pointer;
+}
+hr {
+  margin-top: 10px;
 }
