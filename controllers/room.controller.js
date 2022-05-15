@@ -89,10 +89,20 @@ const getSelectRoom = async (req, res, next) => {
         console.log(error);
     }
 }
+const deleteSelectRoom = async (req, res, next) => {
+    try {
+        const roomId = req.params.id;
+        await ChooseRoom.deleteOne({roomId: roomId});
+        res.status(200).redirect('/')
+    } catch (error) {
+        console.log(error);
+    }
+}
 module.exports = {
     getUploadRoom,
     postUploadRoom,
     getDetailRoom,
     postSelectRoom,
     getSelectRoom,
+    deleteSelectRoom,
 }
