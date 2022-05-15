@@ -40,6 +40,14 @@ const room = new mongoose.Schema(
     username: {
       type: String,
       default: "",
+    },
+    userId: {
+      type: Object,
+      default: "",
+    },
+    isLike: {
+      type: Boolean,
+      default: false,
     }
   },
   { timestamps: true }

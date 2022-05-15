@@ -1,0 +1,27 @@
+.container-fluid {
+    border: 2px solid black;
+}
+.avt {
+    min-height: 150px;
+}
+.avt-item {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+}
+.number {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.information {
+    min-height: 150px;
+    text-align: center;
+}
+label {
+    color: #95afc0;
+    font-weight: 700;
+    display: inline-block;
+    margin-right: 60px;
+    width: 180px;
+}

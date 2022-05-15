@@ -41,7 +41,7 @@
                 <div class="acreage"><%=listFavoriteRoom[i].acreage%></div>
                 <div class="address"><%=listFavoriteRoom[i].address%></div>
                 <div class="description"><%=listFavoriteRoom[i].description%></div>
-                <form action="" method="POST" id="form-delete">
+                <form action="/favoriteList/room/unlike/<%=listFavoriteRoom[i]._id%>?_method=DELETE" method="POST" id="form-delete">
                   <button type="submit" class="btn-delete" data-id="<%=listFavoriteRoom[i]._id%>">Bỏ yêu thích</button>
                 </form>
               </div>
@@ -65,7 +65,7 @@
             console.log('roomId: ', roomId);
             // let actionForm = `/favoriteList/room/unlike/${roomId}?_method=DELETE`;
             let actionForm = "/favoriteList/room/unlike/" + roomId + "?_method=DELETE"
-            formDelete.setAttribute("action", actionForm);
+            // formDelete.setAttribute("action", actionForm);
           })
         })
       </script>

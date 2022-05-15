@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
-const role = new mongoose.Schema(
+const chooseRoom = new mongoose.Schema(
   {
     userId: {
       type: Object,
       default: ""
     },
-    name: {
-      type: String,
+    roomId: {
+      type: Object,
       default: ""
     }
   },
@@ -14,4 +14,4 @@ const role = new mongoose.Schema(
 );
 
 
-module.exports = mongoose.model("Role", role);
+module.exports = mongoose.model("chooseRoom", chooseRoom);
