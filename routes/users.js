@@ -7,4 +7,8 @@ router.put('/update', userController.updateUserInformation);
 router.put('/update', userController.updatePassword);
 
 router.get('/people/:id', userController.showOtherPeopleInfor);
+
+router.post('/people/follow/:id', userController.followInnKeeper);
+
+router.get('/innkeeper/all', userController.getFollowInnkeeper);
 module.exports = router;

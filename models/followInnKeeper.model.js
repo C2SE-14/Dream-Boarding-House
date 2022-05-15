@@ -14,4 +14,4 @@ const followInnkeeper = new mongoose.Schema(
 );
 
 
-module.exports = mongoose.model("followInnKeeper", followInnKeeper);
+module.exports = mongoose.model("followInnKeeper", followInnkeeper);
