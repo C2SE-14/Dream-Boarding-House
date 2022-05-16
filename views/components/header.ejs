@@ -15,7 +15,7 @@
               <a href="/room/post" class="nav-link">ĐĂNG TIN</a>
             </li>
             <li class="nav-item">
-              <a href="/room/post" class="nav-link">QUẢN LÝ BÀI ĐĂNG</a>
+              <a href="/innkeeper/myRoom/all" class="nav-link">QUẢN LÝ BÀI ĐĂNG</a>
             </li>
           <%} else {%>
             <li class="nav-item">
@@ -36,6 +36,9 @@
             </li>
             <li class="nav-item">
               <a href="" class="nav-link"><%= user.username %></a>
+            </li>
+            <li class="nav-item">
+              <a href="/logout" class="nav-link">Đăng xuất</a>
             </li>
         <%} else{%>
           <li class="nav-item">

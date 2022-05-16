@@ -12,7 +12,7 @@ a {
 }
 .container {
   position: relative;
-  min-height: 1400px;
+  min-height: 2700px;
 }
 .header {
   display: flex;
@@ -31,11 +31,16 @@ nav {
 .nav-link:hover {
   color: black;
 }
+
 .img-banner {
   width: 100%;
   height: 600px
 }
-
+.title {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 45px;
+}
 .list-room {
   display: flex;
   justify-content: space-around;
@@ -43,11 +48,21 @@ nav {
   margin-top: 40px;
   padding: 0 8px;
 }
+.room-item {
+  border: 1px solid #dcdde1;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin: 0 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px;
+}
 .room {
   padding: 10px;
 }
 .image-room {
-  width: 300px;
+  width: 100%;
   height: 120px;
 }
 .image-room img{

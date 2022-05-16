@@ -89,6 +89,7 @@ const deleteFavoriteList = async(req, res, next) => {
         const roomBody = {
             isLike: false
         }
+        console.log('my room id: ', myRoomId.id);
         await Room.where({_id: myRoomId.id}).update(roomBody);
         res.status(200).redirect('/favoriteList/rooms');
     } catch (error) {
