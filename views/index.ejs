@@ -14,7 +14,7 @@
       <div class="banner">
         <img src="https://gotrangtri.vn/wp-content/uploads/2021/04/thiet-ke-noi-that-chung-cu-bia.jpg.webp" alt="căn hộ" class="img-banner">
       </div>
-      <h4>Phòng trọ</h4>
+      <h4 class="title">Phòng trọ</h4>
       <div class="list-room">
         <%for(let i = 0; i < listRoom.length; i++) {%>
           <div class="room-item">
@@ -23,7 +23,7 @@
                 <div class="image-room">
                   <img src="https://images.cenhomes.vn/2020/03/1585033148-can-ho-mau-an-land-complex.jpg" alt="">
                 </div>
-                <h3 class="type">Kiểu phòng: <%=listRoom[i].type%></h3>
+                <!-- <h3 class="type">Kiểu phòng: <%=listRoom[i].type%></h3> -->
                 <div class="acreage">Diện tích: <%=listRoom[i].acreage%></div>
                 <div class="address">Địa chỉ: <%=listRoom[i].address%></div>
                 <div class="description">Mô tả: <%=listRoom[i].description%></div>
@@ -49,7 +49,111 @@
           </div>
         <% } %>
       </div>
-      <hr/>
+      <h4 class="title">Căn hộ</h4>
+      <div class="list-room">
+        <%for(let i = 0; i < listRoom.length; i++) {%>
+          <div class="room-item">
+            <a href="/room/<%=listRoom[i]._id%>">
+              <div class="room">
+                <div class="image-room">
+                  <img src="https://images.cenhomes.vn/2020/03/1585033148-can-ho-mau-an-land-complex.jpg" alt="">
+                </div>
+                <!-- <h3 class="type">Kiểu phòng: <%=listRoom[i].type%></h3> -->
+                <div class="acreage">Diện tích: <%=listRoom[i].acreage%></div>
+                <div class="address">Địa chỉ: <%=listRoom[i].address%></div>
+                <div class="description">Mô tả: <%=listRoom[i].description%></div>
+                <div class="description">Giá phòng: <%=listRoom[i].price%></div>
+                <% if(listRoom[i].state === true){%>
+                  <div class="state" style="color: green">Tình trạng: Còn phòng</div>
+                <% } %>
+                <div class="poster">Người đăng tải: <%=listRoom[i].username%></div>
+                <% if(user) {%>
+                <!-- <form action="/favoriteList/room/like/<%=listRoom[i]._id%>" method="POST" onsubmit="handleSubmit">
+                  <input type="submit" value="Yêu thích" class="btn-like"/>
+                </form> -->
+                <% } %>
+              </div>
+            </a>
+            <!-- <form action="" method="POST" id="form-like"> -->
+              <%if(listRoom[i].isLike === false) { %>
+              <button type="submit" class="btn-like" data-id="<%=listRoom[i]._id%>">yêu thích</button>
+              <%} else {%>
+                <button type="submit" class="btn-like" data-id="<%=listRoom[i]._id%>" style="Background-color:#ff7979;">yêu thích</button>
+              <%}%>
+            <!-- </form> -->
+          </div>
+        <% } %>
+      </div>
+      <h4 class="title">Bài đăng mới nhất</h4>
+      <div class="list-room">
+        <%for(let i = 0; i < listRoom.length; i++) {%>
+          <div class="room-item">
+            <a href="/room/<%=listRoom[i]._id%>">
+              <div class="room">
+                <div class="image-room">
+                  <img src="https://images.cenhomes.vn/2020/03/1585033148-can-ho-mau-an-land-complex.jpg" alt="">
+                </div>
+                <!-- <h3 class="type">Kiểu phòng: <%=listRoom[i].type%></h3> -->
+                <div class="acreage">Diện tích: <%=listRoom[i].acreage%></div>
+                <div class="address">Địa chỉ: <%=listRoom[i].address%></div>
+                <div class="description">Mô tả: <%=listRoom[i].description%></div>
+                <div class="description">Giá phòng: <%=listRoom[i].price%></div>
+                <% if(listRoom[i].state === true){%>
+                  <div class="state" style="color: green">Tình trạng: Còn phòng</div>
+                <% } %>
+                <div class="poster">Người đăng tải: <%=listRoom[i].username%></div>
+                <% if(user) {%>
+                <!-- <form action="/favoriteList/room/like/<%=listRoom[i]._id%>" method="POST" onsubmit="handleSubmit">
+                  <input type="submit" value="Yêu thích" class="btn-like"/>
+                </form> -->
+                <% } %>
+              </div>
+            </a>
+            <!-- <form action="" method="POST" id="form-like"> -->
+              <%if(listRoom[i].isLike === false) { %>
+              <button type="submit" class="btn-like" data-id="<%=listRoom[i]._id%>">yêu thích</button>
+              <%} else {%>
+                <button type="submit" class="btn-like" data-id="<%=listRoom[i]._id%>" style="Background-color:#ff7979;">yêu thích</button>
+              <%}%>
+            <!-- </form> -->
+          </div>
+        <% } %>
+      </div>
+      <h4 class="title">Phòng trọ của chủ trọ yêu thích</h4>
+      <div class="list-room">
+        <%for(let i = 0; i < listRoom.length; i++) {%>
+          <div class="room-item">
+            <a href="/room/<%=listRoom[i]._id%>">
+              <div class="room">
+                <div class="image-room">
+                  <img src="https://images.cenhomes.vn/2020/03/1585033148-can-ho-mau-an-land-complex.jpg" alt="">
+                </div>
+                <!-- <h3 class="type">Kiểu phòng: <%=listRoom[i].type%></h3> -->
+                <div class="acreage">Diện tích: <%=listRoom[i].acreage%></div>
+                <div class="address">Địa chỉ: <%=listRoom[i].address%></div>
+                <div class="description">Mô tả: <%=listRoom[i].description%></div>
+                <div class="description">Giá phòng: <%=listRoom[i].price%></div>
+                <% if(listRoom[i].state === true){%>
+                  <div class="state" style="color: green">Tình trạng: Còn phòng</div>
+                <% } %>
+                <div class="poster">Người đăng tải: <%=listRoom[i].username%></div>
+                <% if(user) {%>
+                <!-- <form action="/favoriteList/room/like/<%=listRoom[i]._id%>" method="POST" onsubmit="handleSubmit">
+                  <input type="submit" value="Yêu thích" class="btn-like"/>
+                </form> -->
+                <% } %>
+              </div>
+            </a>
+            <!-- <form action="" method="POST" id="form-like"> -->
+              <%if(listRoom[i].isLike === false) { %>
+              <button type="submit" class="btn-like" data-id="<%=listRoom[i]._id%>">yêu thích</button>
+              <%} else {%>
+                <button type="submit" class="btn-like" data-id="<%=listRoom[i]._id%>" style="Background-color:#ff7979;">yêu thích</button>
+              <%}%>
+            <!-- </form> -->
+          </div>
+        <% } %>
+      </div>
       <!-- Toast like successfully-->
       <!-- <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
         <div class="toast-header">
@@ -85,6 +189,7 @@
                     success: function (response) {
                       if(response.msg === "Đã yêu thích") {
                         msg = response.msg;
+                        btn.style.backgroundColor = "#ff7979";
                         $('.toast').toast('show');
                       }
                     }
