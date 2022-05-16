@@ -32,3 +32,30 @@
     color: #fdcb6e;
     font-weight: 700;
   }
+  .filter-room {
+    width: 100%;
+    min-height: 120px;
+    margin-top: 16px;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  .filter-room .form-group:first-child {
+    text-align: center;
+  }
+  .filter-room .form-group input {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 5px;
+    width: 60%;
+    margin: 0 auto;
+  }
+  .search-input {
+    padding: 8px;
+    background-color: #FFFFFF;
+    border: none;
+  }
+  .search-input:hover {
+    cursor: pointer;
+    border: 1px solid black;
+  }
