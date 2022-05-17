@@ -30,6 +30,7 @@ router.post('/upload/avatar', upload.single("file"),userController.updateAvatar)
 router.get('/people/:id', userController.showOtherPeopleInfor);
 
 router.post('/people/follow/:id', userController.followInnKeeper);
+router.post('/people/unFollow/:id', userController.unFollowInnkeeper);
 
 router.get('/innkeeper/all', userController.getFollowInnkeeper);
 module.exports = router;
