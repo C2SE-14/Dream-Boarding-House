@@ -3,6 +3,7 @@ const User = require('../models/user.model');
 const bcrypt = require("bcrypt");
 const Role = require('../models/role.model');
 const FollowInnKeeper = require('../models/followInnKeeper.model');
+const Room = require("../models/room.model");
 const RoleService = require('../services/role.service');
 const getUserInformation = async (req, res, next) => {
     try {
@@ -168,9 +169,22 @@ const showOtherPeopleInfor = async (req, res, next) => {
             role = await Role.findOne({userId: userId});
             role = role.name;
         }
+        let listFollow = [];
+        let isFollow = "false";
+        listFollow = await FollowInnKeeper.find({userId: userId});
+        const listRoom = await Room.find({userId: userInfor.id});
+        let total = 0, numberRoom = 0, ratio = 0;
+        total = listRoom.length;
+        ratio = (numberRoom/total)*100; 
+        for(let i = 0; i < listFollow.length; i++) {
+            if(listFollow[i].innKeeperId === userInfor.id) {
+                isFollow = "true";
+            }
+        }
+        console.log('isFollow: ', isFollow);
         let startDate = userInfor.createdAt.toLocaleDateString("en-US");
         console.log(startDate);
-        res.status(200).render("otherPeopleInformation", {title: 'Dream boarding house', user, userInfor, startDate, role})
+        res.status(200).render("otherPeopleInformation", {title: 'Dream boarding house', user, userInfor, startDate, role, isFollow, total, numberRoom, ratio, listRoom})
     } catch(error) {
         console.log(error);
     }
@@ -229,6 +243,17 @@ const getFollowInnkeeper = async (req, res, next) => {
         console.log(error);
     }
 }
+const unFollowInnkeeper = async (req, res, next) => {
+    try {
+        const innkeeperId = req.params.id;
+        await FollowInnKeeper.deleteOne({innkeeperId: innkeeperId});
+        res.status(200).json({
+            msg: "successfully"
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
 module.exports = {
     getUserInformation,
     updateUserInformation,
@@ -237,4 +262,5 @@ module.exports = {
     followInnKeeper,
     getFollowInnkeeper,
     updateAvatar,
+    unFollowInnkeeper,
 }

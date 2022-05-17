@@ -145,10 +145,16 @@
               </div>
             </a>
             <!-- <form action="" method="POST" id="form-like"> -->
-              <%if(listRoom[i].isLike === false) { %>
-              <button type="submit" class="btn-like" data-id="<%=listRoom[i]._id%>">yêu thích</button>
+              <%if(listRoom[i].listLike.length>0) { %>
+                <%for(let j=0; j<listRoom[i].listLike.length; j++) {%>
+                  <%if(userId === listRoom[i].listLike[j].userId) {%>
+                    <button type="submit" class="btn-like" data-id="<%=listRoom[i]._id%>" style="Background-color:#ff7979;">yêu thích</button>
+                  <%} else {%>
+                    <button type="submit" class="btn-like" data-id="<%=listRoom[i]._id%>">yêu thích</button>
+                  <%}%>
+                <%}%>
               <%} else {%>
-                <button type="submit" class="btn-like" data-id="<%=listRoom[i]._id%>" style="Background-color:#ff7979;">yêu thích</button>
+                <button type="submit" class="btn-like" data-id="<%=listRoom[i]._id%>">yêu thích</button>
               <%}%>
             <!-- </form> -->
           </div>

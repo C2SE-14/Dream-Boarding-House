@@ -12,7 +12,7 @@
     <div class="container">
       <%- include('./components/header')%>
       <h3>Có <%=listRoom.length%> kết quả được tìm thấy</h3>
-      <div class="list-room-search">
+      <div class="list-room-search row">
         <%for(let i = 0; i < listRoom.length; i++) {%>
           <div class="room-item-search">
             <a href="/room/<%=listRoom[i]._id%>">
@@ -96,10 +96,35 @@
 <script type="text/javascript" src="slick/slick.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
-  $('.list-room').slick({
-  lazyLoad: 'ondemand',
-  slidesToShow: 4,
-  slidesToScroll: 1
+//   $('.list-room-search').slick({
+//   lazyLoad: 'ondemand',
+//   slidesToShow: 4,
+//   slidesToScroll: 1
+// });
+$('.list-room-search').slick({
+  centerMode: true,
+  centerPadding: '60px',
+  slidesToShow: 3,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
 });
 </script>
   </body>

@@ -33,6 +33,7 @@ const postFavoriteList = async(req, res, next) => {
     try {
         let myUserId = req.cookies.user.user_id;
         const roomId = req.params;
+        console.log('roomId: ', roomId);
         let isLogin = false;
         if(!myUserId) {
         } else {
@@ -46,7 +47,22 @@ const postFavoriteList = async(req, res, next) => {
             const roomBody = {
                 isLike: true
             }
-            await Room.where({_id: roomId.id}).update(roomBody);
+            // await Room.where({_id: roomId.id}).update(roomBody);
+            await Room.updateOne(
+                {_id: roomId.id},
+                {
+                    $push: {
+                        listLike: {
+                            $each: [
+                                {userId: myUserId}
+                            ]
+                        }
+                    }
+                }
+            ).then((data, error) => {
+                if(error) console.log('error: ', error);
+                console.log('data: ', data);
+            })
             res.status(200).json({
                 code: 1,
                 msg: "Đã yêu thích"
