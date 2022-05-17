@@ -32,7 +32,62 @@ const updateUserInformation = async (req, res, next) => {
         if(userId) {
             user = req.cookies.user.user_id;
         }
-        await User.where({_id: userId}).update(req.body);
+        const {username, email, phoneNumber} = req.body;
+        console.log('user name: ', username);
+        console.log(typeof(username));
+        if(username === "" && email === "") {
+            if(phoneNumber !== "") {
+                const body = {
+                    phoneNumber: phoneNumber
+                }
+                await User.where({_id: userId}).update(body);
+            }
+        } else if(username === "" && phoneNumber === "") {
+            if(email !== "") {
+                const body = {
+                    email: email
+                }
+                await User.where({_id: userId}).update(body);
+            }
+        } else if(email === "" && phoneNumber === "") {
+            if(username !== "") {
+                const body = {
+                    username: username
+                }
+                await User.where({_id: userId}).update(body);
+            }
+        } else if((username !== "" && email !== "") && phoneNumber !== "") {
+            const body = {
+                username: username,
+                email: email,
+                phoneNumber: phoneNumber
+            }
+            await User.where({_id: userId}).update(body);
+        } else if(username !== "" && email !== "") {
+            if(phoneNumber ==="") {
+                const body = {
+                    username: username,
+                    email: email,
+                }
+                await User.where({_id: userId}).update(body);
+            }
+        } else if(username !== "" && phoneNumber !== "") {
+            if(phoneNumber ==="") {
+                const body = {
+                    username: username,
+                    phoneNumber: phoneNumber,
+                }
+                await User.where({_id: userId}).update(body);
+            }
+        } else if(email !== "" && phoneNumber !== "") {
+            if(username ==="") {
+                const body = {
+                    phoneNumber: phoneNumber,
+                    email: email,
+                }
+                await User.where({_id: userId}).update(body);
+            }
+        } 
         const userInfor = await User.find({_id: userId});
         const msg = "Cập nhật thành công";
         let role;
@@ -40,6 +95,35 @@ const updateUserInformation = async (req, res, next) => {
         role = role.name;
         res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role});
     } catch(error) {
+        console.log(error);
+    }
+}
+const updateAvatar = async (req, res, next) => {
+    try {
+        const userId = req.cookies.user.user_id
+        let file = {};
+        file = req.file;
+        console.log('file: ',file);
+        const userAvt = {
+            avatar: file.path
+        }
+        await User.where({_id: userId}).update(userAvt);
+        console.log(file);
+        let user;
+        if(userId) {
+            user = req.cookies.user.user_id;
+        }
+        const userInfor = await User.find({_id: userId});
+        const msg = "Cập nhật thành công";
+        let role;
+        role = await Role.findOne({userId: userId});
+        role = role.name;
+        // res.status(200).json({
+        //     msg: "Successfully",
+        //     img: file.path,
+        // })
+        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role});
+    } catch (error) {
         console.log(error);
     }
 }
@@ -152,4 +236,5 @@ module.exports = {
     showOtherPeopleInfor,
     followInnKeeper,
     getFollowInnkeeper,
+    updateAvatar,
 }

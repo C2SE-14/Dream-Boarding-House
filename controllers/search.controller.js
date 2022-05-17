@@ -52,7 +52,7 @@ const showResultOfSearch = async (req, res, next) => {
     else {
         listRoom = await Room.find({type: text})
     }
-    console.log('list rooom: ', listRoom)
+    console.log('list room: ', listRoom);
     res.status(200).render("resultSearch", {title: "Dream boarding house", listRoom, user, role});
 }
 module.exports = {
