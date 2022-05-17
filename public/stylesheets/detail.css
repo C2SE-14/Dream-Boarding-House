@@ -26,24 +26,6 @@ body {
     margin-left: auto;
 }
 
-.fa-star {
-    color: yellow
-}
-
-.like {
-    background-color: rgb(230, 19, 19);
-    color: white;
-}
-
-.thue {
-    background-color: rgb(230, 19, 19);
-    color: white;
-}
-
-.fa-heart {
-    color: white;
-}
-
 .header-navigation .btn-share {
     position: relative;
 }
@@ -59,31 +41,29 @@ body {
     transform: translateY(-50%);
 }
 
-.home-body {
+.store-body {
     display: flex;
     flex-direction: row;
     padding: 0;
 }
 
-.home-body .home-info {
+.store-body .product-info {
     width: 60%;
     border-right: 1px solid rgba(0, 0, 0, .125);
 }
 
-.home-body .home-payment-details {
+.store-body .product-payment-details {
     width: 40%;
     padding: 15px 15px 0 15px;
 }
 
-.home-info .home-gallery {
-    margin-left: 10px;
-    margin-top: 10px;
+.product-info .product-gallery {
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid rgba(0, 0, 0, .125);
 }
 
-.home-gallery-featured {
+.product-gallery-featured {
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -93,32 +73,7 @@ body {
     cursor: zoom-in;
 }
 
-.img-a {
-    width: 100px;
-    margin-bottom: 10px;
-}
-
-.card {
-    width: 100%;
-    height: auto;
-}
-
-.responsive {
-    width: 131px;
-    height: 110px;
-    border: 1px solid rgb(24, 88, 131);
-}
-
-.responsive:hover {
-    box-shadow: 0 0 5px 5px rgba(190, 136, 20, 0.5);
-}
-
-.card-img-top {
-    width: 100%;
-    height: 100%;
-}
-
-.home-gallery-thumbnails .thumbnails-list li {
+.product-gallery-thumbnails .thumbnails-list li {
     margin-bottom: 5px;
     cursor: pointer;
     position: relative;
@@ -131,26 +86,21 @@ body {
     width: 100%;
 }
 
-.img-home {
-    border: 1px solid #ddd;
-    border-radius: 288px;
-    padding: 14px px;
-    width: 559px;
+.product-gallery-thumbnails .thumbnails-list li:hover::before {
+    content: "";
+    width: 3px;
+    height: 100%;
+    background: #007bff;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-img:hover {
-    box-shadow: 0 0 5px 5px rgba(0, 140, 186, 0.5);
-}
-
-.home-gallery-featured {
-    margin: auto;
-}
-
-.home-info .home-seller-recommended {
+.product-info .product-seller-recommended {
     padding: 20px 20px 0 20px;
 }
 
-.home-comments textarea {
+.product-comments textarea {
     height: 50px;
 }
 

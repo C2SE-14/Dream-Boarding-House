@@ -1,50 +1,86 @@
-<link
-  rel="stylesheet"
-  href="<%= process.env.BASE_URL %>/stylesheets/header.css"
-/>
+<link rel="stylesheet" href="<%= process.env.BASE_URL %>/stylesheets/header.css" />
 <header class="header">
-    <h3 class="logo">Dream boarding house</h3>
     <nav>
-      <ul class="nav-bar">
-        <li class="nav-item">
-          <a href="/" class="nav-link">TRANG CHỦ</a>
-        </li>
-        <% if(user) {%>
-          <%if(role !== "Người thuê trọ") {%>
+        <ul class="nav-bar">
+            <div>
+                <a class="logo">DREAM BOARDING HOUSE</a>
+            </div>
             <li class="nav-item">
-              <a href="/room/post" class="nav-link">ĐĂNG TIN</a>
+                <a href="/" class="nav-link">Trang Chủ</a>
             </li>
-            <li class="nav-item">
-              <a href="/room/post" class="nav-link">QUẢN LÝ BÀI ĐĂNG</a>
-            </li>
-          <%} else {%>
-            <li class="nav-item">
-              <a href="/favoriteList/rooms" class="nav-link">DANH SÁCH YÊU THÍCH</a>
-            </li>
-            <li class="nav-item">
-              <a href="/room/selectRoom/All" class="nav-link">PHÒNG ĐÃ THUÊ</a>
-            </li>
-            <li class="nav-item">
-              <a href="/user/innkeeper/all" class="nav-link">CHỦ TRỌ YÊU THÍCH</a>
-            </li>
-          <%}%>
-            <li class="nav-item">
-              <a href="/user/infor" class="nav-link">QUẢN LÝ THÔNG TIN</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">THÔNG BÁO</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link"><%= user.username %></a>
-            </li>
-        <%} else{%>
-          <li class="nav-item">
-            <a href="/login" class="nav-link">ĐĂNG NHẬP</a>
-          </li>
-          <li class="nav-item">
-            <a href="/register" class="nav-link">ĐĂNG KÝ</a>
-          </li>
-        <% } %>
-      </ul>
+            <% if(user) {%>
+                <%if(role !== "Người thuê trọ") {%>
+                    <li class="nav-item">
+                        <a href="/room/post" class="nav-link">Đăng Tin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/room/post" class="nav-link">Quản Lý Bài Đăng</a>
+                    </li>
+                    <%} else {%>
+                        <li class="nav-item">
+                            <a href="/favoriteList/rooms" class="nav-link">Danh Sách Yêu Thích</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/room/selectRoom/All" class="nav-link">Phòng Đã Thprouê</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/user/innkeeper/all" class="nav-link">Chủ Trọ Yêu Thích</a>
+                        </li>
+                        <%}%>
+                            <li class="nav-item">
+                                <a href="/user/infor" class="nav-link">Quản Lý Thông Tin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link">Thông Báo</a>
+                            </li>
+
+                            <div class="action">
+                                <div class="profile" onclick="menuToggle();">
+                                    <%= user.username %>
+                                </div>
+                                <div class="menu">
+                                    <h3>
+                                        <%= user.username %><br/></h3>
+                                    <ul>
+                                        <li>
+                                            <a href="#">My profile</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Setting</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <%} else{%>
+                                <li class="nav-item">
+                                    <a href="/login" class="nav-link">Đăng Nhập</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/register" class="nav-link">Đăng Kí</a>
+                                </li>
+                                <% } %>
+        </ul>
     </nav>
-  </header>
+    <script>
+        function menuToggle() {
+            const toggleMenu = document.querySelector(".menu");
+            toggleMenu.classList.toggle("active");
+        }
+    </script>
+    <script>
+        function hamDropdown() {
+            document.querySelector(".noidung_dropdown").classList.toggle("hienThi");
+        }
+        window.onclick = function(e) {
+            if (!e.target.matches('.nut_dropdown')) {
+                var noiDungDropdown = document.querySelector(".noidung_dropdown");
+                if (noiDungDropdown.classList.contains('hienThi')) {
+                    noiDungDropdown.classList.remove('hienThi');
+                }
+            }
+        }
+    </script>
+</header>
