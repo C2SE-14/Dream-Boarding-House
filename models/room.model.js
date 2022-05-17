@@ -1,4 +1,10 @@
 const mongoose = require("mongoose");
+const like = new mongoose.Schema({
+  userId: {
+    type: Object,
+    default: "",
+  }
+})
 const image = new mongoose.Schema({
   video_url: {
     type: String,
@@ -55,10 +61,7 @@ const room = new mongoose.Schema(
       type: Object,
       default: "",
     },
-    isLike: {
-      type: Boolean,
-      default: false,
-    },
+    listLike: [like],
     isAccept: {
       type: Boolean,
       default: false,

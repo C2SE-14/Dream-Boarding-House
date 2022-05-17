@@ -25,3 +25,37 @@ label {
     margin-right: 60px;
     width: 180px;
 }
+.openBtn {
+    display: inline-block !important;
+}
+.closeBtn {
+    display: none !important;
+    pointer-events: none;
+}
+
+.list-room {
+    display: flex;
+}
+.room-item {
+    width: 300px;
+    padding: 4px;
+    margin: 0 4px;
+    border: 1px solid blanchedalmond;
+    border-radius: 5px;
+}
+.img-container {
+    width: 100%;
+    height: 150px;
+}
+img {
+    width: 100%;
+    height: 100%;
+}
+.infor-room label {
+    font-weight: 600;
+    color: black;
+    width: 80px;
+}
+.infor-room p {
+    width: 100%;
+}
