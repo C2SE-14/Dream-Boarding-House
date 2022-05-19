@@ -99,3 +99,10 @@ label {
 .btn-modal {
     width: 100px;
 }
+.btn-update-avt {
+    margin: 0 auto;
+    border: none;
+    padding: 8px;
+    margin-top: 6px;
+    border-radius: 10px;
+}

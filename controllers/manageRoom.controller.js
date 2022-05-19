@@ -7,14 +7,14 @@ const Notification = require('../models/notifications.model');
 const getMyRoom = async (req, res, next) => {
     try {
         const user = req.cookies.user;
-        let userId, role;
+        let userId, role, showSearch = "no";
         if(user) {
             userId = req.cookies.user.user_id
             role = await Role.findOne({userId: userId});
             role = role.name;
         }
         const listRoom = await Room.find({userId: userId});
-        res.status(200).render("manageRoom", {title: "Dream Boarding House", listRoom, user, role, listRoom})
+        res.status(200).render("manageRoom", {title: "Dream Boarding House", listRoom, user, role, listRoom, showSearch})
     } catch {
 
     }

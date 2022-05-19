@@ -12,15 +12,14 @@ const getUserInformation = async (req, res, next) => {
         if(userId) {
             user = req.cookies.user.user_id;
         }
-        let role;
+        let role, showSearch = "no";
         if(user) {
             userId = req.cookies.user.user_id
             role = await Role.findOne({userId: userId});
             role = role.name;
         }
-        console.log('role ne: ', role);
         const userInfor = await User.find({_id: userId});
-        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, role});
+        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, role, showSearch});
     } catch(error) {
         console.log(error);
         //res.status(203).render('error')
@@ -29,7 +28,7 @@ const getUserInformation = async (req, res, next) => {
 const updateUserInformation = async (req, res, next) => {
     try {
         const userId = req.cookies.user.user_id;
-        let user;
+        let user, showSearch = "no";
         if(userId) {
             user = req.cookies.user.user_id;
         }
@@ -94,7 +93,7 @@ const updateUserInformation = async (req, res, next) => {
         let role;
         role = await Role.findOne({userId: userId});
         role = role.name;
-        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role});
+        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role, showSearch});
     } catch(error) {
         console.log(error);
     }
@@ -104,13 +103,12 @@ const updateAvatar = async (req, res, next) => {
         const userId = req.cookies.user.user_id
         let file = {};
         file = req.file;
-        console.log('file: ',file);
         const userAvt = {
             avatar: file.path
         }
         await User.where({_id: userId}).update(userAvt);
         console.log(file);
-        let user;
+        let user, showSearch = "no";
         if(userId) {
             user = req.cookies.user.user_id;
         }
@@ -123,7 +121,7 @@ const updateAvatar = async (req, res, next) => {
         //     msg: "Successfully",
         //     img: file.path,
         // })
-        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role});
+        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role, showSearch});
     } catch (error) {
         console.log(error);
     }
@@ -141,15 +139,15 @@ const updatePassword = async (req, res, next) => {
             oldPassword,
             userInfor.password
         );
-        let role;
+        let role, showSearch = "no";
         role = await Role.findOne({userId: userId});
         role = role.name;
         if(!validPassword) {
             const msg = "Mật khẩu cũ không đúng";
-            res.status(203).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role});
+            res.status(203).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role, showSearch});
         } else {
             const msg = "Thay đổi mật khẩu thành công";
-            res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role});
+            res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role, showSearch});
         }
     } catch(error) {
         console.log(error);
@@ -164,7 +162,7 @@ const showOtherPeopleInfor = async (req, res, next) => {
             user = req.cookies.user.user_id;
         }
         const userInfor = await User.findOne({_id: id});
-        let role;
+        let role, showSearch = "no";
         if(user) {
             role = await Role.findOne({userId: userId});
             role = role.name;
@@ -184,7 +182,7 @@ const showOtherPeopleInfor = async (req, res, next) => {
         console.log('isFollow: ', isFollow);
         let startDate = userInfor.createdAt.toLocaleDateString("en-US");
         console.log(startDate);
-        res.status(200).render("otherPeopleInformation", {title: 'Dream boarding house', user, userInfor, startDate, role, isFollow, total, numberRoom, ratio, listRoom})
+        res.status(200).render("otherPeopleInformation", {title: 'Dream boarding house', user, userInfor, startDate, role, isFollow, total, numberRoom, ratio, listRoom, showSearch})
     } catch(error) {
         console.log(error);
     }
@@ -221,7 +219,7 @@ const followInnKeeper = async (req, res, next) => {
 const getFollowInnkeeper = async (req, res, next) => {
     try {
         const userId = req.cookies.user.user_id;
-        let user, role;
+        let user, role, showSearch = "no";
         if(userId) {
             user = req.cookies.user.user_id;
             role = await Role.findOne({userId: userId});
@@ -238,7 +236,7 @@ const getFollowInnkeeper = async (req, res, next) => {
                 }
             }
         }
-        res.status(200).render("listInnkeeper", {title: 'Dream boarding house', user, userInfor, role, listInnkeeper})
+        res.status(200).render("listInnkeeper", {title: 'Dream boarding house', user, userInfor, role, listInnkeeper, showSearch})
     } catch (error) {
         console.log(error);
     }
