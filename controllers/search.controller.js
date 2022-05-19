@@ -2,7 +2,7 @@ const favoriteRoom = require('../models/favoriteRoom.model');
 const Room = require('../models/room.model');
 const Role = require('../models/role.model');
 const showResultOfSearch = async (req, res, next) => {
-    let user = '';
+    let user = '', showSearch = "yes";
     let listRoom = [];
     user = req.cookies.user;
         let userId = '';
@@ -78,7 +78,7 @@ const showResultOfSearch = async (req, res, next) => {
     } else if(acreage !== "" && (type !== "" && price !== "")) {
         listRoom = await Room.find({$and: [ {acreage: {$lt: acreage}}, {price: {$lt: price}}, {type: type}]});
     }
-    res.status(200).render("resultSearch", {title: "Dream boarding house", listRoom, user, role});
+    res.status(200).render("resultSearch", {title: "Dream boarding house", listRoom, user, role, showSearch});
 }
 module.exports = {
     showResultOfSearch,

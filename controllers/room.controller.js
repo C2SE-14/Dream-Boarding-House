@@ -35,10 +35,17 @@ const postUploadRoom = async(req, res, next) => {
         room.address = address;
         room.username = userId;
         room.userId = req.cookies.user.user_id;
+        let files = req.files;
+        let images = [];
+        for(let i = 0; i < files.length; i++) {
+            images.push({url: files[i].path});
+        }
+        room.images = images;
         const newRoom = new Room(room);
         await newRoom.save();
         res.redirect('/');
     } catch (error) {
+        console.log(error);
         res.status(500).json({msg: error});
     }
 }

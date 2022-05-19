@@ -6,11 +6,7 @@ const like = new mongoose.Schema({
   }
 })
 const image = new mongoose.Schema({
-  video_url: {
-    type: String,
-    default: "",
-  },
-  title: {
+  url: {
     type: String,
     default: "",
   }
@@ -66,7 +62,7 @@ const room = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    list_image: [image]
+    images: [image]
   },
   { timestamps: true }
 );

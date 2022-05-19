@@ -11,27 +11,9 @@ const getHomePage = async(req, res, next) => {
         }
         const listRoom = await Room.find();
         let count = 0;
-        for(let i =0;i<listRoom.length; i++) {
-            if(listRoom[i].listLike.length>0) {
-                console.log("Room " + listRoom[i].address + " co " + listRoom[i].listLike.length +" nguoi like");
-                for(let j=0; j<listRoom[i].listLike.length; j++) {
-                    if(userId === listRoom[i].listLike[j].userId) {
-                        console.log('userId: ', userId);
-                        console.log("ai la nguoi like: ", listRoom[i].listLike[j].userId);
-                        count++;
-                        break;
-                    }
-                }
-                if(count === 0) {
-                    console.log("nguoi nay khong like");
-                }
-            } else {
-                console.log("------------------");
-                console.log("khong co ai like room nay");
-            }
-        }
+        const showSearch = "yes";
         //Header must have user and role
-        res.render("index", {title: "Dream Boarding House", listRoom, user, role, userId});
+        res.render("index", {title: "Dream Boarding House", listRoom, user, role, userId, showSearch});
     } catch (error) {
         console.log(error);
         res.status(500).json({ msg: error });
