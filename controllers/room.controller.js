@@ -22,7 +22,15 @@ const getDetailRoom = async(req, res, next) => {
 const getUploadRoom = async(req, res, next) => {
     try {
         const user = req.cookies.user
-        res.render("upload", {user})
+        let userId="", role="";
+        if(user) {
+            userId = req.cookies.user.user_id;
+            role = await Role.findOne({userId: userId});
+            role = role.name;
+        }
+        let count = 0;
+        const showSearch = "no";
+        res.render("upload", {user, role, userId, showSearch})
     } catch (error) {
         res.status(500).json({ msg: error });
     }
