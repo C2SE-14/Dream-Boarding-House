@@ -35,6 +35,10 @@ const postUploadRoom = async(req, res, next) => {
         room.address = address;
         room.username = userId;
         room.userId = req.cookies.user.user_id;
+        console.log('Đây là req: ', req.body);
+        let file = [];
+        file = req.file;
+        console.log('file ne: ', file);
         const newRoom = new Room(room);
         await newRoom.save();
         res.redirect('/');
