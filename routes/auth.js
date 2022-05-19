@@ -4,4 +4,5 @@ router.get('/',async (req, res) => {
   return res.render('../views/components/login',{errors:''})
 });
 router.post("/",authController.loginUser);
+
 module.exports = router;

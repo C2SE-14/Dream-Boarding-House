@@ -71,7 +71,11 @@ const getSelectRoom = async (req, res, next) => {
     try {
         const user = req.cookies.user;
         const userId = req.cookies.user.user_id;
-        const role = RoleService.getRoleUser;
+        let role;
+        if(user) {
+            role = await Role.findOne({userId: userId});
+            role = role.name;
+        }
         const listRoomId = await ChooseRoom.find({userId: userId});
         const listRoom = [];
         console.log(listRoomId);

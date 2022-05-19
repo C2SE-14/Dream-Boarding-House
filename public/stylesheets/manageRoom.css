@@ -1,0 +1,12 @@
+body {
+    position: relative;
+    min-height: 1000px;
+}
+.list-room {
+    display: flex;
+    margin-top: 20px;
+}
+.room-item {
+    padding: 0 16px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}

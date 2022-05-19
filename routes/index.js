@@ -4,6 +4,9 @@ const homeRouter = require("./home");
 const favoriteListRouter = require("./favorite-list");
 const roomRouter = require("./room");
 const userRouter = require("./users");
+const manageRoomRouter = require("./manageRoom");
+const logOutRouter = require("./logout");
+const searchRouter = require("./search");
 const adminRouter = require("./admin");
 function route(app) {
   app.use("/register", registerRouter);
@@ -11,6 +14,9 @@ function route(app) {
   app.use("/favoriteList", favoriteListRouter);
   app.use("/room", roomRouter);
   app.use("/user", userRouter);
+  app.use("/innkeeper", manageRoomRouter);
+  app.use("/logout", logOutRouter);
+  app.use("/search", searchRouter);
   app.use("/admin", adminRouter);
   app.use("/", homeRouter);
 }

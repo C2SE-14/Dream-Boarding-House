@@ -3,6 +3,7 @@ const User = require('../models/user.model');
 const bcrypt = require("bcrypt");
 const Role = require('../models/role.model');
 const FollowInnKeeper = require('../models/followInnKeeper.model');
+const Room = require("../models/room.model");
 const RoleService = require('../services/role.service');
 const getUserInformation = async (req, res, next) => {
     try {
@@ -17,6 +18,7 @@ const getUserInformation = async (req, res, next) => {
             role = await Role.findOne({userId: userId});
             role = role.name;
         }
+        console.log('role ne: ', role);
         const userInfor = await User.find({_id: userId});
         res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, role});
     } catch(error) {
@@ -31,11 +33,98 @@ const updateUserInformation = async (req, res, next) => {
         if(userId) {
             user = req.cookies.user.user_id;
         }
-        await User.where({_id: userId}).update(req.body);
+        const {username, email, phoneNumber} = req.body;
+        console.log('user name: ', username);
+        console.log(typeof(username));
+        if(username === "" && email === "") {
+            if(phoneNumber !== "") {
+                const body = {
+                    phoneNumber: phoneNumber
+                }
+                await User.where({_id: userId}).update(body);
+            }
+        } else if(username === "" && phoneNumber === "") {
+            if(email !== "") {
+                const body = {
+                    email: email
+                }
+                await User.where({_id: userId}).update(body);
+            }
+        } else if(email === "" && phoneNumber === "") {
+            if(username !== "") {
+                const body = {
+                    username: username
+                }
+                await User.where({_id: userId}).update(body);
+            }
+        } else if((username !== "" && email !== "") && phoneNumber !== "") {
+            const body = {
+                username: username,
+                email: email,
+                phoneNumber: phoneNumber
+            }
+            await User.where({_id: userId}).update(body);
+        } else if(username !== "" && email !== "") {
+            if(phoneNumber ==="") {
+                const body = {
+                    username: username,
+                    email: email,
+                }
+                await User.where({_id: userId}).update(body);
+            }
+        } else if(username !== "" && phoneNumber !== "") {
+            if(phoneNumber ==="") {
+                const body = {
+                    username: username,
+                    phoneNumber: phoneNumber,
+                }
+                await User.where({_id: userId}).update(body);
+            }
+        } else if(email !== "" && phoneNumber !== "") {
+            if(username ==="") {
+                const body = {
+                    phoneNumber: phoneNumber,
+                    email: email,
+                }
+                await User.where({_id: userId}).update(body);
+            }
+        } 
         const userInfor = await User.find({_id: userId});
         const msg = "Cập nhật thành công";
-        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg});
+        let role;
+        role = await Role.findOne({userId: userId});
+        role = role.name;
+        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role});
     } catch(error) {
+        console.log(error);
+    }
+}
+const updateAvatar = async (req, res, next) => {
+    try {
+        const userId = req.cookies.user.user_id
+        let file = {};
+        file = req.file;
+        console.log('file: ',file);
+        const userAvt = {
+            avatar: file.path
+        }
+        await User.where({_id: userId}).update(userAvt);
+        console.log(file);
+        let user;
+        if(userId) {
+            user = req.cookies.user.user_id;
+        }
+        const userInfor = await User.find({_id: userId});
+        const msg = "Cập nhật thành công";
+        let role;
+        role = await Role.findOne({userId: userId});
+        role = role.name;
+        // res.status(200).json({
+        //     msg: "Successfully",
+        //     img: file.path,
+        // })
+        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role});
+    } catch (error) {
         console.log(error);
     }
 }
@@ -52,12 +141,15 @@ const updatePassword = async (req, res, next) => {
             oldPassword,
             userInfor.password
         );
+        let role;
+        role = await Role.findOne({userId: userId});
+        role = role.name;
         if(!validPassword) {
             const msg = "Mật khẩu cũ không đúng";
-            res.status(203).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg});
+            res.status(203).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role});
         } else {
             const msg = "Thay đổi mật khẩu thành công";
-            res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg});
+            res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role});
         }
     } catch(error) {
         console.log(error);
@@ -77,9 +169,22 @@ const showOtherPeopleInfor = async (req, res, next) => {
             role = await Role.findOne({userId: userId});
             role = role.name;
         }
+        let listFollow = [];
+        let isFollow = "false";
+        listFollow = await FollowInnKeeper.find({userId: userId});
+        const listRoom = await Room.find({userId: userInfor.id});
+        let total = 0, numberRoom = 0, ratio = 0;
+        total = listRoom.length;
+        ratio = (numberRoom/total)*100; 
+        for(let i = 0; i < listFollow.length; i++) {
+            if(listFollow[i].innKeeperId === userInfor.id) {
+                isFollow = "true";
+            }
+        }
+        console.log('isFollow: ', isFollow);
         let startDate = userInfor.createdAt.toLocaleDateString("en-US");
         console.log(startDate);
-        res.status(200).render("otherPeopleInformation", {title: 'Dream boarding house', user, userInfor, startDate, role})
+        res.status(200).render("otherPeopleInformation", {title: 'Dream boarding house', user, userInfor, startDate, role, isFollow, total, numberRoom, ratio, listRoom})
     } catch(error) {
         console.log(error);
     }
@@ -89,12 +194,10 @@ const followInnKeeper = async (req, res, next) => {
     try {
         const userId = req.cookies.user.user_id;
         const innkeeperId = req.params.id;
-        console.log('inn keeper id: ', innkeeperId);
         let followInKeeperBody = {
             userId: userId,
             innKeeperId: innkeeperId,
         }
-        console.log('body: ', followInKeeperBody);
         const newFollowInnkeeper = FollowInnKeeper(followInKeeperBody);
         await newFollowInnkeeper.save();
         // const userInfor = await User.findOne({_id: userId});
@@ -118,26 +221,35 @@ const followInnKeeper = async (req, res, next) => {
 const getFollowInnkeeper = async (req, res, next) => {
     try {
         const userId = req.cookies.user.user_id;
-        let user;
+        let user, role;
         if(userId) {
             user = req.cookies.user.user_id;
+            role = await Role.findOne({userId: userId});
+            role = role.name;
         }
-        let role = RoleService;
-        console.log('user id: ', userId);
-        const userInfor = await User.find({_id: userId});
+        const userInfor = await User.findOne({_id: userId});
         const listInkeeperId = await FollowInnKeeper.find({userId: userId});
-        console.log(listInkeeperId);
         let listInnkeeper = [];
         if(listInkeeperId.length > 0) {
             for(let i = 0; i < listInkeeperId.length ; i++) {
-                const innkeeper = await User.findOne({_id: listInkeeperId[i].innkeeperId});
+                const innkeeper = await User.findOne({_id: listInkeeperId[i].innKeeperId});
                 if(innkeeper) {
                     listInnkeeper.push(innkeeper);
                 }
             }
         }
-        console.log(listInnkeeper);
         res.status(200).render("listInnkeeper", {title: 'Dream boarding house', user, userInfor, role, listInnkeeper})
+    } catch (error) {
+        console.log(error);
+    }
+}
+const unFollowInnkeeper = async (req, res, next) => {
+    try {
+        const innkeeperId = req.params.id;
+        await FollowInnKeeper.deleteOne({innkeeperId: innkeeperId});
+        res.status(200).json({
+            msg: "successfully"
+        })
     } catch (error) {
         console.log(error);
     }
@@ -149,4 +261,6 @@ module.exports = {
     showOtherPeopleInfor,
     followInnKeeper,
     getFollowInnkeeper,
+    updateAvatar,
+    unFollowInnkeeper,
 }
