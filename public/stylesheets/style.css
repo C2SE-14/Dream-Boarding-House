@@ -42,10 +42,12 @@ nav {
   font-size: 45px;
 }
 .list-room {
-  display: flex;
+  /* display: flex;
   justify-content: space-around;
   align-items: center;
   margin-top: 40px;
+  padding: 0 8px; */
+  position: relative;
   padding: 0 8px;
 }
 .room-item {
@@ -58,58 +60,67 @@ nav {
   align-items: center;
   padding: 6px;
 }
-.room {
-  padding: 10px;
-}
 .image-room {
   width: 100%;
-  height: 120px;
+  height: 250px;
 }
 .image-room img{
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
-.type {
-  margin-top: 6px;
+.room-infor {
+  height: 395px;
+  padding: 6px;
 }
-.acreage {
-  margin-top: 6px;
+.infor-item {
+  margin-bottom: 6px;
 }
-.address {
-  margin-top: 6px;
+label {
+  display: block;
+  font-weight: 700;
+  color: #2d3436;
+  margin-bottom: 4px;
 }
 .description {
-  margin-top: 6px
+  height: 100px;
+  overflow: hidden;
 }
-.btn-like {
+.btn {
   display: block;
-  width: 100px;
-  margin-top: 4px;
-  border: none;
-  padding: 6px;
-  background-color: #bdc3c7;
+  border: 1px solid #74b9ff;
+  border-radius: 5px;
+  width: 60%;
+  padding: 10px 6px;
+  text-align: center;
+  font-weight: 700;
 }
-.btn-like:hover {
-  background-color: antiquewhite;
-  cursor: pointer;
+.btn:hover {
+  border: 1px solid greenyellow;
 }
-footer {
+/* footer {
   height: 100px;
   background-color: aliceblue;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 .slick-arrow {
+  position: absolute;
   border: none;
-  width: 100px;
-  height: 60px;
-  padding: 6px;
-  border-radius: 5px;
-  background-color: #f39c12;
+  font-size: 50px;
+  z-index: 1000;
 }
 .slick-arrow:hover {
   cursor: pointer;
+}
+.slick-prev {
+  left: 0px;
+  top: 50%
+}
+.slick-next {
+  right: 0px;
+  top: 50%
 }
 hr {
   margin-top: 10px;

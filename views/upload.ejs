@@ -69,10 +69,10 @@
             <div class="inputBox" style="padding-bottom: 10px">
                 <input type="Địa Chỉ" name="address" placeholder="Số nhà, tên đường" id="">
             </div>
-            <div style="position: center" ; class="row">
+            <!-- <div style="position: center" ; class="row">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5422.244069089167!2d108.22501278462542!3d16.060011614502386!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3142193c6144de8f%3A0x360f8a363a203fa7!2zQ-G6p3UgUuG7k25n!5e0!3m2!1svi!2s!4v1648784942014!5m2!1svi!2s"
                     width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+            </div> -->
             <div style="margin-top: 20px">
                 <h2>
                     Thông tin mô tả
@@ -87,7 +87,8 @@
                 </div>
                 <div>
                     <div class="inputBox" style="padding-bottom: 10px">
-                        <input type="Nội dung mô tả" name="description" placeholder="Nội dung mô tả" id="">
+                        <label>Mô tả</label>
+                        <textarea type="Nội dung mô tả" name="description" placeholder="Nội dung mô tả" id="" rows="10" cols="80" style="font-size:14px; border: 1px solid black; padding: 10px;"></textarea>
                     </div>
                     <h6 style="margin-left: 5px">
                         Nội dung mô tả phải có ít nhất 150 kí tự và không được dài quá 5000 kí tự.
@@ -102,8 +103,8 @@
                         <input type="text" name="price" placeholder="Nhập giá" id="price" value="">
 
                         <select class="form-select" aria-label="Default select example">
-                        <option value="Đồng/Tháng">Đồng/Tháng</option>
-                        <option value="Đồng/m2/Tháng">Đồng/m2/Tháng</option>
+                        <option value="Đồng/Tháng">VND/Tháng</option>
+                        <option value="Đồng/m2/Tháng">VND/m2/Tháng</option>
                     </select>
                     </div>
                 </div>
@@ -120,7 +121,7 @@
                     <!-- <label for="file">Chọn ảnh</label>
                     <input type='file' id="getFile" name="file" multiple /> -->
                     <label for="formFileMultiple" class="form-label">Chọn ảnh phòng</label>
-                    <input class="form-control" name="file" type="file" id="formFileMultiple" multiple />
+                    <input class="form-control" name="files" type="file" id="formFileMultiple" multiple />
                   </div>
             </div>
             <div class="buttons-container">
@@ -171,6 +172,7 @@
         let optionsDistrict, optionsWard;
         let countDistrictClick = 0, countWardClick = 0;
         selectCity.addEventListener("click", () => {
+            console.log('city nè: ', selectCity.value);
             city = selectCity.value;
             $.ajax({
                 url: `https://provinces.open-api.vn/api/?depth=2`,
@@ -181,6 +183,8 @@
             });
         })
         selectDistrict.addEventListener("click", () => {
+            countWardClick = 0;
+            selectWard.innerHTML = "";
             district = selectDistrict.value;
             countDistrictClick++;
             $.ajax({
@@ -191,8 +195,7 @@
                         if(response[i].name === city) {
                             districts = response[i].districts;
                             for(let j = 0; j<districts.length; j++) {
-                                console.log("ua la sao: ", districts[j].name);
-                                optionsDistrict += `<option value=${districts[j].name}> ${districts[j].name}</option>`;
+                                optionsDistrict += `<option value="${districts[j].name}">${districts[j].name}</option>`;
                             }
                             if(countDistrictClick === 1) {
                                 selectDistrict.innerHTML = optionsDistrict;
@@ -211,10 +214,9 @@
                     for(let i = 0; i < response.length; i++) {
                         if(response[i].name === city) {
                             for(let k = 0; k < response[i].districts.length; k++) {
-                                console.log("district: ", district);
                                 if(response[i].districts[k].name === district) {
                                     for(let j = 0; j<response[i].districts[k].wards.length; j++) {
-                                        optionsWard += "<option value="+ response[i].districts[k].wards[j].name+">"+ response[i].districts[k].wards[j].name +"</option>";
+                                        optionsWard += `<option value=" ${response[i].districts[k].wards[j].name}">${response[i].districts[k].wards[j].name}</option>`;
                                     }
                                     if(countWardClick === 1) {
                                         selectWard.innerHTML = optionsWard;
