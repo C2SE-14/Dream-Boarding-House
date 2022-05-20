@@ -12,7 +12,11 @@ const getDetailRoom = async(req, res, next) => {
         const room = await Room.findOne({_id: roomId.id});
         const userInfor = await User.findOne({_id: room.userId});
         const phoneNumber = userInfor.phoneNumber;
-        const role = RoleService.getRoleUser;
+        if(user) {
+            userId = req.cookies.user.user_id;
+            role = await Role.findOne({userId: userId});
+            role = role.name;
+        }
         let showSearch = "no";
         res.status(200).render('roomDetail', {room, user, phoneNumber, userInfor, role, showSearch})
     } catch (error) {
