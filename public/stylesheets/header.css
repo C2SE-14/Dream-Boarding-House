@@ -14,7 +14,6 @@ a {
 .header {
     align-items: center;
     background-color: aliceblue;
-    none
 }
 
 h3 {
@@ -43,19 +42,19 @@ a:hover {
     justify-content: space-between;
 }
 
-.site-identity h1 {
+.site-identity-head h1 {
     font-size: 1.5em;
     margin: .6em 0;
     display: inline-block;
 }
 
-.site-navigation ul,
-.site-navigation li {
+.site-navigation-head ul,
+.site-navigation-head li {
     margin: 0;
     padding: 0;
 }
 
-.site-navigation li {
+.site-navigation-head li {
     display: inline-block;
     margin-top: 1.4em;
     margin-left: 1em;
