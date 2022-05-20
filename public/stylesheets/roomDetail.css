@@ -115,6 +115,6 @@ body {
 .last-questions-list li span {
     padding-left: 10px;
 }
-.btn-group {
-   
+.btn {
+   margin-top: 16px !important;
 }

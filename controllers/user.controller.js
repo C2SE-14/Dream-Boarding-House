@@ -236,6 +236,7 @@ const getFollowInnkeeper = async (req, res, next) => {
                 }
             }
         }
+        console.log('list innkeeper nè: ', listInnkeeper);
         res.status(200).render("listInnkeeper", {title: 'Dream boarding house', user, userInfor, role, listInnkeeper, showSearch})
     } catch (error) {
         console.log(error);

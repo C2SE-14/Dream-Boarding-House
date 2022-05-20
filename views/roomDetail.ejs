@@ -11,6 +11,7 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <script src="jquery-3.6.0.min.js"></script>
 </head>
 <style>
     body {
@@ -139,9 +140,9 @@
                                     <div class="product-gallery-thumbnails">
                                         <ol class="thumbnails-list list-unstyled">
                                                 <li><img src="<%=room.images[0].url%>" alt=""></li>
-                                                <li><img src="<%=room.images[1].url%>" alt=""></li>
-                                                <li><img src="<%=room.images[2].url%>" alt=""></li>
-                                                <li><img src="<%=room.images[3].url%>" alt=""></li>
+                                                <li><img src="https://via.placeholder.com/350x350/f16a22" alt=""></li>
+                                                <li><img src="https://via.placeholder.com/350x350/f16a22" alt=""></li>
+                                                <li><img src="https://via.placeholder.com/350x350/f16a22" alt=""></li>
                                         </ol>
                                     </div>
                                     <div class="product-gallery-featured">
@@ -297,7 +298,7 @@
         <script>
             const love = document.getElementById("love");
             love.addEventListener("click", () => {
-                const roomId = btn.getAttribute('data-id');
+                const roomId = love.getAttribute('data-id');
                 const option = {
                   animation: true,
                   autohide: true,
@@ -310,7 +311,7 @@
                     success: function (response) {
                       if(response.msg === "Đã yêu thích") {
                         msg = response.msg;
-                        btn.style.backgroundColor = "#ff7979";
+                        love.style.backgroundColor = "#ff7979";
                       }
                     }
                   });

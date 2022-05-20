@@ -18,6 +18,7 @@ const getDetailRoom = async(req, res, next) => {
             role = role.name;
         }
         let showSearch = "no";
+        console.log('room t xem ne: ', room);
         res.status(200).render('roomDetail', {room, user, phoneNumber, userInfor, role, showSearch})
     } catch (error) {
         console.log(error);
