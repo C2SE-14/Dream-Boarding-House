@@ -9,7 +9,7 @@
                 <li>
                     <a href="/">TRANG CHỦ</a></li>
                 <% if(user) {%>
-                    <%if(role !== "Người thuê trọ ") {%>
+                    <%if(role !== "Người thuê trọ") {%>
                         <li><a href="/room/post">ĐĂNG TIN</a></li>
                         <li> <a href="/innkeeper/myRoom/all">QUẢN LÝ BÀI ĐĂNG</a></li>
                         <%} else {%>
@@ -19,11 +19,11 @@
                             <%}%>
                                 <li> <a href="/user/infor">QUẢN LÝ THÔNG TIN</a></li>
                                 <li> <a href=" ">THÔNG BÁO</a></li>
-                                <li>
+                                <!-- <li>
                                     <a href="">
                                         <%= user.username %>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li> <a href="/logout" class="nav-link">Đăng xuất</a></li>
                                 <%} else{%>
                                     <div class="login-register">

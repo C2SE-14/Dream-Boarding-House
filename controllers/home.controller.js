@@ -9,6 +9,7 @@ const getHomePage = async(req, res, next) => {
             role = await Role.findOne({userId: userId});
             role = role.name;
         }
+        console.log('role của thằng này: ', role);
         const listRoom = await Room.find();
         let count = 0;
         const showSearch = "yes";
