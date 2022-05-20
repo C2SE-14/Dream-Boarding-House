@@ -13,8 +13,19 @@ const getMyRoom = async (req, res, next) => {
             role = await Role.findOne({userId: userId});
             role = role.name;
         }
-        const listRoom = await Room.find({userId: userId});
-        res.status(200).render("manageRoom", {title: "Dream Boarding House", listRoom, user, role, listRoom, showSearch})
+        //panigation
+        let perPage = 8;
+        let page = req.params.page || 1;
+        await Room.find({userId: userId}).skip((perPage * page) - perPage)
+        .limit(perPage)
+        .exec((err, listRoom) => {
+            Room.countDocuments((err, count) => {
+                if(err) return next(err);
+                res.status(200).render("manageRoom", {title: "Dream Boarding House", listRoom, current: page, pages: Math.ceil(count / perPage), user, role, listRoom, showSearch})
+
+            })
+        });
+        
     } catch {
 
     }

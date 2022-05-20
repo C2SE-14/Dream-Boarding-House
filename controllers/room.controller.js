@@ -13,7 +13,8 @@ const getDetailRoom = async(req, res, next) => {
         const userInfor = await User.findOne({_id: room.userId});
         const phoneNumber = userInfor.phoneNumber;
         const role = RoleService.getRoleUser;
-        res.status(200).render('roomDetail', {room, user, phoneNumber, userInfor, role})
+        let showSearch = "no";
+        res.status(200).render('roomDetail', {room, user, phoneNumber, userInfor, role, showSearch})
     } catch (error) {
         console.log(error);
         res.status(500).json({msg: error});
@@ -103,7 +104,8 @@ const getSelectRoom = async (req, res, next) => {
                 }
             }
         }
-        res.status(200).render("chooseRoom", {title: "Dream boarding house", listRoom, user, role});
+        let showSearch = "no";
+        res.status(200).render("chooseRoom", {title: "Dream boarding house", listRoom, user, role, showSearch});
     } catch(error) {
         console.log(error);
     }
