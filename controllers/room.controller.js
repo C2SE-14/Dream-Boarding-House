@@ -6,6 +6,7 @@ const ChooseRoom = require("../models/chooseRoom.model");
 const Notification = require("../models/notifications.model");
 const FavoriteRoom = require("../models/favoriteRoom.model");
 const RoleService = require("../services/role.service");
+const Pusher = require('pusher');
 const getDetailRoom = async (req, res, next) => {
   try {
     const user = req.cookies.user;
@@ -93,12 +94,20 @@ const postSelectRoom = async (req, res, next) => {
     const userInfor = await User.findOne({ _id: userId });
     const roomId = req.params.id;
     const room = await Room.findOne({ _id: roomId });
+    const pusher = new Pusher({
+      appId: process.env.PUSHER_APP_ID,
+      key: process.env.PUSHER_APP_KEY,
+      secret: process.env.PUSHER_APP_SECRET,
+      cluster: process.env.PUSHER_APP_CLUSTER
+  });
     let myRoom = {
       userId: userId,
       roomId: roomId,
     };
     const newRoom = ChooseRoom(myRoom);
-    await newRoom.save();
+    await newRoom.save().then((err, data) => {
+      if(!err) console.log('new room: ', data);
+    });
     let bodyNotifi;
     bodyNotifi = {
       ownerId: room.userId,
@@ -107,9 +116,17 @@ const postSelectRoom = async (req, res, next) => {
         "Tôi quan tâm tới phòng trọ này, hãy liên hệ với tôi qua số điện thoại " +
         userInfor.phoneNumber,
     };
+
+    pusher.trigger("my-channel", "my-event", {
+      message: `Người dùng ${userInfor.username} quan tâm tới phòng trọ của bạn`,
+    })
+
     const newNotifi = Notification(bodyNotifi);
     await newNotifi.save();
-    res.redirect("/");
+    res.status(200).json({
+      code: 1,
+      msg: "Chúng tôi đã gửi thông báo tới chủ trọ"
+    });
   } catch (error) {
     console.log(error);
   }
