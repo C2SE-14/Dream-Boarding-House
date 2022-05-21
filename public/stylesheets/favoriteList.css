@@ -50,8 +50,9 @@ label {
     justify-content: center;
     align-items: center;
   }
-  .btn {
+  .btn-delete {
     margin-top: 16px !important;
+    background-color: "#ff7979" !important;
   }
   .btn:hover {
     cursor: pointer;
