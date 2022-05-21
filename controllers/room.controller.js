@@ -4,6 +4,7 @@ const User = require('../models/user.model');
 const Role = require('../models/role.model')
 const ChooseRoom = require('../models/chooseRoom.model');
 const Notification = require('../models/notifications.model');
+const FavoriteRoom = require('../models/favoriteRoom.model');
 const RoleService = require("../services/role.service");
 const getDetailRoom = async(req, res, next) => {
     try {
@@ -12,13 +13,14 @@ const getDetailRoom = async(req, res, next) => {
         const room = await Room.findOne({_id: roomId.id});
         const userInfor = await User.findOne({_id: room.userId});
         const phoneNumber = userInfor.phoneNumber;
+        let userId;
         if(user) {
             userId = req.cookies.user.user_id;
             role = await Role.findOne({userId: userId});
             role = role.name;
         }
         let showSearch = "no";
-        console.log('room t xem ne: ', room);
+        const roomLike = 
         res.status(200).render('roomDetail', {room, user, phoneNumber, userInfor, role, showSearch})
     } catch (error) {
         console.log(error);
