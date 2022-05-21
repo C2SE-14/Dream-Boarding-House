@@ -16,7 +16,7 @@
             <div class="img-container">
               <img src="<%=userInfor[0].avatar%>" alt="user avatar">
             </div>
-            <form method="POST" action="/user/upload/avatar" enctype="multipart/form-data" class="update-chapter-form" id="edit-video">
+            <form method="POST" action="/user/upload/avatar" enctype="multipart/form-data" class="form-update-avt">
               <div class="form-group">
                 <!-- <input type='file' id="getFile" name="file"> -->
                 <input type="file" name="file" class="form-control" id="customFile"/>
@@ -116,7 +116,6 @@
     const modalUpdate = document.getElementById("id-update");
     const container = document.getElementById("container-content");
     const body = document.getElementById("cover-background");
-    console.log('body: ', body);
     const handleOpenModalUpdateInfor = () => {
       modalUpdate.classList.toggle("openModal");
       body.classList.add("cover-modal");
