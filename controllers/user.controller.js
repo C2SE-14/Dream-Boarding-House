@@ -179,9 +179,7 @@ const showOtherPeopleInfor = async (req, res, next) => {
                 isFollow = "true";
             }
         }
-        console.log('isFollow: ', isFollow);
         let startDate = userInfor.createdAt.toLocaleDateString("en-US");
-        console.log(startDate);
         res.status(200).render("otherPeopleInformation", {title: 'Dream boarding house', user, userInfor, startDate, role, isFollow, total, numberRoom, ratio, listRoom, showSearch})
     } catch(error) {
         console.log(error);
@@ -236,6 +234,7 @@ const getFollowInnkeeper = async (req, res, next) => {
                 }
             }
         }
+        console.log('list innkeeper nè: ', listInnkeeper);
         res.status(200).render("listInnkeeper", {title: 'Dream boarding house', user, userInfor, role, listInnkeeper, showSearch})
     } catch (error) {
         console.log(error);

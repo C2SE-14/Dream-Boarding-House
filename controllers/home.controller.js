@@ -11,6 +11,7 @@ const getHomePage = async(req, res, next) => {
         }
         const listRoom = await Room.find();
         let count = 0;
+        console.log('list room: ', listRoom);
         const showSearch = "yes";
         //Header must have user and role
         res.render("index", {title: "Dream Boarding House", listRoom, user, role, userId, showSearch});

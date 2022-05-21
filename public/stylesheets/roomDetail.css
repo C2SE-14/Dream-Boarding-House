@@ -64,14 +64,19 @@ body {
 
 .product-gallery-featured {
     display: flex;
-    width: 100%;
+    width: 150px;
+    height: 290px;
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
     padding: 15px 0;
     cursor: zoom-in;
+    margin-left: 10px;
 }
-
+.product-gallery-featured img {
+    width: 100%;
+    height: 100%;
+}
 .product-gallery-thumbnails .thumbnails-list li {
     margin-bottom: 5px;
     cursor: pointer;
@@ -81,8 +86,8 @@ body {
 }
 
 .thumbnails-list li img {
-    display: block;
     width: 100%;
+    height: 100%
 }
 
 .product-gallery-thumbnails .thumbnails-list li:hover::before {
@@ -109,4 +114,7 @@ body {
 
 .last-questions-list li span {
     padding-left: 10px;
+}
+.btn {
+   margin-top: 16px !important;
 }

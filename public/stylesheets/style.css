@@ -61,7 +61,7 @@ a {
   object-fit: cover;
 }
 .room-infor {
-  height: 395px;
+  height: 460px;
   padding: 6px;
 }
 .infor-item {
@@ -78,7 +78,7 @@ label {
   height: 100px;
   overflow: hidden;
 }
-.btn {
+.btn-view-detail {
   display: block;
   border: 1px solid #74b9ff;
   border-radius: 5px;
@@ -87,7 +87,7 @@ label {
   text-align: center;
   font-weight: 700;
 }
-.btn:hover {
+.btn-view-detail:hover {
   border: 1px solid greenyellow;
 }
 /* footer {

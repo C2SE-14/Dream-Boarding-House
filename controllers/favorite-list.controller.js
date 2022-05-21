@@ -14,7 +14,9 @@ const getFavoriteList = async(req, res, next) => {
             role = await Role.findOne({userId: userId});
             role = role.name;
         }
+        console.log('userId in detail: ', userId);
         const listRoomId = await favoriteRoom.find({userId: userId});
+        
         const listFavoriteRoom = [];
         for(let i = 0; i < listRoomId.length; i++) {
             const myFavoriteRoom = await Room.findOne({_id: listRoomId[i].roomId});
@@ -22,7 +24,8 @@ const getFavoriteList = async(req, res, next) => {
                 listFavoriteRoom.push(myFavoriteRoom);
             }
         }
-        res.render("favoriteList", {title: "favorite room", listFavoriteRoom, user, role})
+        let showSearch = "no";
+        res.render("favoriteList", {title: "favorite room", listFavoriteRoom, user, role, showSearch})
     } catch (error) {
         console.log(error);
         res.status(203).json({ message: error });

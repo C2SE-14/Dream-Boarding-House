@@ -16,6 +16,8 @@ li {
   }
   .room {
     padding: 10px;
+    width: 320px;
+    height: 450px;
   }
   .image-room {
     width: 300px;
@@ -25,6 +27,10 @@ li {
     width: 100%;
     height: 100%;
   }
+label {
+  display: block;
+  font-weight: 700;
+}
   .type {
     margin-top: 6px;
   }
@@ -43,4 +49,11 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .btn-delete {
+    margin-top: 16px !important;
+    background-color: "#ff7979" !important;
+  }
+  .btn:hover {
+    cursor: pointer;
   }

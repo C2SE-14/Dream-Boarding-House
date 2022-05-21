@@ -5,7 +5,7 @@
     <title>
         <%= title %>
     </title>
-    <link rel='stylesheet' href='/public/stylesheets/favoriteList.css' />
+    <link rel='stylesheet' href='/stylesheets/favoriteList.css' />
     <link rel="stylesheet" href="<%= process.env.BASE_URL %>/stylesheets/header.css" />
 </head>
 
@@ -19,22 +19,30 @@
                         <%for(let i=0; i<listFavoriteRoom.length; i++) {%>
                             <div class="room">
                                 <div class="image-room">
-                                    <img src="https://images.cenhomes.vn/2020/03/1585033149-can-ho-mau-charmington-iris.jpg" alt="">
+                                    <img src="<%=listFavoriteRoom[i].images[0].url%>" alt="">
                                 </div>
                                 <h3 class="type">
+                                    <label>Kiểu phòng: </label>
                                     <%=listFavoriteRoom[i].type%>
                                 </h3>
                                 <div class="acreage">
-                                    <%=listFavoriteRoom[i].acreage%>
+                                    <label>Diện tích: </label>
+                                    <%=listFavoriteRoom[i].acreage%> m2
                                 </div>
                                 <div class="address">
+                                    <label>Địa chỉ: </label>
                                     <%=listFavoriteRoom[i].address%>
                                 </div>
+                                <div class="price">
+                                    <label>Giá phòng: </label>
+                                    <%=listFavoriteRoom[i].price%> / 1 tháng
+                                </div>
                                 <div class="description">
+                                    <label>Mô tả: </label>
                                     <%=listFavoriteRoom[i].description%>
                                 </div>
                                 <form action="/favoriteList/room/unlike/<%=listFavoriteRoom[i]._id%>?_method=DELETE" method="POST" id="form-delete">
-                                    <button type="submit" class="btn-delete" data-id="<%=listFavoriteRoom[i]._id%>">Bỏ yêu thích</button>
+                                    <button type="submit" class="btn-delete btn btn-outline-success" data-id="<%=listFavoriteRoom[i]._id%>">Bỏ yêu thích</button>
                                 </form>
                             </div>
                             <%}%>
@@ -63,6 +71,7 @@
                 })
             </script>
     </div>
+    
 </body>
 
 </html>
