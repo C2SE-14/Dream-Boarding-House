@@ -57,7 +57,8 @@ const getUploadRoom = async (req, res, next) => {
     }
     let count = 0;
     const showSearch = "no";
-    res.render("upload", { user, role, userId, showSearch });
+    let numberNotification = await NotificationService.getNumberNotification(userId);
+    res.render("upload", { user, role, userId, showSearch, numberNotification });
   } catch (error) {
     res.status(500).json({ msg: error });
   }
@@ -128,7 +129,7 @@ const postSelectRoom = async (req, res, next) => {
     await newNotifi.save();
     res.status(200).json({
       code: 1,
-      msg: "Chúng tôi đã gửi thông báo tới chủ trọ"
+      msg: "Chúng tôi đã gửi thông báo tới chủ trọ. Hãy liên hệ với họ hoặc vui lòng đợi phản hồi."
     });
   } catch (error) {
     console.log(error);
@@ -155,6 +156,7 @@ const getSelectRoom = async (req, res, next) => {
         }
       }
     }
+    let numberNotification = await NotificationService.getNumberNotification(userId);
     let showSearch = "no";
     res
       .status(200)
@@ -164,6 +166,7 @@ const getSelectRoom = async (req, res, next) => {
         user,
         role,
         showSearch,
+        numberNotification
       });
   } catch (error) {
     console.log(error);

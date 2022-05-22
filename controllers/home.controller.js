@@ -13,7 +13,6 @@ const getHomePage = async(req, res, next) => {
         const listRoom = await Room.find();
         let count = 0;
         let numberNotification = await NotificationService.getNumberNotification(userId);
-        console.log("số lượng thông báo này: ", numberNotification);
         const showSearch = "yes";
         //Header must have user and role
         res.render("index", {title: "Dream Boarding House", listRoom, user, role, userId, showSearch, numberNotification});
