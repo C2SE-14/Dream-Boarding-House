@@ -6,6 +6,7 @@ const ChooseRoom = require("../models/chooseRoom.model");
 const Notification = require("../models/notifications.model");
 const FavoriteRoom = require("../models/favoriteRoom.model");
 const RoleService = require("../services/role.service");
+const NotificationService = require('../services/notification');
 const Pusher = require('pusher');
 const getDetailRoom = async (req, res, next) => {
   try {
@@ -21,6 +22,7 @@ const getDetailRoom = async (req, res, next) => {
       role = role.name;
     }
     let showSearch = "no";
+    let numberNotification = await NotificationService.getNumberNotification(userId);
     const roomLike = await FavoriteRoom.findOne({userId: userId, roomId: roomId.id});
     let isLike = false;
     if(roomLike) {
@@ -35,7 +37,8 @@ const getDetailRoom = async (req, res, next) => {
         userInfor,
         role,
         showSearch,
-        isLike
+        isLike,
+        numberNotification
       });
   } catch (error) {
     console.log(error);
@@ -116,8 +119,8 @@ const postSelectRoom = async (req, res, next) => {
         "Tôi quan tâm tới phòng trọ này, hãy liên hệ với tôi qua số điện thoại " +
         userInfor.phoneNumber,
     };
-
-    pusher.trigger("my-channel", "my-event", {
+    // const innkeeperInfor = await User.findOne({_id: room.userId});
+    pusher.trigger(`${room.userId}`, "my-event", {
       message: `Người dùng ${userInfor.username} quan tâm tới phòng trọ của bạn`,
     })
 

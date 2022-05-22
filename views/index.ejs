@@ -4,6 +4,7 @@
     <title><%= title %></title>
     <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
 <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -16,6 +17,7 @@
         <img src="https://gotrangtri.vn/wp-content/uploads/2021/04/thiet-ke-noi-that-chung-cu-bia.jpg.webp" alt="căn hộ" class="img-banner">
       </div>
       <h4 class="title">Phòng trọ</h4>
+      <span id="userId" data-id="<%=userId%>"></span>
       <div class="list-room">
         <%for(let i = 0; i < listRoom.length; i++) {%>
           <div class="room-item">
@@ -45,6 +47,7 @@
       <h4 class="title">Căn hộ</h4>
       <h4 class="title">Bài đăng mới nhất</h4>
       <h4 class="title">Phòng trọ của chủ trọ yêu thích</h4>
+      <p id="notifi-text"></p>
       <!-- Toast like successfully-->
       <!-- <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
         <div class="toast-header">
@@ -103,6 +106,25 @@
       nextArrow:
         "<button type='button' class='slick-next pull-right'><i class='fa fa-angle-right' aria-hidden='true'></i></button>",
 });
+</script>
+<script>
+  const userId = document.getElementById("userId").getAttribute("data-id");
+  // Enable pusher logging - don't include this in production
+  Pusher.logToConsole = true;
+
+  var pusher = new Pusher('73db31bea0f8d7aa1830', {
+    cluster: 'ap1'
+  });
+
+  var channel = pusher.subscribe(`${userId}`);
+  const dataNoti = document.getElementById("data-noti");
+  const numOfNoti = getAttribute("data-number");
+  const notifiText = document.getElementById("notifi-text");
+  channel.bind('my-event', function(data) {
+  //   alert(JSON.stringify(data));
+    notifiText.innerHTML = JSON.stringify(data);
+    console.log('notifi: ', data);
+  });
 </script>
   </body>
 </html>

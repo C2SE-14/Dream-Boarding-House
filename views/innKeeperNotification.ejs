@@ -20,7 +20,7 @@
       cluster: 'ap1'
     });
 
-    var channel = pusher.subscribe('my-channel');
+    var channel = pusher.subscribe('my-channel-test');
     const notifiText = document.getElementById("notifi-text");
     channel.bind('my-event', function(data) {
     //   alert(JSON.stringify(data));
