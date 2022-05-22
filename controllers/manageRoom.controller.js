@@ -4,6 +4,7 @@ const User = require('../models/user.model');
 const Role = require('../models/role.model')
 const ChooseRoom = require('../models/chooseRoom.model');
 const Notification = require('../models/notifications.model');
+const NotificationService = require('../services/notification');
 const getMyRoom = async (req, res, next) => {
     try {
         const user = req.cookies.user;
@@ -13,6 +14,7 @@ const getMyRoom = async (req, res, next) => {
             role = await Role.findOne({userId: userId});
             role = role.name;
         }
+        let numberNotification = await NotificationService.getNumberNotification(userId);
         //panigation
         let perPage = 8;
         let page = req.params.page || 1;
@@ -21,7 +23,7 @@ const getMyRoom = async (req, res, next) => {
         .exec((err, listRoom) => {
             Room.countDocuments((err, count) => {
                 if(err) return next(err);
-                res.status(200).render("manageRoom", {title: "Dream Boarding House", listRoom, current: page, pages: Math.ceil(count / perPage), user, role, listRoom, showSearch})
+                res.status(200).render("manageRoom", {title: "Dream Boarding House", listRoom, current: page, pages: Math.ceil(count / perPage), user, role, listRoom, showSearch, numberNotification})
 
             })
         });

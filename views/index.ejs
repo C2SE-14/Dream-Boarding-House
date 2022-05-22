@@ -115,15 +115,17 @@
   var pusher = new Pusher('73db31bea0f8d7aa1830', {
     cluster: 'ap1'
   });
-
   var channel = pusher.subscribe(`${userId}`);
   const dataNoti = document.getElementById("data-noti");
-  const numOfNoti = getAttribute("data-number");
-  const notifiText = document.getElementById("notifi-text");
+  let numOfNoti = parseInt(dataNoti.getAttribute("data-number"));
+  console.log('number of noti: ', numOfNoti);
+  const labelNumberNoti = document.getElementsByClassName("numberNotify");
   channel.bind('my-event', function(data) {
+    numOfNoti = numOfNoti + 1;
+    labelNumberNoti[0].style.display = "inline-block";
+    labelNumberNoti[0].innerHTML = `${numOfNoti}`;
   //   alert(JSON.stringify(data));
-    notifiText.innerHTML = JSON.stringify(data);
-    console.log('notifi: ', data);
+    // notifiText.innerHTML = JSON.stringify(data);
   });
 </script>
   </body>

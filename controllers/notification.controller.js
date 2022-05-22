@@ -1,5 +1,7 @@
 const Room = require('../models/room.model');
 const Role = require('../models/role.model');
+const Notification = require('../models/notifications.model');
+const NotificationService = require('../services/notification');
 const getInkeeperNotification = async(req, res, next) => {
     try {
         const user = req.cookies.user;
@@ -9,12 +11,13 @@ const getInkeeperNotification = async(req, res, next) => {
             role = await Role.findOne({userId: userId});
             role = role.name;
         }
-        const listRoom = await Room.find();
         let count = 0;
-        console.log('list room: ', listRoom);
-        const showSearch = "yes";
+        const listNotifi = await Notification.find({ownerId: userId});
+        console.log("list notification: ", listNotifi);
+        let numberNotification = await NotificationService.getNumberNotification(userId);
+        const showSearch = "no";
         //Header must have user and role
-        res.render("innKeeperNotification", {title: "Dream Boarding House", listRoom, user, role, userId, showSearch});
+        res.render("innKeeperNotification", {title: "Dream Boarding House", user, role, userId, showSearch, numberNotification, listNotifi});
     } catch (error) {
         console.log(error);
         res.status(500).json({ msg: error });

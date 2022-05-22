@@ -5,6 +5,7 @@ const Role = require('../models/role.model');
 const FollowInnKeeper = require('../models/followInnKeeper.model');
 const Room = require("../models/room.model");
 const RoleService = require('../services/role.service');
+const NotificationService = require('../services/notification');
 const getUserInformation = async (req, res, next) => {
     try {
         let userId = req.cookies.user.user_id;
@@ -19,7 +20,8 @@ const getUserInformation = async (req, res, next) => {
             role = role.name;
         }
         const userInfor = await User.find({_id: userId});
-        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, role, showSearch});
+        let numberNotification = await NotificationService.getNumberNotification(userId);
+        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, role, showSearch, numberNotification});
     } catch(error) {
         console.log(error);
         //res.status(203).render('error')
@@ -93,7 +95,8 @@ const updateUserInformation = async (req, res, next) => {
         let role;
         role = await Role.findOne({userId: userId});
         role = role.name;
-        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role, showSearch});
+        let numberNotification = await NotificationService.getNumberNotification(userId);
+        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role, showSearch, numberNotification });
     } catch(error) {
         console.log(error);
     }
@@ -121,7 +124,8 @@ const updateAvatar = async (req, res, next) => {
         //     msg: "Successfully",
         //     img: file.path,
         // })
-        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role, showSearch});
+        let numberNotification = await NotificationService.getNumberNotification(userId);
+        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role, showSearch, numberNotification});
     } catch (error) {
         console.log(error);
     }
@@ -142,12 +146,13 @@ const updatePassword = async (req, res, next) => {
         let role, showSearch = "no";
         role = await Role.findOne({userId: userId});
         role = role.name;
+        let numberNotification = await NotificationService.getNumberNotification(userId);
         if(!validPassword) {
             const msg = "Mật khẩu cũ không đúng";
-            res.status(203).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role, showSearch});
+            res.status(203).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role, showSearch, numberNotification});
         } else {
             const msg = "Thay đổi mật khẩu thành công";
-            res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role, showSearch});
+            res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role, showSearch, numberNotification});
         }
     } catch(error) {
         console.log(error);
@@ -180,7 +185,8 @@ const showOtherPeopleInfor = async (req, res, next) => {
             }
         }
         let startDate = userInfor.createdAt.toLocaleDateString("en-US");
-        res.status(200).render("otherPeopleInformation", {title: 'Dream boarding house', user, userInfor, startDate, role, isFollow, total, numberRoom, ratio, listRoom, showSearch})
+        let numberNotification = await NotificationService.getNumberNotification(userId);
+        res.status(200).render("otherPeopleInformation", {title: 'Dream boarding house', user, userInfor, startDate, role, isFollow, total, numberRoom, ratio, listRoom, showSearch, numberNotification})
     } catch(error) {
         console.log(error);
     }
@@ -234,8 +240,8 @@ const getFollowInnkeeper = async (req, res, next) => {
                 }
             }
         }
-        console.log('list innkeeper nè: ', listInnkeeper);
-        res.status(200).render("listInnkeeper", {title: 'Dream boarding house', user, userInfor, role, listInnkeeper, showSearch})
+        let numberNotification = await NotificationService.getNumberNotification(userId);
+        res.status(200).render("listInnkeeper", {title: 'Dream boarding house', user, userInfor, role, listInnkeeper, showSearch, numberNotification })
     } catch (error) {
         console.log(error);
     }

@@ -19,7 +19,7 @@
       integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
       crossorigin="anonymous"
     />
-    <!-- <script src="jquery-3.6.0.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
   <style>
     body {
@@ -358,11 +358,11 @@
                   </a>
                 </p>
                 <div class="btn-group">
-                  <form action="/room/chooseRoom/<%=room._id%>" method="POST">
-                    <button type="submit" class="btn btn-outline-success">
+                  <!-- <form action="/room/chooseRoom/<%=room._id%>" method="POST"> -->
+                    <button type="submit" class="btn btn-outline-success" data-room="<%=room._id%>" id="thue">
                       Thuê trọ
                     </button>
-                  </form>
+                  <!-- </form> -->
                   <%if(!isLike) {%>
                     <button
                         type="button"
@@ -422,6 +422,23 @@
           },
         });
       });
+
+      //thuê trọ
+      const thue = document.getElementById("thue");
+      thue.addEventListener("click", () => {
+        const roomId = thue.getAttribute("data-room");
+        let msg = "";
+        $.ajax({
+          url: `/room/chooseRoom/${roomId}`,
+          type: "POST",
+          success: function (response) {
+            if (response.code === 1) {
+              msg = response.msg;
+              thue.innerHTML = "✔";
+            }
+          },
+        });
+      })
     </script>
   </body>
 </html>
