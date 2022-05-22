@@ -1,6 +1,7 @@
 const favoriteRoom = require('../models/favoriteRoom.model');
 const Room = require('../models/room.model');
 const Role = require('../models/role.model');
+const NotificationService = require('../services/notification');
 const getFavoriteList = async(req, res, next) => {
     try {
         let userId = '';
@@ -25,7 +26,8 @@ const getFavoriteList = async(req, res, next) => {
             }
         }
         let showSearch = "no";
-        res.render("favoriteList", {title: "favorite room", listFavoriteRoom, user, role, showSearch})
+        let numberNotification = await NotificationService.getNumberNotification(userId);
+        res.render("favoriteList", {title: "favorite room", listFavoriteRoom, user, role, showSearch, numberNotification})
     } catch (error) {
         console.log(error);
         res.status(203).json({ message: error });
@@ -108,7 +110,6 @@ const deleteFavoriteList = async(req, res, next) => {
         const roomBody = {
             isLike: false
         }
-        console.log('my room id: ', myRoomId.id);
         await Room.where({_id: myRoomId.id}).update(roomBody);
         res.status(200).redirect('/favoriteList/rooms');
     } catch (error) {

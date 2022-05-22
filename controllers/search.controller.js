@@ -1,17 +1,19 @@
 const favoriteRoom = require('../models/favoriteRoom.model');
 const Room = require('../models/room.model');
 const Role = require('../models/role.model');
+const NotificationService = require('../services/notification');
 const showResultOfSearch = async (req, res, next) => {
     let user = '', showSearch = "yes";
     let listRoom = [];
     user = req.cookies.user;
-        let userId = '';
-        let role = '';
-        if(user) {
-            userId = req.cookies.user.user_id
-            role = await Role.findOne({userId: userId});
-            role = role.name;
-        }
+    let userId = '';
+    let role = '';
+    if(user) {
+        userId = req.cookies.user.user_id
+        role = await Role.findOne({userId: userId});
+        role = role.name;
+    }
+    let numberNotification = await NotificationService.getNumberNotification(userId);
     const value = req.body;
     const {text, type, price, acreage} = req.body;
     if(text.includes("0")) {
@@ -78,7 +80,7 @@ const showResultOfSearch = async (req, res, next) => {
     } else if(acreage !== "" && (type !== "" && price !== "")) {
         listRoom = await Room.find({$and: [ {acreage: {$lt: acreage}}, {price: {$lt: price}}, {type: type}]});
     }
-    res.status(200).render("resultSearch", {title: "Dream boarding house", listRoom, user, role, showSearch});
+    res.status(200).render("resultSearch", {title: "Dream boarding house", listRoom, user, role, showSearch, numberNotification});
 }
 module.exports = {
     showResultOfSearch,
