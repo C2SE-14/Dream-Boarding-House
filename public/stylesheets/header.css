@@ -441,3 +441,14 @@ a:hover {
 select::-ms-expand {
     display: none;
 }
+
+.notifi {
+    position: relative;
+}
+.numberNotify {
+    position: absolute !important;
+    top: -12px;
+    right: -18px;
+    color: #e84118;
+    font-size: 20px;
+}
