@@ -13,7 +13,6 @@ const getInkeeperNotification = async(req, res, next) => {
         }
         let count = 0;
         const listNotifi = await Notification.find({ownerId: userId});
-        console.log("list notification: ", listNotifi);
         let numberNotification = await NotificationService.getNumberNotification(userId);
         const showSearch = "no";
         //Header must have user and role
@@ -24,6 +23,23 @@ const getInkeeperNotification = async(req, res, next) => {
     }
 }
 
+const deleteNotifi = async (req, res, next) => {
+    const notifiId = req.params.id;
+    console.log("notifiId: ", notifiId);
+    const user = req.cookies.user;
+        let userId="", role="";
+        if(user) {
+            userId = req.cookies.user.user_id;
+            role = await Role.findOne({userId: userId});
+            role = role.name;
+        }
+    await Notification.deleteOne({ownerId: userId, id: notifiId});
+    const listNotifi = await Notification.find({ownerId: userId});
+    let numberNotification = await NotificationService.getNumberNotification(userId);
+    const showSearch = "no";
+    res.render("innKeeperNotification", {title: "Dream Boarding House", user, role, userId, showSearch, numberNotification, listNotifi});
+}
 module.exports = {
-    getInkeeperNotification
+    getInkeeperNotification,
+    deleteNotifi,
 }
