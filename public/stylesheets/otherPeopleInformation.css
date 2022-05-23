@@ -5,9 +5,14 @@
     min-height: 150px;
 }
 .avt-item {
-    width: 60%;
+    width: 300px !important;
+    height: 300px;
     margin: 0 auto;
     text-align: center;
+}
+.avt-item img {
+    width: 100%;
+    height: 100%;
 }
 .number {
     display: flex;
