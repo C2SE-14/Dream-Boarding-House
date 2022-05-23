@@ -10,12 +10,32 @@ const getHomePage = async(req, res, next) => {
             role = await Role.findOne({userId: userId});
             role = role.name;
         }
-        const listRoom = await Room.find();
+        const listRoom = await Room.find({
+            isAccept: true,
+            type: "Phòng trọ"
+        });
+        const listRoom2 = await Room.find({
+            isAccept: true,
+            type: "Căn hộ"
+        });
+        let today = new Date();
+        console.log('today: ', today);
+        const timeStamp = new Date().getTime();
+        const yesterdayTimeStamp = timeStamp - 24*60*60*1000;
+        const yesterdayDate = new Date(yesterdayTimeStamp);
+        console.log('yesterday: ', yesterdayDate);
+        const listRoom3 = await Room.find({
+            createdAt: {
+                $gte: yesterdayDate, 
+                $lt: today
+            }
+        });
+        console.log('listRoom3: ', listRoom3);
         let count = 0;
         let numberNotification = await NotificationService.getNumberNotification(userId);
         const showSearch = "yes";
         //Header must have user and role
-        res.render("index", {title: "Dream Boarding House", listRoom, user, role, userId, showSearch, numberNotification});
+        res.render("index", {title: "Dream Boarding House", listRoom, listRoom2, listRoom3, user, role, userId, showSearch, numberNotification});
     } catch (error) {
         console.log(error);
         res.status(500).json({ msg: error });

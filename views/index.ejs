@@ -45,9 +45,63 @@
         <% } %>
       </div>
       <h4 class="title">Căn hộ</h4>
-      <h4 class="title">Bài đăng mới nhất</h4>
-      <h4 class="title">Phòng trọ của chủ trọ yêu thích</h4>
-      <p id="notifi-text"></p>
+      <div class="list-room">
+        <%for(let i = 0; i < listRoom2.length; i++) {%>
+          <div class="room-item">
+                <div class="image-room">
+                  <img src="<%=listRoom2[i].images[0].url%>" alt="">
+                </div>
+                <div class="room-infor">
+                  <div class="type infor-item"><label>Kiểu phòng:</label> <%=listRoom2[i].type%></div>
+                  <div class="acreage infor-item"><label>Diện tích:</label> <%=listRoom2[i].acreage%> m2</div>
+                  <div class="address infor-item"><label>Địa chỉ:</label> <%=listRoom2[i].address%></div>
+                  <div class="description infor-item"><label>Mô tả:</label> <%=listRoom2[i].description%></div>
+                  <div class="price infor-item"><label>Giá phòng:</label> <%=listRoom2[i].price%> / 1 tháng</div>
+                  <% if(listRoom2[i].state === true){%>
+                    <div class="state infor-item" style="color: green">Tình trạng: Còn phòng</div>
+                  <% } %>
+                  <div class="poster infor-item"><label>Người đăng tải:</label> <%=listRoom2[i].username%></div>
+                  <!-- <% if(user) {%> -->
+                  <!-- <form action="/favoriteList/room/like/<%=listRoom[i]._id%>" method="POST" onsubmit="handleSubmit">
+                    <input type="submit" value="Yêu thích" class="btn-like"/>
+                  </form> -->
+                  <!-- <% } %> -->
+                </div>
+                <a class="btn-view-detail btn-outline-success" href="/room/<%=listRoom[i]._id%>">Xem chi tiết</a>
+          </div>
+        <% } %>
+      </div>
+      <%if(listRoom3.length >0) {%>
+        <h4 class="title">Bài đăng mới nhất</h4>
+        <div class="list-room">
+          <%for(let i = 0; i < listRoom3.length; i++) {%>
+            <div class="room-item">
+                  <div class="image-room">
+                    <img src="<%=listRoom3[i].images[0].url%>" alt="">
+                  </div>
+                  <div class="room-infor">
+                    <div class="type infor-item"><label>Kiểu phòng:</label> <%=listRoom3[i].type%></div>
+                    <div class="acreage infor-item"><label>Diện tích:</label> <%=listRoom3[i].acreage%> m3</div>
+                    <div class="address infor-item"><label>Địa chỉ:</label> <%=listRoom3[i].address%></div>
+                    <div class="description infor-item"><label>Mô tả:</label> <%=listRoom3[i].description%></div>
+                    <div class="price infor-item"><label>Giá phòng:</label> <%=listRoom3[i].price%> / 1 tháng</div>
+                    <% if(listRoom3[i].state === true){%>
+                      <div class="state infor-item" style="color: green">Tình trạng: Còn phòng</div>
+                    <% } %>
+                    <div class="poster infor-item"><label>Người đăng tải:</label> <%=listRoom3[i].username%></div>
+                    <!-- <% if(user) {%> -->
+                    <!-- <form action="/favoriteList/room/like/<%=listRoom[i]._id%>" method="POST" onsubmit="handleSubmit">
+                      <input type="submit" value="Yêu thích" class="btn-like"/>
+                    </form> -->
+                    <!-- <% } %> -->
+                  </div>
+                  <a class="btn-view-detail btn-outline-success" href="/room/<%=listRoom[i]._id%>">Xem chi tiết</a>
+            </div>
+          <% } %>
+        </div>
+      <%}%>
+      <!-- <h4 class="title">Phòng trọ của chủ trọ yêu thích</h4> -->
+
       <!-- Toast like successfully-->
       <!-- <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
         <div class="toast-header">

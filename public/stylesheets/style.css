@@ -14,10 +14,13 @@ a {
     color: black;
     text-decoration: none;
 }
-
+body {
+  position: relative;
+  min-height: 3600px;
+}
 .container {
     position: relative;
-    min-height: 2700px;
+    min-height: 3400px;
 }
 
 .img-banner {
