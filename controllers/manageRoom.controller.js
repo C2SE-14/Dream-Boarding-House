@@ -16,7 +16,7 @@ const getMyRoom = async (req, res, next) => {
         }
         let numberNotification = await NotificationService.getNumberNotification(userId);
         //panigation
-        let perPage = 8;
+        let perPage = 4;
         let page = req.params.page || 1;
         await Room.find({userId: userId}).skip((perPage * page) - perPage)
         .limit(perPage)

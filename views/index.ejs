@@ -62,6 +62,14 @@
           Hello, world! This is a toast message.
         </div>
       </div> -->
+      <!-- <div class="toast">
+        <div class="toast-header">
+          Thông báo
+        </div>
+        <div class="toast-body">
+          
+        </div> -->
+      </div>
       <%- include('./components/footer')%>
       <script>
         const likeBtn = document.getElementsByClassName("btn-like");
@@ -120,10 +128,17 @@
   let numOfNoti = parseInt(dataNoti.getAttribute("data-number"));
   console.log('number of noti: ', numOfNoti);
   const labelNumberNoti = document.getElementsByClassName("numberNotify");
+
+  const toastBody = document.getElementsByClassName("toast-body");
   channel.bind('my-event', function(data) {
     numOfNoti = numOfNoti + 1;
     labelNumberNoti[0].style.display = "inline-block";
     labelNumberNoti[0].innerHTML = `${numOfNoti}`;
+    console.log("Xin chào nè má");
+    console.log('Thông báo nè: ', data.message);
+    console.log("Toast body nè: ", toastBody[0]);
+    toastBody[0].innerHTML = data.message;
+    $('.toast').toast('show');
   //   alert(JSON.stringify(data));
     // notifiText.innerHTML = JSON.stringify(data);
   });

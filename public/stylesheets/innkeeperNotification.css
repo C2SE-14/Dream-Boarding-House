@@ -6,4 +6,8 @@
 }
 .notifi-item {
     padding: 10px;
+    border-bottom: 1px solid #b2bec3;
+}
+.btn-delete-notifi {
+    border: none;
 }
