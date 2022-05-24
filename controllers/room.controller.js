@@ -173,7 +173,6 @@ const getSelectRoom = async (req, res, next) => {
     }
     const listRoomId = await ChooseRoom.find({ userId: userId });
     const listRoom = [];
-    console.log(listRoomId);
     if (listRoomId.length > 0) {
       for (let i = 0; i < listRoomId.length; i++) {
         const id = listRoomId[i].roomId;
@@ -201,9 +200,38 @@ const getSelectRoom = async (req, res, next) => {
 };
 const deleteSelectRoom = async (req, res, next) => {
   try {
+    const user = req.cookies.user;
     const roomId = req.params.id;
     await ChooseRoom.deleteOne({ roomId: roomId });
-    res.status(200).redirect("/");
+    const userId = req.cookies.user.user_id;
+    let role;
+    if (user) {
+      role = await Role.findOne({ userId: userId });
+      role = role.name;
+    }
+    const listRoomId = await ChooseRoom.find({ userId: userId });
+    const listRoom = [];
+    if (listRoomId.length > 0) {
+      for (let i = 0; i < listRoomId.length; i++) {
+        const id = listRoomId[i].roomId;
+        const room = await Room.findOne({ _id: id });
+        if (room) {
+          listRoom.push(room);
+        }
+      }
+    }
+    let numberNotification = await NotificationService.getNumberNotification(userId);
+    let showSearch = "no";
+    res
+      .status(200)
+      .render("chooseRoom", {
+        title: "Dream boarding house",
+        listRoom,
+        user,
+        role,
+        showSearch,
+        numberNotification
+      });
   } catch (error) {
     console.log(error);
   }

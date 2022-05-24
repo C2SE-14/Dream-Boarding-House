@@ -25,7 +25,7 @@ router.get('/post', roomController.getUploadRoom);
 router.get('/rooms');
 router.get('/:id', roomController.getDetailRoom);
 router.post('/upload/room', upload.array("files", 4), roomController.postUploadRoom);
-router.delete('/delete/room/:id');
+router.delete('/delete/room/:id', roomController.deleteSelectRoom);
 
 router.get('/selectRoom/All', roomController.getSelectRoom);
 router.post('/chooseRoom/:id', roomController.postSelectRoom);
