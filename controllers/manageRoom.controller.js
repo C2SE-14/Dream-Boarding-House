@@ -23,6 +23,7 @@ const getMyRoom = async (req, res, next) => {
         .exec((err, listRoom) => {
             Room.countDocuments((err, count) => {
                 if(err) return next(err);
+                console.log('list room: ', listRoom);
                 res.status(200).render("manageRoom", {title: "Dream Boarding House", listRoom, current: page, pages: Math.ceil(count / perPage), user, role, listRoom, showSearch, numberNotification})
 
             })

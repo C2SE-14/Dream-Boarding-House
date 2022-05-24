@@ -13,9 +13,13 @@
             <!-- <div class="list-room"> -->
                 <%for(let i=0; i < listRoom.length; i++) {%>
                     <div class="room-item">
-                        <div class="avt">
-                            <img src="<%=listRoom[i].images[0].url%>" alt="">
-                        </div>
+                      <div class="list-image">
+                        <%for(let j=0;j<listRoom[i].images.length; j++){%>
+                          <div class="avt">
+                            <img src="<%=listRoom[i].images[j].url%>" alt="">
+                          </div>
+                        <%}%>
+                      </div>
                         <div class="infor">
                             <p class="username">
                                 <label for="">
