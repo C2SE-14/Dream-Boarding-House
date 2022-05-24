@@ -1,0 +1,32 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<%for(let i = 0; i < post.length; i++) {%>
+    <div class="room-item">
+          <div class="image-room">
+            <img src="<%=post[i].images[0].url%>" alt="">
+          </div>
+          <div class="room-infor">
+            <div class="type infor-item"><label>Kiểu phòng:</label> <%=post[i].type%></div>
+            <div class="acreage infor-item"><label>Diện tích:</label> <%=post[i].acreage%> m3</div>
+            <div class="address infor-item"><label>Địa chỉ:</label> <%=post[i].address%></div>
+            <div class="description infor-item"><label>Mô tả:</label> <%=post[i].description%></div>
+            <div class="price infor-item"><label>Giá phòng:</label> <%=post[i].price%> / 1 tháng</div>
+            <% if(post[i].state === true){%>
+              <div class="state infor-item" style="color: green">Tình trạng: Còn phòng</div>
+            <% } %>
+            <div class="poster infor-item"><label>Người đăng tải:</label> <%=post[i].username%></div>
+          </div>
+          <a class="btn-view-detail btn-outline-success" href="/room/<%=post[i]._id%>">Xem chi tiết</a>
+    </div>
+  <% } %>
+
+  <script>
+    $('.list-room').slick({
+    lazyLoad: 'ondemand',
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    prevArrow:
+          "<button type='button' class='slick-prev pull-left'><i class='fa fa-angle-left' aria-hidden='true'></i></button>",
+        nextArrow:
+          "<button type='button' class='slick-next pull-right'><i class='fa fa-angle-right' aria-hidden='true'></i></button>",
+  });
+  </script>

@@ -362,6 +362,16 @@
                   >
                     Yêu thích
                   </button>
+                  <%} else {%>
+                    <button
+                    type="button"
+                    id="love"
+                    class="btn btn-danger"
+                    style="margin-left: 10px; background-color: red;"
+                    data-id="<%=room.id%>"
+                  >
+                    Yêu thích
+                  </button>
                   <%}%>
                 </div>
               </div>
@@ -406,7 +416,7 @@
           success: function (response) {
             if (response.msg === "Đã yêu thích") {
               msg = response.msg;
-              love.style.display = none;
+              love.style.backgroundColor = "red";
             }
           },
         });

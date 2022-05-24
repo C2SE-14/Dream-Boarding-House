@@ -10,6 +10,7 @@ router.get("/users", adminController.getAllUsers);
 router.delete("/users/:id", adminController.blockUser);
 
 // Admin manage all Posts
+router.get("/posts", adminController.getAllPosts);
 
 // Admin manage all Comments
 
