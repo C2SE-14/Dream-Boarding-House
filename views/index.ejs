@@ -188,9 +188,6 @@
     numOfNoti = numOfNoti + 1;
     labelNumberNoti[0].style.display = "inline-block";
     labelNumberNoti[0].innerHTML = `${numOfNoti}`;
-    console.log("Xin chào nè má");
-    console.log('Thông báo nè: ', data.message);
-    console.log("Toast body nè: ", toastBody[0]);
     toastBody[0].innerHTML = data.message;
     $('.toast').toast('show');
   //   alert(JSON.stringify(data));

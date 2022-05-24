@@ -1,4 +1,6 @@
 const User = require("../models/user.model");
+const Role = require("../models/role.model");
+const Room = require("../models/room.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -7,8 +9,15 @@ const authController = {
   loginUser: async (req, res) => {
     
     const { email, password } = req.body;
+    let role;
     try {
       const user = await User.findOne({ email: email, deleted: false });
+      if(user) {
+        role = await Role.findOne({
+          userId: user.id
+        })
+        console.log('role: ', role);
+      }
       if (!user) {
         // json('Sai tài khoản!');
         return res.status(404).render("../views/components/login", { user });
@@ -57,7 +66,20 @@ const authController = {
           httpOnly: true,
           sameSite: "strict",
         });
-        res.redirect("/");
+        if(role.name !== "admin") {
+          res.redirect("/");
+        } else {
+          const renderUsers = await User.find({ deleted: false });
+          const post = await Room.find({isAccept: true});
+          const blockUser = await User.find({deleted: true});
+          const numOfUser = renderUsers.length;
+          const numOfPost = post.length;
+          const numOfBlock = (numOfUser - blockUser.length);
+          res.status(200).render("admin.template/master", {
+            title: "Dashboard Admin",
+            content: "../admin.template/main_content", numOfUser, numOfPost, numOfBlock
+          });
+        }
       }
     } catch (error) {
       console.log(error);
