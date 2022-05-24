@@ -58,8 +58,7 @@ const deleteMyRoom = async (req, res, next) => {
         .exec((err, listRoom1) => {
             Room.countDocuments((err, count) => {
                 if(err) return next(err);
-                listRoom = listRoom1
-                
+                listRoom = listRoom1                
             })
         });
         // res.status(200).render("manageRoom", {title: "Dream Boarding House", listRoom, current: page, pages: Math.ceil(count / perPage), user, role, listRoom, showSearch, numberNotification})

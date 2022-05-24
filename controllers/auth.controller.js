@@ -75,10 +75,11 @@ const authController = {
           const numOfUser = renderUsers.length;
           const numOfPost = post.length;
           const numOfBlock = (numOfUser - blockUser.length);
-          res.status(200).render("admin.template/master", {
-            title: "Dashboard Admin",
-            content: "../admin.template/main_content", numOfUser, numOfPost, numOfBlock
-          });
+          // res.status(200).render("admin.template/master", {
+          //   title: "Dashboard Admin",
+          //   content: "../admin.template/main_content", numOfUser, numOfPost, numOfBlock
+          // });
+          res.redirect("http://localhost:5000/admin");
         }
       }
     } catch (error) {

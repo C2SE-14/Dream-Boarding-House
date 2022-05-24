@@ -13,8 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Convergence&family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="/stylesheets/upload.css">
-    <link rel="stylesheet" href="/public/stylesheets/upload.scss">
+    <link rel="stylesheet" href="/stylesheets/updateRoom.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
   <body>
@@ -135,29 +134,30 @@
                     <div class="w3-modal-content">
                       <div class="w3-container">
                         <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                        <section class="home" id="home">
                             <form action="/room/upload/room" method="POST" enctype="multipart/form-data">
                                 <h3>Sửa đổi thông tin nhà trọ</h3>
                                 <h2 style="margin-top: 10px"> Khu Vực </h2>
-                                <div class="">
-                                    <select name="type" id="">
-                                        <option value="" disabled hidden selected>Kiểu phòng</option>
-                                        <option value="Căn hộ">Căn hộ</option>
-                                        <option value="Phòng trọ">Phòng trọ</option>
-                                    </select>
-                                    <select name="city" id="select-city">
-                                        <option value="" disabled hidden selected>Tỉnh/Thành Phố</option>
-                                        <option value="Thành phố Đà Nẵng">Đà Nẵng</option>
-                                    </select>
-                                    <select name="district" id="select-district">
-                                        <option value="" disabled hidden selected>Quận/Huyện</option>
-                                    </select>
-                                    <select name="ward" id="select-ward">
-                                        <option value="" disabled hidden selected>Phường/Xã</option>
-                                    </select>
+                                <div class="form-group">
+                                    <div class="group-select">
+                                        <select name="type" id="">
+                                            <option value="" disabled hidden selected>Kiểu phòng</option>
+                                            <option value="Căn hộ">Căn hộ</option>
+                                            <option value="Phòng trọ">Phòng trọ</option>
+                                        </select>
+                                        <select name="city" id="select-city">
+                                            <option value="" disabled hidden selected>Tỉnh/Thành Phố</option>
+                                            <option value="Thành phố Đà Nẵng">Đà Nẵng</option>
+                                        </select>
+                                        <select name="district" id="select-district">
+                                            <option value="" disabled hidden selected>Quận/Huyện</option>
+                                        </select>
+                                        <select name="ward" id="select-ward">
+                                            <option value="" disabled hidden selected>Phường/Xã</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="" style="padding-bottom: 10px">
-                                    <input type="Địa Chỉ" name="address" placeholder="Số nhà, tên đường" id="">
+                                <div class="form-group" style="padding-bottom: 10px">
+                                    <input type="Địa Chỉ" name="address" placeholder="Số nhà, tên đường" id="numberRoom">
                                 </div>
                                 <!-- <div style="position: center" ; class="row">
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5422.244069089167!2d108.22501278462542!3d16.060011614502386!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3142193c6144de8f%3A0x360f8a363a203fa7!2zQ-G6p3UgUuG7k25n!5e0!3m2!1svi!2s!4v1648784942014!5m2!1svi!2s"
@@ -168,16 +168,15 @@
                                         Thông tin mô tả
                                     </h2>
                                     <div>
-                                        <div class="" style="padding-bottom: 10px">
-                                            <input type="Tiêu đề" name="" placeholder="Tiêu đề" id="">
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <input type="Tiêu đề" name="" placeholder="Tiêu đề" id="title">
                                         </div>
                                         <h6 style="margin-left: 5px">
                                             Tiêu đề ngắn gọn, dễ hiểu, không dài quá 100 kí tự.
                                         </h6>
                                     </div>
                                     <div>
-                                        <div class="" style="padding-bottom: 10px">
-                                            <label>Mô tả</label>
+                                        <div class="form-group" style="padding-bottom: 10px">
                                             <textarea type="Nội dung mô tả" name="description" placeholder="Nội dung mô tả" id="" rows="10" cols="80" style="font-size:14px; border: 1px solid black; padding: 10px;"></textarea>
                                         </div>
                                         <h6 style="margin-left: 5px">
@@ -188,7 +187,7 @@
                                         <h2 style="padding-top: 10px">
                                             Giá cho thuê
                                         </h2>
-                                        <div class="" style="padding-bottom: 10px">
+                                        <div class="form-group" style="padding-bottom: 10px">
                     
                                             <input type="text" name="price" placeholder="Nhập giá" id="price" value="">
                     
@@ -202,7 +201,7 @@
                                         <h2 style="padding-top: 10px">
                                             Diện tích
                                         </h2>
-                                        <div class="" style="padding-bottom: 10px">
+                                        <div class="form-group" style="padding-bottom: 10px">
                                             <input type="Nhập diện tích" name="acreage" placeholder="Nhập diện tích của căn nhà/phòng" id="">
                                             <span class="input-group-text" id="basic-addon1">m2</span>
                                         </div>
@@ -219,8 +218,6 @@
                                     <button onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright" type="submit" value="Đăng Tải" class="btn" style="font-size: 20px">Đăng Tải</button>
                                 </div>
                             </form>
-                    
-                        </section>
                       </div>
                     </div>
                   </div>

@@ -1,0 +1,26 @@
+.form-group {
+
+}
+.group-select {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 50px !important;
+}
+.group-select select {
+    padding: 10px;
+}
+#numberRoom {
+    display: inline-block;
+    width: 90%;
+    padding: 10px;
+    margin-left: 20px;
+}
+#title {
+    display: inline-block;
+    width: 90%;
+    padding: 10px;
+    margin-left: 20px;
+}
+textarea {
+    margin-left: 10px;
+}
