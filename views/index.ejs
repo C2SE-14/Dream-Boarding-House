@@ -89,13 +89,8 @@
                       <div class="state infor-item" style="color: green">Tình trạng: Còn phòng</div>
                     <% } %>
                     <div class="poster infor-item"><label>Người đăng tải:</label> <%=listRoom3[i].username%></div>
-                    <!-- <% if(user) {%> -->
-                    <!-- <form action="/favoriteList/room/like/<%=listRoom[i]._id%>" method="POST" onsubmit="handleSubmit">
-                      <input type="submit" value="Yêu thích" class="btn-like"/>
-                    </form> -->
-                    <!-- <% } %> -->
                   </div>
-                  <a class="btn-view-detail btn-outline-success" href="/room/<%=listRoom[i]._id%>">Xem chi tiết</a>
+                  <a class="btn-view-detail btn-outline-success" href="/room/<%=listRoom3[i]._id%>">Xem chi tiết</a>
             </div>
           <% } %>
         </div>

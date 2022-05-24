@@ -11,7 +11,8 @@ router.delete("/users/:id", adminController.blockUser);
 
 // Admin manage all Posts
 router.get("/posts", adminController.getAllPosts);
-
+router.post("/accept/:id", adminController.acceptPost);
+router.post("/delete/:id", adminController.deletePost);
 // Admin manage all Comments
 
 module.exports = router;
