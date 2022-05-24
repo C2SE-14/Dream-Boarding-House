@@ -21,8 +21,12 @@ body {
 .avt {
     width: 100px;
     height: 100px;
+    margin-right: 6px;
 }
 .avt img {
     width: 100%;
     height: 100%;
+}
+.list-image {
+    display: flex;
 }
