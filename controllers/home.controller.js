@@ -19,18 +19,16 @@ const getHomePage = async(req, res, next) => {
             type: "Căn hộ"
         });
         let today = new Date();
-        console.log('today: ', today);
         const timeStamp = new Date().getTime();
         const yesterdayTimeStamp = timeStamp - 24*60*60*1000;
         const yesterdayDate = new Date(yesterdayTimeStamp);
-        console.log('yesterday: ', yesterdayDate);
         const listRoom3 = await Room.find({
+            isAccept: true,
             createdAt: {
                 $gte: yesterdayDate, 
                 $lt: today
             }
         });
-        console.log('listRoom3: ', listRoom3);
         let count = 0;
         let numberNotification = await NotificationService.getNumberNotification(userId);
         const showSearch = "yes";

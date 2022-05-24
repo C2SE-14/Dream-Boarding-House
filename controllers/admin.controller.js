@@ -31,7 +31,6 @@ const getAllUsers = async (req, res, next) => {
 const getAllPosts = async(req, res, next) => {
   try {
     const post = await Room.find();
-    console.log('post', post);
     res.render("admin.template/master", {
       title: "Dashboard Admin",
       content: "../admin.page/posts",
@@ -51,9 +50,46 @@ const blockUser = async (req, res, next) => {
     });
 };
 
+const acceptPost = async (req, res, next) => {
+  try {
+    const roomId = req.params.id;
+    console.log('room id to accept: ', roomId);
+    body = {
+      isAccept: true,
+    }
+    await Room.where({id: roomId}).update(body);
+    const post = await Room.find();
+    res.render("admin.template/master", {
+      title: "Dashboard Admin",
+      content: "../admin.page/posts",
+      post
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+const deletePost = async (req, res, next) => {
+  try {
+    const roomId = req.params.id;
+    await Room.deleteOne({_id: roomId}).exec((error, data) => {
+      if(error) console.log('error nè: ', error);
+      else console.log('delete thành công: ', data);
+    });
+    const post = await Room.find();
+    res.render("admin.template/master", {
+      title: "Dashboard Admin",
+      content: "../admin.page/posts",
+      post
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
 module.exports = {
   renderAdminPage,
   getAllUsers,
   blockUser,
   getAllPosts,
+  acceptPost,
+  deletePost,
 };
