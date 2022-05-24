@@ -63,7 +63,15 @@ const deleteMyRoom = async (req, res, next) => {
         console.log(error);
     }
 }
+const updateMyRoom = async (req, res, next) => {
+    try {
+        const roomId = req.params.id;
+    } catch (error) {
+        console.log(error);
+    }
+}
 module.exports = {
     getMyRoom,
-    deleteMyRoom
+    deleteMyRoom,
+    updateMyRoom,
 }
