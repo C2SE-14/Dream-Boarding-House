@@ -30,7 +30,11 @@ const getDetailRoom = async (req, res, next) => {
     if(roomLike) {
         isLike = true;
     }
-    console.log('isLike: ', isLike);
+    const isSelectRoom = await ChooseRoom.findOne({userId: userId, roomId: roomId.id});
+    let isChoose = false;
+    if(isSelectRoom) {
+      isChoose = true;
+    }
       res.status(200)
       .render("roomDetail", {
         room,
@@ -41,7 +45,8 @@ const getDetailRoom = async (req, res, next) => {
         showSearch,
         isLike,
         numberNotification,
-        listCmt
+        listCmt,
+        isChoose,
       });
   } catch (error) {
     console.log(error);
