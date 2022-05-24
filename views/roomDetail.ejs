@@ -351,51 +351,53 @@
                     <%=userInfor.username%>
                   </a>
                 </p>
-                <div class="btn-group">
-                  <!-- <form action="/room/chooseRoom/<%=room._id%>" method="POST"> -->
-                  <%if(isChoose === false) {%>
-                    <button
-                      type="submit"
-                      class="btn btn-outline-success"
-                      data-room="<%=room._id%>"
-                      id="thue"
-                    >
-                      Thuê trọ
-                    </button>
-                  <%} else {%>
+                <%if(role === "Người thuê trọ") {%>
+                  <div class="btn-group">
+                    <!-- <form action="/room/chooseRoom/<%=room._id%>" method="POST"> -->
+                    <%if(isChoose === false) {%>
+                      <button
+                        type="submit"
+                        class="btn btn-outline-success"
+                        data-room="<%=room._id%>"
+                        id="thue"
+                      >
+                        Thuê trọ
+                      </button>
+                    <%} else {%>
+                      <button
+                        type="button"
+                        class="btn btn-outline-success"
+                        data-room="<%=room._id%>"
+                        id="thue"
+                        style="pointer-event: none; cursor: not-allowed"
+                      >
+                      ✔
+                      </button>
+                    <%}%>
+                    <!-- </form> -->
+                    <%if(!isLike) {%>
                     <button
                       type="button"
-                      class="btn btn-outline-success"
-                      data-room="<%=room._id%>"
-                      id="thue"
-                      style="pointer-event: none; cursor: not-allowed"
+                      id="love"
+                      class="btn btn-danger"
+                      style="margin-left: 10px"
+                      data-id="<%=room.id%>"
                     >
-                    ✔
+                      Yêu thích
                     </button>
-                  <%}%>
-                  <!-- </form> -->
-                  <%if(!isLike) {%>
-                  <button
-                    type="button"
-                    id="love"
-                    class="btn btn-danger"
-                    style="margin-left: 10px"
-                    data-id="<%=room.id%>"
-                  >
-                    Yêu thích
-                  </button>
-                  <%} else {%>
-                    <button
-                    type="button"
-                    id="love"
-                    class="btn btn-danger"
-                    style="margin-left: 10px; background-color: red;"
-                    data-id="<%=room.id%>"
-                  >
-                    Yêu thích
-                  </button>
-                  <%}%>
-                </div>
+                    <%} else {%>
+                      <button
+                      type="button"
+                      id="love"
+                      class="btn btn-danger"
+                      style="margin-left: 10px; background-color: red;"
+                      data-id="<%=room.id%>"
+                    >
+                      Yêu thích
+                    </button>
+                    <%}%>
+                  </div>
+                <%}%>
               </div>
             </div>
           </div>

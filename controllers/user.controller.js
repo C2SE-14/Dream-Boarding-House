@@ -52,7 +52,8 @@ const updateUserInformation = async (req, res, next) => {
         role = await Role.findOne({userId: userId});
         role = role.name;
         let numberNotification = await NotificationService.getNumberNotification(userId);
-        res.status(200).render('userInformation', {title: 'Dream boarding house', msg1, userInfor, user, msg, role, showSearch, numberNotification });
+        // res.status(200).render('userInformation', {title: 'Dream boarding house', msg1, userInfor, user, msg, role, showSearch, numberNotification });
+        res.redirect("/user/infor");
     } catch(error) {
         console.log(error);
     }
@@ -78,7 +79,8 @@ const updateAvatar = async (req, res, next) => {
         role = await Role.findOne({userId: userId});
         role = role.name;
         let numberNotification = await NotificationService.getNumberNotification(userId);
-        res.status(200).render('userInformation', {title: 'Dream boarding house', msg1, userInfor, user, msg, role, showSearch, numberNotification});
+        // res.status(200).render('userInformation', {title: 'Dream boarding house', msg1, userInfor, user, msg, role, showSearch, numberNotification});
+        res.redirect("/user/infor");
     } catch (error) {
         console.log(error);
     }
@@ -104,10 +106,12 @@ const updatePassword = async (req, res, next) => {
         if(!validPassword) {
             msg1 = "Mật khẩu cũ không đúng";
             console.log("Day la msg1 ne: ", msg1);
-            res.status(203).render('userInformation', {title: 'Dream boarding house', msg1, userInfor, user, msg, role, showSearch, numberNotification});
+            // res.status(203).render('userInformation', {title: 'Dream boarding house', msg1, userInfor, user, msg, role, showSearch, numberNotification});
+            res.redirect("/user/infor");
         } else {
             const msg = "Thay đổi mật khẩu thành công";
-            res.status(200).render('userInformation', {title: 'Dream boarding house', msg1, userInfor, user, msg, role, showSearch, numberNotification});
+            // res.status(200).render('userInformation', {title: 'Dream boarding house', msg1, userInfor, user, msg, role, showSearch, numberNotification});
+            res.redirect("/user/infor");
         }
     } catch(error) {
         console.log(error);

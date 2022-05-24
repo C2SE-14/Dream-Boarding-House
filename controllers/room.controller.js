@@ -109,11 +109,10 @@ const postUploadRoom = async (req, res, next) => {
         .exec((err, listRoom) => {
             Room.countDocuments((err, count) => {
                 if(err) return next(err);
-                console.log('list room: ', listRoom);
-                res.status(200).render("manageRoom", {title: "Dream Boarding House", listRoom, current: page, pages: Math.ceil(count / perPage), user, role, listRoom, showSearch, numberNotification})
-
+                // res.status(200).render("manageRoom", {title: "Dream Boarding House", listRoom, current: page, pages: Math.ceil(count / perPage), user, role, listRoom, showSearch, numberNotification})
             })
         });
+        res.redirect("/innkeeper/myRoom/all");
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: error });
@@ -224,16 +223,17 @@ const deleteSelectRoom = async (req, res, next) => {
     }
     let numberNotification = await NotificationService.getNumberNotification(userId);
     let showSearch = "no";
-    res
-      .status(200)
-      .render("chooseRoom", {
-        title: "Dream boarding house",
-        listRoom,
-        user,
-        role,
-        showSearch,
-        numberNotification
-      })
+    // res
+    //   .status(200)
+    //   .render("chooseRoom", {
+    //     title: "Dream boarding house",
+    //     listRoom,
+    //     user,
+    //     role,
+    //     showSearch,
+    //     numberNotification
+    //   })
+    res.redirect("/room/selectRoom/All");
   } catch (error) {
     console.log(error);
   }

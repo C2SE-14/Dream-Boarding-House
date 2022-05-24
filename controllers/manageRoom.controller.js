@@ -23,7 +23,6 @@ const getMyRoom = async (req, res, next) => {
         .exec((err, listRoom) => {
             Room.countDocuments((err, count) => {
                 if(err) return next(err);
-                console.log('list room: ', listRoom);
                 res.status(200).render("manageRoom", {title: "Dream Boarding House", listRoom, current: page, pages: Math.ceil(count / perPage), user, role, listRoom, showSearch, numberNotification})
 
             })
@@ -46,19 +45,25 @@ const deleteMyRoom = async (req, res, next) => {
         let numberNotification = await NotificationService.getNumberNotification(userId);
         await Room.deleteOne({
             userId: userId,
-            id: roomId
+            _id: roomId
+        }).exec((error) => {
+            if(error) console.log('error: ', error);
+            else console.log("xóa thành công");
         })
         let perPage = 4;
         let page = req.params.page || 1;
+        let listRoom;
         await Room.find({userId: userId}).skip((perPage * page) - perPage)
         .limit(perPage)
-        .exec((err, listRoom) => {
+        .exec((err, listRoom1) => {
             Room.countDocuments((err, count) => {
                 if(err) return next(err);
-                res.status(200).render("manageRoom", {title: "Dream Boarding House", listRoom, current: page, pages: Math.ceil(count / perPage), user, role, listRoom, showSearch, numberNotification})
-
+                listRoom = listRoom1
+                
             })
         });
+        // res.status(200).render("manageRoom", {title: "Dream Boarding House", listRoom, current: page, pages: Math.ceil(count / perPage), user, role, listRoom, showSearch, numberNotification})
+        res.redirect("/innkeeper/myRoom/all");
     } catch (error) {
         console.log(error);
     }
