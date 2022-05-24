@@ -168,9 +168,9 @@
                     Phản hồi của những người đã thuê trọ
                   </h3>
                   <div class="feedback">
-                    <form action="" method="post" class="needs-validation">
+                    <form action="/comment/post/<%=room.id%>" method="POST" class="needs-validation">
                       <div class="rate-wrapper align-items-center">
-                        <div
+                        <!-- <div
                           class="rate-select"
                           style="text-align: center; padding-bottom: 10px"
                         >
@@ -184,16 +184,18 @@
                             <option value="4">Good</option>
                             <option value="5">Very Good</option>
                           </select>
-                        </div>
+                        </div> -->
                         <div class="input-wrapper">
                           <textarea
                             type="text"
                             class="form-control w-100"
                             placeholder="Nhập bình luận"
-                            name="comment"
+                            name="content"
+                            rows="5"
                             required
                           ></textarea>
                           <button
+                            type="submit"
                             class="btn btn-success"
                             style="margin-top: 10px; margin-bottom: 20px"
                           >
@@ -251,7 +253,15 @@
                         </div>
                       </div>
                     </div>
-                    <h3 class="mb-5">Một số phòng gần đây</h3>
+                    <div class="list-cmt">
+                      <%for(let i=0;i<listCmt.length; i++){%>
+                        <div class="cmt-container">
+                          <p class="username"><%=listCmt[i].userName%></p>
+                          <p class="content"><%=listCmt[i].content%></p>
+                        </div>
+                      <%}%>
+                    </div>
+                    <!-- <h3 class="mb-5">Một số phòng gần đây</h3>
                     <div class="recommended-items card-deck">
                       <div class="card" onclick="">
                         <img
@@ -317,7 +327,7 @@
                           >
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>

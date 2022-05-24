@@ -8,6 +8,7 @@ const manageRoomRouter = require("./manageRoom");
 const logOutRouter = require("./logout");
 const searchRouter = require("./search");
 const notificationRouter = require('./notification');
+const commentRouter = require('./comment');
 const adminRouter = require("./admin");
 function route(app) {
   app.use("/register", registerRouter);
@@ -20,6 +21,7 @@ function route(app) {
   app.use("/search", searchRouter);
   app.use("/admin", adminRouter);
   app.use('/notification', notificationRouter);
+  app.use('/comment', commentRouter);
   app.use("/", homeRouter);
 }
 

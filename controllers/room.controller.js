@@ -5,6 +5,7 @@ const Role = require("../models/role.model");
 const ChooseRoom = require("../models/chooseRoom.model");
 const Notification = require("../models/notifications.model");
 const FavoriteRoom = require("../models/favoriteRoom.model");
+const Comment = require("../models/comment.model");
 const RoleService = require("../services/role.service");
 const NotificationService = require('../services/notification');
 const Pusher = require('pusher');
@@ -14,6 +15,7 @@ const getDetailRoom = async (req, res, next) => {
     const roomId = req.params;
     const room = await Room.findOne({ _id: roomId.id });
     const userInfor = await User.findOne({ _id: room.userId });
+    const listCmt = await Comment.find({roomId: roomId.id});
     const phoneNumber = userInfor.phoneNumber;
     let userId;
     if (user) {
@@ -38,7 +40,8 @@ const getDetailRoom = async (req, res, next) => {
         role,
         showSearch,
         isLike,
-        numberNotification
+        numberNotification,
+        listCmt
       });
   } catch (error) {
     console.log(error);
@@ -65,7 +68,7 @@ const getUploadRoom = async (req, res, next) => {
 };
 const postUploadRoom = async (req, res, next) => {
   try {
-    userId = req.cookies.user.username;
+    id = req.cookies.user.username;
     const room = req.body;
     const address =
       req.body.address +
@@ -76,7 +79,7 @@ const postUploadRoom = async (req, res, next) => {
       ", " +
       req.body.city;
     room.address = address;
-    room.username = userId;
+    room.username = id;
     room.userId = req.cookies.user.user_id;
     let files = req.files;
     let images = [];
@@ -86,7 +89,26 @@ const postUploadRoom = async (req, res, next) => {
     room.images = images;
     const newRoom = new Room(room);
     await newRoom.save();
-    res.redirect("/");
+    const user = req.cookies.user;
+        let userId, role, showSearch = "no";
+        if(user) {
+            userId = req.cookies.user.user_id
+            role = await Role.findOne({userId: userId});
+            role = role.name;
+        }
+        let numberNotification = await NotificationService.getNumberNotification(userId);
+        let perPage = 4; 
+        let page = req.params.page || 1;
+    await Room.find({userId: userId}).skip((perPage * page) - perPage)
+        .limit(perPage)
+        .exec((err, listRoom) => {
+            Room.countDocuments((err, count) => {
+                if(err) return next(err);
+                console.log('list room: ', listRoom);
+                res.status(200).render("manageRoom", {title: "Dream Boarding House", listRoom, current: page, pages: Math.ceil(count / perPage), user, role, listRoom, showSearch, numberNotification})
+
+            })
+        });
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: error });
