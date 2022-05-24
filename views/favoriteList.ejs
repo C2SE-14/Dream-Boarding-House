@@ -35,15 +35,18 @@
                                 </div>
                                 <div class="price">
                                     <label>Giá phòng: </label>
-                                    <%=listFavoriteRoom[i].price%> / 1 tháng
+                                    <%=listFavoriteRoom[i].price%> vnd/ 1 tháng
                                 </div>
                                 <div class="description">
                                     <label>Mô tả: </label>
                                     <%=listFavoriteRoom[i].description%>
                                 </div>
-                                <form action="/favoriteList/room/unlike/<%=listFavoriteRoom[i]._id%>?_method=DELETE" method="POST" id="form-delete">
-                                    <button type="submit" class="btn-delete btn btn-outline-success" data-id="<%=listFavoriteRoom[i]._id%>">Bỏ yêu thích</button>
-                                </form>
+                                <div class="btn-group">
+                                    <a class="btn-view-detail btn-outline-success" href="/room/<%=listFavoriteRoom[i]._id%>">Xem chi tiết</a>
+                                    <form action="/favoriteList/room/unlike/<%=listFavoriteRoom[i]._id%>?_method=DELETE" method="POST" id="form-delete">
+                                        <button type="submit" class="btn-delete btn btn-outline-success" data-id="<%=listFavoriteRoom[i]._id%>">Bỏ yêu thích</button>
+                                    </form>
+                                </div>
                             </div>
                             <%}%>
                                 <%} else {%>

@@ -364,10 +364,11 @@
                     </button>
                   <%} else {%>
                     <button
-                      type="submit"
+                      type="button"
                       class="btn btn-outline-success"
                       data-room="<%=room._id%>"
                       id="thue"
+                      style="pointer-event: none; cursor: not-allowed"
                     >
                     ✔
                     </button>
@@ -455,6 +456,8 @@
             if (response.code === 1) {
               msg = response.msg;
               thue.innerHTML = "✔";
+              thue.style.pointerEvents = "none";
+              thue.style.cursor = "not-allowed"
             }
           },
         });

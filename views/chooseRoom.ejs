@@ -17,12 +17,12 @@
             <%for(let i = 0; i < listRoom.length; i++) {%>
                 <div class="room-item">
                     <div class="image">
-                        <img src="https://behouse.vn/wp-content/uploads/old/phong-tro-dep-6_1615736964.jpg" alt="">
+                        <img src="<%=listRoom[i].images[0].url%>" alt="">
                     </div>
                     <div class="room-information">
                         <p class="type"><label>Kiểu phòng: </label> <%=listRoom[i].type%></p>
-                        <p class="type"><label>Địa chỉ: </label> <%=listRoom[i].address%></p>
-                        <p class="type"><label>Mô tả: </label> <%=listRoom[i].description%></p>
+                        <p class="address"><label>Địa chỉ: </label> <%=listRoom[i].address%></p>
+                        <p class="description"><label>Mô tả: </label> <%=listRoom[i].description%></p>
                     </div>
                 </div>
                 <div class="btn-group">
