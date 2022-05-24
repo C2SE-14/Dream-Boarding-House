@@ -353,14 +353,25 @@
                 </p>
                 <div class="btn-group">
                   <!-- <form action="/room/chooseRoom/<%=room._id%>" method="POST"> -->
-                  <button
-                    type="submit"
-                    class="btn btn-outline-success"
-                    data-room="<%=room._id%>"
-                    id="thue"
-                  >
-                    Thuê trọ
-                  </button>
+                  <%if(isChoose === false) {%>
+                    <button
+                      type="submit"
+                      class="btn btn-outline-success"
+                      data-room="<%=room._id%>"
+                      id="thue"
+                    >
+                      Thuê trọ
+                    </button>
+                  <%} else {%>
+                    <button
+                      type="submit"
+                      class="btn btn-outline-success"
+                      data-room="<%=room._id%>"
+                      id="thue"
+                    >
+                    ✔
+                    </button>
+                  <%}%>
                   <!-- </form> -->
                   <%if(!isLike) {%>
                   <button
