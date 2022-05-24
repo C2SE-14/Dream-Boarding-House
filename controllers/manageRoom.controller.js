@@ -70,6 +70,29 @@ const deleteMyRoom = async (req, res, next) => {
 const updateMyRoom = async (req, res, next) => {
     try {
         const roomId = req.params.id;
+        id = req.cookies.user.username;
+        const room = req.body;
+        const address =
+          req.body.address +
+          ", " +
+          req.body.ward +
+          ", " +
+          req.body.district +
+          ", " +
+          req.body.city;
+        room.address = address;
+        room.username = id;
+        room.userId = req.cookies.user.user_id;
+        let files = req.files;
+        let images = [];
+        for (let i = 0; i < files.length; i++) {
+          images.push({ url: files[i].path });
+        }
+        room.images = images;
+        console.log('room id: ', roomId);
+        // await Room.updateOne({Id: roomId}, room);
+        await Room.where({_id: roomId}).update(room);
+        res.redirect("/innkeeper/myRoom/all");
     } catch (error) {
         console.log(error);
     }

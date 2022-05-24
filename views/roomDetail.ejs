@@ -258,6 +258,11 @@
                         <div class="cmt-container">
                           <p class="username"><%=listCmt[i].userName%></p>
                           <p class="content"><%=listCmt[i].content%></p>
+                          <%if(userName === listCmt[i].userName) {%>
+                            <form action="/comment/delete/<%=room.id%>/<%=listCmt[i].id%>" method="POST">
+                              <button type="submit" class="btn btn-outline-success btn-delete">Xóa</button>
+                            </form>
+                          <%}%>
                         </div>
                       <%}%>
                     </div>

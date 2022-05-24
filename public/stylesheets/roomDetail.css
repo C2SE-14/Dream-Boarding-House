@@ -128,3 +128,6 @@ body {
 .content {
     padding-left: 20px;
 }
+.btn-delete {
+    margin-top: -32px !important;
+}

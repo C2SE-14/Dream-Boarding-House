@@ -22,5 +22,21 @@
     margin-left: 20px;
 }
 textarea {
-    margin-left: 10px;
+    margin-left: 20px !important;
+}
+.form-group-price {
+    display: flex;
+}
+.form-select-price {
+    width: 50%;
+}
+.form-group-price input {
+    padding: 10px;
+}
+.buttons-container {
+    margin-top: 10px;
+}
+.buttons-container button {
+    border: none;
+    padding: 10px;
 }

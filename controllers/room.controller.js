@@ -12,6 +12,7 @@ const Pusher = require('pusher');
 const getDetailRoom = async (req, res, next) => {
   try {
     const user = req.cookies.user;
+    const userName = req.cookies.user.username;
     const roomId = req.params;
     const room = await Room.findOne({ _id: roomId.id });
     const userInfor = await User.findOne({ _id: room.userId });
@@ -47,6 +48,7 @@ const getDetailRoom = async (req, res, next) => {
         numberNotification,
         listCmt,
         isChoose,
+        userName,
       });
   } catch (error) {
     console.log(error);
