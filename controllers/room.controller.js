@@ -12,6 +12,7 @@ const Pusher = require('pusher');
 const getDetailRoom = async (req, res, next) => {
   try {
     const user = req.cookies.user;
+    const userName = req.cookies.user.username;
     const roomId = req.params;
     const room = await Room.findOne({ _id: roomId.id });
     const userInfor = await User.findOne({ _id: room.userId });
@@ -47,6 +48,7 @@ const getDetailRoom = async (req, res, next) => {
         numberNotification,
         listCmt,
         isChoose,
+        userName,
       });
   } catch (error) {
     console.log(error);
@@ -109,11 +111,10 @@ const postUploadRoom = async (req, res, next) => {
         .exec((err, listRoom) => {
             Room.countDocuments((err, count) => {
                 if(err) return next(err);
-                console.log('list room: ', listRoom);
-                res.status(200).render("manageRoom", {title: "Dream Boarding House", listRoom, current: page, pages: Math.ceil(count / perPage), user, role, listRoom, showSearch, numberNotification})
-
+                // res.status(200).render("manageRoom", {title: "Dream Boarding House", listRoom, current: page, pages: Math.ceil(count / perPage), user, role, listRoom, showSearch, numberNotification})
             })
         });
+        res.redirect("/innkeeper/myRoom/all");
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: error });
@@ -134,6 +135,7 @@ const postSelectRoom = async (req, res, next) => {
     let myRoom = {
       userId: userId,
       roomId: roomId,
+      innkeeperId: room.userId,
     };
     const newRoom = ChooseRoom(myRoom);
     await newRoom.save().then((err, data) => {
@@ -203,11 +205,55 @@ const deleteSelectRoom = async (req, res, next) => {
   try {
     const roomId = req.params.id;
     await ChooseRoom.deleteOne({ roomId: roomId });
-    res.status(200).redirect("/");
+    const user = req.cookies.user;
+    const userId = req.cookies.user.user_id;
+    let role;
+    if (user) {
+      role = await Role.findOne({ userId: userId });
+      role = role.name;
+    }
+    const listRoomId = await ChooseRoom.find({ userId: userId });
+    const listRoom = [];
+    console.log(listRoomId);
+    if (listRoomId.length > 0) {
+      for (let i = 0; i < listRoomId.length; i++) {
+        const id = listRoomId[i].roomId;
+        const room = await Room.findOne({ _id: id });
+        if (room) {
+          listRoom.push(room);
+        }
+      }
+    }
+    let numberNotification = await NotificationService.getNumberNotification(userId);
+    let showSearch = "no";
+    // res
+    //   .status(200)
+    //   .render("chooseRoom", {
+    //     title: "Dream boarding house",
+    //     listRoom,
+    //     user,
+    //     role,
+    //     showSearch,
+    //     numberNotification
+    //   })
+    res.redirect("/room/selectRoom/All");
   } catch (error) {
     console.log(error);
   }
 };
+const successfullySelectRoom = async (req, res, next) => {
+  try {
+    const userId = req.cookies.user.user_id;
+    const roomId = req.params.roomId;
+    await ChooseRoom.where({userId: userId, roomId: roomId}).update({userAccept: true});
+    res.status(200).json({
+      code: 1,
+      msg: "successfully"
+    })
+  } catch(error) {
+    console.log(error);
+  }
+}
 module.exports = {
   getUploadRoom,
   postUploadRoom,
@@ -215,4 +261,5 @@ module.exports = {
   postSelectRoom,
   getSelectRoom,
   deleteSelectRoom,
+  successfullySelectRoom,
 };

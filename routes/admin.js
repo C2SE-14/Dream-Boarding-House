@@ -7,6 +7,7 @@ router.get("/", adminController.renderAdminPage);
 
 // Admin manage all Users
 router.get("/users", adminController.getAllUsers);
+router.get("/comments", adminController.getAllComments);
 router.delete("/users/:id", adminController.blockUser);
 
 // Admin manage all Posts

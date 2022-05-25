@@ -21,7 +21,8 @@ const getUserInformation = async (req, res, next) => {
         }
         const userInfor = await User.find({_id: userId});
         let numberNotification = await NotificationService.getNumberNotification(userId);
-        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, role, showSearch, numberNotification});
+        let msg1 = "";
+        res.status(200).render('userInformation', {title: 'Dream boarding house',  msg1, userInfor, user, role, showSearch, numberNotification});
     } catch(error) {
         console.log(error);
         //res.status(203).render('error')
@@ -29,74 +30,30 @@ const getUserInformation = async (req, res, next) => {
 }
 const updateUserInformation = async (req, res, next) => {
     try {
+        console.log("Chạy vào đây hay chưa");
         const userId = req.cookies.user.user_id;
         let user, showSearch = "no";
         if(userId) {
             user = req.cookies.user.user_id;
         }
-        const {username, email, phoneNumber} = req.body;
-        console.log('user name: ', username);
-        console.log(typeof(username));
-        if(username === "" && email === "") {
-            if(phoneNumber !== "") {
-                const body = {
-                    phoneNumber: phoneNumber
-                }
-                await User.where({_id: userId}).update(body);
-            }
-        } else if(username === "" && phoneNumber === "") {
-            if(email !== "") {
-                const body = {
-                    email: email
-                }
-                await User.where({_id: userId}).update(body);
-            }
-        } else if(email === "" && phoneNumber === "") {
-            if(username !== "") {
-                const body = {
-                    username: username
-                }
-                await User.where({_id: userId}).update(body);
-            }
-        } else if((username !== "" && email !== "") && phoneNumber !== "") {
-            const body = {
-                username: username,
-                email: email,
-                phoneNumber: phoneNumber
-            }
-            await User.where({_id: userId}).update(body);
-        } else if(username !== "" && email !== "") {
-            if(phoneNumber ==="") {
-                const body = {
-                    username: username,
-                    email: email,
-                }
-                await User.where({_id: userId}).update(body);
-            }
-        } else if(username !== "" && phoneNumber !== "") {
-            if(phoneNumber ==="") {
-                const body = {
-                    username: username,
-                    phoneNumber: phoneNumber,
-                }
-                await User.where({_id: userId}).update(body);
-            }
-        } else if(email !== "" && phoneNumber !== "") {
-            if(username ==="") {
-                const body = {
-                    phoneNumber: phoneNumber,
-                    email: email,
-                }
-                await User.where({_id: userId}).update(body);
-            }
-        } 
+        const {username, phoneNumber} = req.body;
+        const body = {
+            username: username,
+            phoneNumber: phoneNumber,
+        }
+        await User.updateOne({id: userId}, body).exec((error)=> {
+            if(error) console.log("error: ", error);
+            else console.log("update successfully");
+        });
         const userInfor = await User.find({_id: userId});
+        let msg1 = "";
         const msg = "Cập nhật thành công";
         let role;
         role = await Role.findOne({userId: userId});
         role = role.name;
         let numberNotification = await NotificationService.getNumberNotification(userId);
-        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role, showSearch, numberNotification });
+        // res.status(200).render('userInformation', {title: 'Dream boarding house', msg1, userInfor, user, msg, role, showSearch, numberNotification });
+        res.redirect("/user/infor");
     } catch(error) {
         console.log(error);
     }
@@ -116,16 +73,14 @@ const updateAvatar = async (req, res, next) => {
             user = req.cookies.user.user_id;
         }
         const userInfor = await User.find({_id: userId});
+        let msg1 = "";
         const msg = "Cập nhật thành công";
         let role;
         role = await Role.findOne({userId: userId});
         role = role.name;
-        // res.status(200).json({
-        //     msg: "Successfully",
-        //     img: file.path,
-        // })
         let numberNotification = await NotificationService.getNumberNotification(userId);
-        res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role, showSearch, numberNotification});
+        // res.status(200).render('userInformation', {title: 'Dream boarding house', msg1, userInfor, user, msg, role, showSearch, numberNotification});
+        res.redirect("/user/infor");
     } catch (error) {
         console.log(error);
     }
@@ -147,12 +102,16 @@ const updatePassword = async (req, res, next) => {
         role = await Role.findOne({userId: userId});
         role = role.name;
         let numberNotification = await NotificationService.getNumberNotification(userId);
+        let msg1 = "";
         if(!validPassword) {
-            const msg = "Mật khẩu cũ không đúng";
-            res.status(203).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role, showSearch, numberNotification});
+            msg1 = "Mật khẩu cũ không đúng";
+            console.log("Day la msg1 ne: ", msg1);
+            // res.status(203).render('userInformation', {title: 'Dream boarding house', msg1, userInfor, user, msg, role, showSearch, numberNotification});
+            res.redirect("/user/infor");
         } else {
             const msg = "Thay đổi mật khẩu thành công";
-            res.status(200).render('userInformation', {title: 'Dream boarding house', userInfor, user, msg, role, showSearch, numberNotification});
+            // res.status(200).render('userInformation', {title: 'Dream boarding house', msg1, userInfor, user, msg, role, showSearch, numberNotification});
+            res.redirect("/user/infor");
         }
     } catch(error) {
         console.log(error);
@@ -177,6 +136,11 @@ const showOtherPeopleInfor = async (req, res, next) => {
         listFollow = await FollowInnKeeper.find({userId: userId});
         const listRoom = await Room.find({userId: userInfor.id});
         let total = 0, numberRoom = 0, ratio = 0;
+        let roomSelected = await Room.find({
+            userId: id,
+            state: false,
+        })
+        numberRoom = roomSelected.length;
         total = listRoom.length;
         ratio = (numberRoom/total)*100; 
         for(let i = 0; i < listFollow.length; i++) {

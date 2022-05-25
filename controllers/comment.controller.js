@@ -36,23 +36,34 @@ const postComment = async (req, res, next) => {
             isLike = true;
         }
         const listCmt = await Comment.find({roomId: roomId});
-        res.status(200)
-      .render("roomDetail", {
-        room,
-        user,
-        phoneNumber,
-        userInfor,
-        role,
-        showSearch,
-        isLike,
-        numberNotification,
-        listCmt,
-      });
+    //     res.status(200)
+    //   .render("roomDetail", {
+    //     room,
+    //     user,
+    //     phoneNumber,
+    //     userInfor,
+    //     role,
+    //     showSearch,
+    //     isLike,
+    //     numberNotification,
+    //     listCmt,
+    //   });
+    res.redirect(`/room/${roomId}`);
     } catch (error) {
         console.log(error);
     }
 }
-
+const deleteComment = async(req, res, next) => {
+    try {
+        const cmtId = req.params.id;
+        await Comment.deleteOne({_id: cmtId});
+        const roomId = req.params.roomId;
+        res.redirect(`/room/${roomId}`);
+    } catch (error) {
+        console.log(error);
+    }
+}
 module.exports = {
     postComment,
+    deleteComment,
 }

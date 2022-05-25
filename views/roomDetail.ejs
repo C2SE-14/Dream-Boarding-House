@@ -258,6 +258,11 @@
                         <div class="cmt-container">
                           <p class="username"><%=listCmt[i].userName%></p>
                           <p class="content"><%=listCmt[i].content%></p>
+                          <%if(userName === listCmt[i].userName) {%>
+                            <form action="/comment/delete/<%=room.id%>/<%=listCmt[i].id%>" method="POST">
+                              <button type="submit" class="btn btn-outline-success btn-delete">Xóa</button>
+                            </form>
+                          <%}%>
                         </div>
                       <%}%>
                     </div>
@@ -351,50 +356,53 @@
                     <%=userInfor.username%>
                   </a>
                 </p>
-                <div class="btn-group">
-                  <!-- <form action="/room/chooseRoom/<%=room._id%>" method="POST"> -->
-                  <%if(isChoose === false) {%>
+                <%if(role === "Người thuê trọ") {%>
+                  <div class="btn-group">
+                    <!-- <form action="/room/chooseRoom/<%=room._id%>" method="POST"> -->
+                    <%if(isChoose === false) {%>
+                      <button
+                        type="submit"
+                        class="btn btn-outline-success"
+                        data-room="<%=room._id%>"
+                        id="thue"
+                      >
+                        Thuê trọ
+                      </button>
+                    <%} else {%>
+                      <button
+                        type="button"
+                        class="btn btn-outline-success"
+                        data-room="<%=room._id%>"
+                        id="thue"
+                        style="pointer-event: none; cursor: not-allowed"
+                      >
+                      ✔
+                      </button>
+                    <%}%>
+                    <!-- </form> -->
+                    <%if(!isLike) {%>
                     <button
-                      type="submit"
-                      class="btn btn-outline-success"
-                      data-room="<%=room._id%>"
-                      id="thue"
+                      type="button"
+                      id="love"
+                      class="btn btn-danger"
+                      style="margin-left: 10px"
+                      data-id="<%=room.id%>"
                     >
-                      Thuê trọ
+                      Yêu thích
                     </button>
-                  <%} else {%>
-                    <button
-                      type="submit"
-                      class="btn btn-outline-success"
-                      data-room="<%=room._id%>"
-                      id="thue"
+                    <%} else {%>
+                      <button
+                      type="button"
+                      id="love"
+                      class="btn btn-danger"
+                      style="margin-left: 10px; background-color: red;"
+                      data-id="<%=room.id%>"
                     >
-                    ✔
+                      Yêu thích
                     </button>
-                  <%}%>
-                  <!-- </form> -->
-                  <%if(!isLike) {%>
-                  <button
-                    type="button"
-                    id="love"
-                    class="btn btn-danger"
-                    style="margin-left: 10px"
-                    data-id="<%=room.id%>"
-                  >
-                    Yêu thích
-                  </button>
-                  <%} else {%>
-                    <button
-                    type="button"
-                    id="love"
-                    class="btn btn-danger"
-                    style="margin-left: 10px; background-color: red;"
-                    data-id="<%=room.id%>"
-                  >
-                    Yêu thích
-                  </button>
-                  <%}%>
-                </div>
+                    <%}%>
+                  </div>
+                <%}%>
               </div>
             </div>
           </div>
@@ -455,6 +463,8 @@
             if (response.code === 1) {
               msg = response.msg;
               thue.innerHTML = "✔";
+              thue.style.pointerEvents = "none";
+              thue.style.cursor = "not-allowed"
             }
           },
         });

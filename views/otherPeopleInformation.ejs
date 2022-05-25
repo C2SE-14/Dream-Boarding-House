@@ -26,49 +26,51 @@
             <label for="">Số phòng đã cho thuê: </label> <%=numberRoom%>
           </p>
           <p class="numberRoom"><label for="">Tỉ lệ: </label> <%=ratio%>%</p>
-          <div class="btn-group">
-            <%if(isFollow === "false") {%>
-            <button
-              type="button=="
-              class="btn btn-outline-danger"
-              id="btn-follow"
-              data-id="<%=userInfor._id%>"
-              onclick="handleFollow()"
-            >
-              Theo dõi chủ trọ
-            </button>
-            <button
-              type="button"
-              class="btn btn-outline-danger"
-              id="btn-unFollow"
-              data-id="<%=userInfor._id%>"
-              onclick="handleUnFollow()"
-              style="display: none"
-            >
-              Hủy theo dõi
-            </button>
-            <%} else if(isFollow === "true") {%>
-            <button
-              type="button=="
-              class="btn btn-outline-danger"
-              id="btn-follow"
-              data-id="<%=userInfor._id%>"
-              onclick="handleFollow()"
-              style="display: none"
-            >
-              Theo dõi chủ trọ
-            </button>
-            <button
-              type="button"
-              class="btn btn-outline-danger"
-              id="btn-unFollow"
-              data-id="<%=userInfor._id%>"
-              onclick="handleUnFollow()"
-            >
-              Hủy theo dõi
-            </button>
-            <%}%>
-          </div>
+          <%if(role === "Người thuê trọ"){%>
+            <div class="btn-group">
+              <%if(isFollow === "false") {%>
+              <button
+                type="button=="
+                class="btn btn-outline-danger"
+                id="btn-follow"
+                data-id="<%=userInfor._id%>"
+                onclick="handleFollow()"
+              >
+                Theo dõi chủ trọ
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-danger"
+                id="btn-unFollow"
+                data-id="<%=userInfor._id%>"
+                onclick="handleUnFollow()"
+                style="display: none"
+              >
+                Hủy theo dõi
+              </button>
+              <%} else if(isFollow === "true") {%>
+              <button
+                type="button=="
+                class="btn btn-outline-danger"
+                id="btn-follow"
+                data-id="<%=userInfor._id%>"
+                onclick="handleFollow()"
+                style="display: none"
+              >
+                Theo dõi chủ trọ
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-danger"
+                id="btn-unFollow"
+                data-id="<%=userInfor._id%>"
+                onclick="handleUnFollow()"
+              >
+                Hủy theo dõi
+              </button>
+              <%}%>
+            </div>
+          <%}%>
         </div>
       </div>
       <hr />

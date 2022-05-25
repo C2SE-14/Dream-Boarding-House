@@ -1,7 +1,7 @@
 const User = require("../models/user.model");
 const Role = require("../models/role.model");
 const Room = require("../models/room.model");
-
+const Comment = require("../models/comment.model");
 const renderAdminPage = async (req, res, next) => {
   const renderUsers = await User.find({ deleted: false });
   const post = await Room.find({isAccept: true});
@@ -38,6 +38,20 @@ const getAllPosts = async(req, res, next) => {
     });
   } catch (error) {
     console.log('error: ', error);
+  }
+}
+const getAllComments = async(req, res, next) => {
+  try {
+    const renderUsers = await Comment.find();
+    const roleUserId = await Role.find({$or:[ {'name':"Người thuê trọ"}, {'name':"Chủ phòng trọ"} ]});
+    res.render("admin.template/master", {
+      title: "Dashboard Admin",
+      content: "../admin.page/comments",
+      renderUsers,
+      roleUserId
+    });
+  } catch(error) {
+    console.log(error);
   }
 }
 const blockUser = async (req, res, next) => {
@@ -88,6 +102,7 @@ const deletePost = async (req, res, next) => {
 module.exports = {
   renderAdminPage,
   getAllUsers,
+  getAllComments,
   blockUser,
   getAllPosts,
   acceptPost,

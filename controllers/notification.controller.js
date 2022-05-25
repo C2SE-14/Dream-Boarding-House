@@ -37,7 +37,8 @@ const deleteNotifi = async (req, res, next) => {
     const listNotifi = await Notification.find({ownerId: userId});
     let numberNotification = await NotificationService.getNumberNotification(userId);
     const showSearch = "no";
-    res.render("innKeeperNotification", {title: "Dream Boarding House", user, role, userId, showSearch, numberNotification, listNotifi});
+    // res.render("innKeeperNotification", {title: "Dream Boarding House", user, role, userId, showSearch, numberNotification, listNotifi});
+    res.redirect("/notification/innkeeper/all");
 }
 module.exports = {
     getInkeeperNotification,

@@ -14,7 +14,7 @@
   <body>
     <%- include('./components/header')%>
     <div class="container">
-        <h3>Phòng bạn đã thuê</h3>
+        <h3>Phòng bạn đã cho thuê</h3>
         <%if(listRoom.length > 0) {%>
             <%for(let i = 0; i < listRoom.length; i++) {%>
                 <div class="room-item">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-outline-success" id="btn-success" data-id="<%=listRoom[i].id%>" onclick="document.getElementById('id01').style.display='block'">Thuê thành công</button>
+                  <button type="button" class="btn btn-outline-success" id="btn-success" data-id="<%=listRoom[i].id%>" onclick="document.getElementById('id01').style.display='block'">Cho thuê thành công</button>
                     <form action="/room/delete/chooseRoom/<%=listRoom[i]._id%>?_method=DELETE" method="POST">
                         <button type="submit" class="btn btn-outline-warning">Hủy</button>
                     </form>
@@ -37,14 +37,14 @@
                   <div class="w3-modal-content">
                     <div class="w3-container">
                       <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                      <p style="width: 500px; height: 300px; padding: 20px; display: flex; justify-content: center; align-item: center; font-size: 20px">Chúc mừng bạn đã tìm được phòng trọ tuyệt vời</p>
+                      <p style="width: 500px; height: 300px; padding: 20px; display: flex; justify-content: center; align-item: center; font-size: 20px">Chúc mừng bạn đã tìm được người thuê!</p>
                      
                     </div>
                   </div>
                 </div>
             <%}%>
         <%} else {%>
-            <div>Hiện tại bạn chưa chọn thuê phòng</div>
+            <div>Hiện tại chưa có ai chọn thuê phòng của bạn</div>
          <% } %>   
     </div>
     <%- include('./components/footer')%>
@@ -69,7 +69,7 @@
       const roomId = btnSuccess.getAttribute("data-id");
       btnSuccess.addEventListener("click", () => {
         $.ajax({
-          url: `/room/accept/selectRoom/${roomId}`,
+          url: `/innkeeper/accept/selectRoom/${roomId}`,
           type: "POST",
           success: function (response) {
             if(response.msg === "successfully") {
