@@ -36,3 +36,6 @@ body {
 .open-modal {
     display: block;
 }
+.page-item.active .page-link {
+    z-index: 0 !important;
+}
