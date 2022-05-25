@@ -12,7 +12,7 @@ const postComment = async (req, res, next) => {
         const userId = req.cookies.user.user_id;
         const roomId = req.params.id;
         const {content} = req.body;
-        const userCmt = await User.findOne({id: userId});
+        const userCmt = await User.findOne({_id: userId});
         const userNameCmt = userCmt.username;
         let role, showSearch = "no";
         const room = await Room.findOne({ _id: roomId });
