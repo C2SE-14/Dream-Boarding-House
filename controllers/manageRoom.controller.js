@@ -97,8 +97,47 @@ const updateMyRoom = async (req, res, next) => {
         console.log(error);
     }
 }
+const getSelectRoom = async (req, res, next) => {
+    try {
+        const userId = req.cookies.user.user_id;
+        console.log("userId: ", userId);
+        const listRoomId = await ChooseRoom.find({innkeeperId: userId});
+        console.log('listRoom id: ', listRoomId);
+        let listRoom = [];
+        for(let i = 0; i < listRoomId.length; i++) {
+            let room = await Room.findOne({id: listRoomId[i].roomId});
+            if(room) listRoom.push(room);
+        }
+        const user = req.cookies.user;
+        let role, showSearch = "no";
+        if(user) {
+            role = await Role.findOne({userId: userId});
+            role = role.name;
+        }
+        let numberNotification = await NotificationService.getNumberNotification(userId);
+        res.status(200).render("innkeeperSelectRoom", {title: "Dream Boarding House", listRoom, user, role, listRoom, showSearch, numberNotification})
+    } catch (error) {
+        console.log(error);
+    }
+}
+const successfullySelectRoomInnkeeper = async (req, res, next) => {
+    try {
+        const userId = req.cookies.user.user_id;
+        const roomId = req.params.roomId;
+        await ChooseRoom.where({innkeeper: userId, roomId: roomId}).update({innKeeperAccept: true});
+        await Room.where({_id: roomId}).update({state: false});
+        res.status(200).json({
+          code: 1,
+          msg: "successfully"
+        })
+      } catch(error) {
+        console.log(error);
+      }
+}
 module.exports = {
     getMyRoom,
     deleteMyRoom,
     updateMyRoom,
+    getSelectRoom,
+    successfullySelectRoomInnkeeper,
 }

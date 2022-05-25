@@ -136,6 +136,11 @@ const showOtherPeopleInfor = async (req, res, next) => {
         listFollow = await FollowInnKeeper.find({userId: userId});
         const listRoom = await Room.find({userId: userInfor.id});
         let total = 0, numberRoom = 0, ratio = 0;
+        let roomSelected = await Room.find({
+            userId: id,
+            state: false,
+        })
+        numberRoom = roomSelected.length;
         total = listRoom.length;
         ratio = (numberRoom/total)*100; 
         for(let i = 0; i < listFollow.length; i++) {

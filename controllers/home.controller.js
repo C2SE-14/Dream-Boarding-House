@@ -12,11 +12,13 @@ const getHomePage = async(req, res, next) => {
         }
         const listRoom = await Room.find({
             isAccept: true,
-            type: "Phòng trọ"
+            type: "Phòng trọ",
+            state: true,
         });
         const listRoom2 = await Room.find({
             isAccept: true,
-            type: "Căn hộ"
+            type: "Căn hộ",
+            state: true,
         });
         let today = new Date();
         const timeStamp = new Date().getTime();
@@ -24,6 +26,7 @@ const getHomePage = async(req, res, next) => {
         const yesterdayDate = new Date(yesterdayTimeStamp);
         const listRoom3 = await Room.find({
             isAccept: true,
+            state: true,
             createdAt: {
                 $gte: yesterdayDate, 
                 $lt: today

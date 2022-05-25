@@ -25,4 +25,8 @@ const router = express.Router();
 router.get("/myRoom/all", manageRoomController.getMyRoom);
 router.post("/myRoom/delete/:id", manageRoomController.deleteMyRoom);
 router.post("/myRoom/update/:id", upload.array("files", 4), manageRoomController.updateMyRoom);
+
+router.get("/select/yourRoom", manageRoomController.getSelectRoom);
+
+router.post("/accept/selectRoom/:roomId", manageRoomController.successfullySelectRoomInnkeeper);
 module.exports = router;

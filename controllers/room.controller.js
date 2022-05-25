@@ -135,6 +135,7 @@ const postSelectRoom = async (req, res, next) => {
     let myRoom = {
       userId: userId,
       roomId: roomId,
+      innkeeperId: room.userId,
     };
     const newRoom = ChooseRoom(myRoom);
     await newRoom.save().then((err, data) => {
@@ -240,6 +241,19 @@ const deleteSelectRoom = async (req, res, next) => {
     console.log(error);
   }
 };
+const successfullySelectRoom = async (req, res, next) => {
+  try {
+    const userId = req.cookies.user.user_id;
+    const roomId = req.params.roomId;
+    await ChooseRoom.where({userId: userId, roomId: roomId}).update({userAccept: true});
+    res.status(200).json({
+      code: 1,
+      msg: "successfully"
+    })
+  } catch(error) {
+    console.log(error);
+  }
+}
 module.exports = {
   getUploadRoom,
   postUploadRoom,
@@ -247,4 +261,5 @@ module.exports = {
   postSelectRoom,
   getSelectRoom,
   deleteSelectRoom,
+  successfullySelectRoom,
 };
