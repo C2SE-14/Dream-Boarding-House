@@ -30,8 +30,8 @@ const getUserInformation = async (req, res, next) => {
 }
 const updateUserInformation = async (req, res, next) => {
     try {
-        console.log("Chạy vào đây hay chưa");
         const userId = req.cookies.user.user_id;
+        console.log('userId to update information: ', userId);
         let user, showSearch = "no";
         if(userId) {
             user = req.cookies.user.user_id;
@@ -41,10 +41,11 @@ const updateUserInformation = async (req, res, next) => {
             username: username,
             phoneNumber: phoneNumber,
         }
-        await User.updateOne({id: userId}, body).exec((error)=> {
-            if(error) console.log("error: ", error);
-            else console.log("update successfully");
-        });
+        // await User.updateOne({_id: userId}, body).exec((error)=> {
+        //     if(error) console.log("error: ", error);
+        //     else console.log("update successfully");
+        // });
+        await User.where({_id: userId}).update(body);
         const userInfor = await User.find({_id: userId});
         let msg1 = "";
         const msg = "Cập nhật thành công";
